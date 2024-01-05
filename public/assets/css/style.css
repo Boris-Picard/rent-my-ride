@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+}
+
+/* DASHBOARD */
+.myAccount {
+    height: 100vh !important;
+}
+
+.nameLogoAccount {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 20px;
+    background: linear-gradient(to left, rgb(0, 0, 70), rgb(28, 181, 224));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sidebar {
+    width: 18rem !important; 
+    display: flex !important;
+    height: 90vh !important;
+}
+
+.colSidebar {
+    height: 78vh !important;
+}
+
+.navLink:hover, .navLink:focus {
+    background-color: rgba(200, 200, 200, 0.5 );
+}
+
+.sidebarLink.active {
+    background-color: rgba(200, 200, 200, 0.5 );
+}
+
+.sidebarLink.active span {
+    color: rgb(28, 181, 224)  !important;
+    font-weight: bold !important;
+}
+
+.sidebarLink:hover {
+    color: rgb(28, 181, 224) !important;
+    font-weight: bold !important;
+}
+
+.sidebarLink:hover span {
+    transition: all 300ms ease;
+    margin-left: 1rem;
+}
+
+.logout {
+    bottom: 5rem;
+}
+
