@@ -2,7 +2,7 @@
     <main class="d-flex flex-nowrap">
         <!-- SIDEBAR -->
         <div class="container-fluid sidebar rounded-4 py-5 mt-4">
-            <div class="row">
+            <div class="row ">
                 <div class="col-12 p-0 rounded-4 shadow-lg bg-white">
                     <div class="row m-0 p-0">
                         <div class="d-flex justify-content-center py-3">
@@ -32,7 +32,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="table-responsive shadow-lg p-4 bg-white rounded-4 text-center">
-                                <table class="table table-hover table-borderless">
+                                <table class="table  table-borderless">
                                     <thead>
                                         <tr>
                                             <th scope="col">N</th>
@@ -43,7 +43,10 @@
                                         <tr>
                                             <th scope="row" class="py-3">1</th>
                                             <td class="py-3"></td>
-                                            <td class="py-3"><button class="btn btn-outline-secondary text-uppercase fw-bold">edit</button><i class="bi bi-trash3-fill"></i></td>
+                                            <td class="py-3">
+                                                <button class="btn btn-outline-secondary rounded-5 text-uppercase fw-bold">edit</button>
+                                                <button class="btn btn-outline-danger rounded-5"><i class="bi bi-trash3-fill"></i></button>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
