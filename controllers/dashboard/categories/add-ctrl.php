@@ -22,20 +22,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (empty($error)) {
         // Connection a la database
-        $hostdb = 'localhost';
+        $dsn = 'mysql:host=localhost;dbname=rent_my_ride';
         $userdb = 'BorisRide';
         $passdb = 'M7cya2wS3QLr85YF';
-        $namedb = 'rent_my_ride';
 
         try {
-            $mydb = new PDO($sql, $userdb, $passdb, $dsn);
+            $mydb = new PDO($dsn, $userdb, $passdb);
             $mydb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Connexion réussie";
-            $sth = $mydb->prepare("INSERT INTO `categories` (`name`)
-                            VALUES('$name')");
-            $sth->execute();
+
+            $query = "INSERT INTO `categories` (`name`)
+                            VALUES(:name);";
+
+            $stmt = $mydb->prepare($query);
+
+            $stmt->bindParam(':name', $name);
+
+            $stmt->execute();
+
+            $mydb = null;
+            $stmt = null;
+
+            header('Location:list-ctrl.php');
+            
+            die;
         } catch (PDOException $e) {
-            echo 'Erreur : ' . $e->getMessage();
+            die('Erreur : ' . $e->getMessage()); 
         }
     }
 }

@@ -26,19 +26,28 @@
                 <div class="col-8 mx-auto">
                     <div class="row">
                         <div class="col-12 pb-5">
-                            <h1 class="fw-bold text-uppercase">Ajouter une catégorie de véhicule</h1>
+                            <h1 class="fw-bold text-uppercase">Liste des catégories de véhicule</h1>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <form action="" method="POST" class="shadow-lg p-5 rounded-4">
-                                <div class="mb-3">
-                                    <div><small id="lastnameHelp" class="form-text text-danger"><?= $error['name'] ?? '' ?></small></div>
-                                    <label for="name" class="form-label">Ajouter une catégorie de véhicule</label>
-                                    <input type="text" class="form-control" name="name" id="name" value="<?= htmlentities($name ?? '') ?>" aria-describedby="name" placeholder="Ex: Une chaise" minlength="2" maxlength="70" pattern="<?= REGEX_NAME ?>">
-                                </div>
-                                <button type="submit" class="btn btn-primary rounded-5 fw-bold text-uppercase">Ajouter une catégorie</button>
-                            </form>
+                            <div class="table-responsive shadow-lg p-4 bg-white rounded-4 text-center">
+                                <table class="table table-hover table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">N</th>
+                                            <th scope="col">Nom</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" class="py-3">1</th>
+                                            <td class="py-3"></td>
+                                            <td class="py-3"><button class="btn btn-outline-secondary text-uppercase fw-bold">edit</button><i class="bi bi-trash3-fill"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
