@@ -29,6 +29,11 @@
                             <h1 class="fw-bold text-uppercase">Liste des catégories de véhicule</h1>
                         </div>
                     </div>
+                    <div class="row g-2">
+                        <div class="col-12 pb-3 ">
+                        <button class="btn border-0" id="backBtn"><i class="bi bi-arrow-left fs-4 align-middle"></i><span class="px-2">Revenir à la page précédente</span></button>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="table-responsive shadow-lg p-4 bg-white rounded-4 text-center">
@@ -41,11 +46,11 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <th scope="row" class="py-3">1</th>
+                                            <th scope="row" class="py-3"></th>
                                             <td class="py-3"></td>
                                             <td class="py-3">
-                                                <button class="btn btn-outline-secondary rounded-5 text-uppercase fw-bold">edit</button>
-                                                <button class="btn btn-outline-danger rounded-5"><i class="bi bi-trash3-fill"></i></button>
+                                                <button class="btn btn-outline-secondary text-uppercase fw-bold">edit</button>
+                                                <button class="btn btn-outline-danger"><i class="bi bi-trash3-fill"></i></button>
                                             </td>
                                         </tr>
                                     </tbody>

@@ -11,6 +11,13 @@ class Category
         $this->name = $name;
     }
 
+    public function getAll()
+    {
+        $category = $this->id_category;
+        $name = $this->name;
+        return [$category, $name];
+    }
+
     public function setIdCategory(?int $id_category)
     {
         $this->id_category = $id_category;
