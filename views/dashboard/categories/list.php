@@ -64,10 +64,31 @@
                                                                 </div>
                                                             </form>
                                                         </div>
-                                                        <form action="/controllers/dashboard/categories/delete-ctrl.php" method="POST" class="formDelete">
-                                                            <input type="hidden" name="id_category" value="<?= $key['id_category'] ?>">
-                                                            <button type="submit" class="btn btn-outline-danger"><i class="bi bi-trash3-fill"></i></button>
-                                                        </form>
+                                                        <button type="button" class="btn btn-outline-danger formDelete" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                            <i class="bi bi-trash3-fill"></i>
+                                                        </button>
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h1 class="modal-title fs-5" id="modal">Supprimer la catégorie : <span class="text-danger text-uppercase"><?= $key['name'] ?></span></h1>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        Êtes-vous sûr de vouloir supprimer cet élément ? Cette action est irréversible et entraînera la perte définitive des données associées.
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <form action="/controllers/dashboard/categories/delete-ctrl.php" method="POST">
+                                                                            <input type="hidden" name="id_category" value="<?= $key['id_category'] ?>">
+                                                                            <input type="hidden" name="name" value="<?= $key['name'] ?>">
+                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                                                            <button type="submit" class="btn btn-danger">Sauvegarder les changements</button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>
