@@ -31,7 +31,7 @@
                     </div>
                     <div class="row g-2">
                         <div class="col-12 pb-3 ">
-                        <button class="btn border-0" id="backBtn"><i class="bi bi-arrow-left fs-4 align-middle"></i><span class="px-2">Revenir à la page précédente</span></button>
+                            <button class="btn border-0" id="backBtn"><i class="bi bi-arrow-left fs-4 align-middle"></i><span class="px-2">Revenir à la page précédente</span></button>
                         </div>
                     </div>
                     <div class="row">
@@ -42,17 +42,36 @@
                                         <tr>
                                             <th scope="col">N</th>
                                             <th scope="col">Nom</th>
+                                            <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row" class="py-3"></th>
-                                            <td class="py-3"></td>
-                                            <td class="py-3">
-                                                <button class="btn btn-outline-secondary text-uppercase fw-bold">edit</button>
-                                                <button class="btn btn-outline-danger"><i class="bi bi-trash3-fill"></i></button>
-                                            </td>
-                                        </tr>
+                                        <?php foreach ($result as $key) { ?>
+                                            <tr>
+                                                <th scope="row" class="py-3"><?= $key['id_category'] ?></th>
+                                                <td class="py-3"><?= $key['name'] ?></td>
+                                                <td class="py-3 w-25">
+                                                    <div class="d-flex flex-wrap justify-content-center">
+                                                        <button type="button" class="btn btn-outline-secondary text-uppercase fw-bold mx-2" data-bs-toggle="collapse" data-bs-target="#editCollapse<?= $key['id_category'] ?>" aria-expanded="false" aria-controls="editCollapse">edit</button>
+                                                        <div class="collapse" id="editCollapse<?= $key['id_category'] ?>">
+                                                            <form action="/controllers/dashboard/categories/update-ctrl.php" method="POST">
+                                                                <div class="mb-3 d-flex justify-content-center flex-column align-items-center">
+                                                                    <div><small id="lastnameHelp" class="form-text text-danger"><?= $error['name'] ?? '' ?></small></div>
+                                                                    <label for="name" class="form-label mt-3 fw-semibold">Modifier la catégorie du véhicule</label>
+                                                                    <input type="hidden" name="id_category" value="<?= $key['id_category'] ?>">
+                                                                    <input type="text" class="form-control" name="name" id="name" value="<?= htmlentities($name ?? '') ?>" aria-describedby="name" placeholder="Ex: Une chaise" minlength="2" maxlength="70">
+                                                                    <button type="submit" class="btn btn-outline-primary text-uppercase fw-bold mt-3">valider</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <form action="/controllers/dashboard/categories/delete-ctrl.php" method="POST" class="formDelete">
+                                                            <input type="hidden" name="id_category" value="<?= $key['id_category'] ?>">
+                                                            <button type="submit" class="btn btn-outline-danger"><i class="bi bi-trash3-fill"></i></button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -63,3 +82,22 @@
         </div>
     </main>
 </section>
+
+
+<!-- 
+<button type="button" class="open btn btn-outline-secondary text-uppercase fw-bold" aria-label="Modal Button">edit</button>
+                                                <div class="modalContainer">
+                                                    <div class="modal">
+                                                        <h5>
+                                                            Github
+                                                        </h5>
+                                                        <ul>
+                                                            <li>Versioning</li>
+                                                            <li>Gestion de projet</li>
+                                                            <li>Travail Collaboratif</li>
+                                                        </ul>
+                                                        <button class="close">
+                                                            fermer
+                                                        </button>
+                                                    </div>
+                                                </div> -->
