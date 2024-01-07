@@ -23,10 +23,38 @@
         <!-- Main -->
         <div class="container-fluid h-100">
             <div class="row py-5 mt-4 text-center">
-                <div class="col- mx-auto">
-                    <h1 class="fw-bold text-uppercase">
-                        Bienvenu sur votre Dashboard
-                    </h1>
+                <div class="col-8 mx-auto">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 class="fw-bold text-uppercase">
+                                Bienvenu sur votre Dashboard
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="row py-5">
+                        <div class="col-5">
+                            <div class="card rounded-4 shadow-lg py-5">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre de catégories de véhicules :</h5>
+                                    <p class="card-text fw-bold fs-1">
+                                        <?php foreach ($result as $value) { ?>
+                                            <p class="fw-bold fs-1"><?= $value['count(*)'] ?></p>
+                                        <?php } ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="card rounded-4 shadow-lg py-5">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre de véhicules :</h5>
+                                    <p class="card-text fw-bold fs-1">
+                                        
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

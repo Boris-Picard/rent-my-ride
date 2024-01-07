@@ -1,5 +1,6 @@
 <?php
 
+require __DIR__ . '/../../../config/config.php';
 
 $dsn = 'mysql:host=localhost;dbname=rent_my_ride';
 $userdb = 'BorisRide';
@@ -17,7 +18,7 @@ try {
 
     $mydb = null;
     $stmt = null;
-    
+
 } catch (PDOException $e) {
     die('Erreur : ' . $e->getMessage()); 
 }

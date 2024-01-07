@@ -43,10 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt = null;
 
             header('Location:list-ctrl.php');
-            
+
             die;
         } catch (PDOException $e) {
-            die('Erreur : ' . $e->getMessage()); 
+            die('Erreur : ' . $e->getMessage());
         }
     }
 }

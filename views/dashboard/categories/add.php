@@ -37,7 +37,8 @@
                                     <label for="name" class="form-label">Ajouter une catégorie de véhicule</label>
                                     <input type="text" class="form-control" name="name" id="name" value="<?= htmlentities($name ?? '') ?>" aria-describedby="name" placeholder="Ex: Une chaise" minlength="2" maxlength="70" pattern="<?= REGEX_NAME ?>">
                                 </div>
-                                <button type="submit" class="btn btn-primary rounded-5 fw-bold text-uppercase">Ajouter une catégorie</button>
+                                <button type="submit" class="btn btn-primary fw-bold text-uppercase">Ajouter une catégorie</button>
+                                <a href="/controllers/dashboard/categories/list-ctrl.php" class="btn btn-outline-primary fw-bold text-uppercase">Voir les catégories</a>
                             </form>
                         </div>
                     </div>
