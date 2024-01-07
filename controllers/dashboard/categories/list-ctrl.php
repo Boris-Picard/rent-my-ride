@@ -2,6 +2,8 @@
 
 require __DIR__ . '/../../../config/config.php';
 
+session_start();
+
 $dsn = 'mysql:host=localhost;dbname=rent_my_ride';
 $userdb = 'BorisRide';
 $passdb = 'M7cya2wS3QLr85YF';

@@ -1,37 +1,68 @@
 <?php
+require __DIR__ . '/../../../config/config.php';
+
+session_start();
 
 $dsn = 'mysql:host=localhost;dbname=rent_my_ride';
 $userdb = 'BorisRide';
 $passdb = 'M7cya2wS3QLr85YF';
 
-$name = $_POST['name'];
-$id_category = $_POST['id_category'];
+if (isset($_GET['id_category'])) {
+    $id_category = $_GET['id_category'];
+    try {
+        $mydb = new PDO($dsn, $userdb, $passdb);
+        $mydb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-try {
-    $mydb = new PDO($dsn, $userdb, $passdb);
-    $mydb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = "SELECT * FROM `categories` WHERE `id_category`=:id_category LIMIT 1";
 
-    $query = "UPDATE `categories` SET `name`=:name WHERE `id_category` = :id_category";
+        $stmt = $mydb->prepare($query);
 
-    $stmt = $mydb->prepare($query);
+        $stmt->bindParam(':id_category', $id_category, PDO::PARAM_INT);
 
-    $stmt->bindParam(':name', $name);
-    $stmt->bindParam(':id_category', $id_category, PDO::PARAM_INT);
+        $stmt->execute();
 
-    $stmt->execute();
+        $result = $stmt->fetch();
 
-    $mydb = null;
-    $stmt = null;
+        $mydb = null;
+        $stmt = null;
+    } catch (PDOException $e) {
+        die('Erreur : ' . $e->getMessage());
+    }
+}
 
-    header('Location:list-ctrl.php');
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $id_category = $_POST['id_category'];
+    $name = $_POST['name'];
+    try {
+        $mydb = new PDO($dsn, $userdb, $passdb);
+        $mydb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    die;
-} catch (PDOException $e) {
-    die('Erreur : ' . $e->getMessage());
+        $query = "UPDATE `categories` SET `name`=:name WHERE `id_category`=:id_category";
+
+        $stmt = $mydb->prepare($query);
+
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':id_category', $id_category, PDO::PARAM_INT);
+
+        var_dump($_POST);
+
+        $result = $stmt->execute();
+
+        $mydb = null;
+        $stmt = null;
+
+        if($result) {
+            $_SESSION['status'] = "Catégorie modifié avec succès !";
+            header('Location:list-ctrl.php');
+        }
+        
+        die;
+    } catch (PDOException $e) {
+        die('Erreur : ' . $e->getMessage());
+    }
 }
 
 
-
 include __DIR__ . '/../../../views/templates/header-dashboard.php';
-include __DIR__ . '/../../../views/dashboard/categories/list.php';
+include __DIR__ . '/../../../views/dashboard/categories/update.php';
 include __DIR__ . '/../../../views/templates/footer-dashboard.php';

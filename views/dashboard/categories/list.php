@@ -29,6 +29,17 @@
                             <h1 class="fw-bold text-uppercase">Liste des catégories de véhicule</h1>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-12 py-3">
+                            <?php if (isset($_SESSION['status'])) { ?>
+                                <div class="alert alert-success alert-dismissible fade show fw-bold text-uppercase" role="alert">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    <?= $_SESSION['status'] ?>
+                                </div>
+                                <?php unset($_SESSION['status']) ?>
+                            <?php } ?>
+                        </div>
+                    </div>
                     <div class="row g-2">
                         <div class="col-12 pb-3 ">
                             <button class="btn border-0" id="backBtn"><i class="bi bi-arrow-left fs-4 align-middle"></i><span class="px-2">Revenir à la page précédente</span></button>
@@ -43,7 +54,6 @@
                                             <th scope="col">N</th>
                                             <th scope="col">Nom</th>
                                             <th scope="col">Edit</th>
-                                            <th scope="col">Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -51,23 +61,15 @@
                                             <tr>
                                                 <th scope="row" class="py-3"><?= $key['id_category'] ?></th>
                                                 <td class="py-3"><?= $key['name'] ?></td>
-                                                <td class="py-3 w-25">
-                                                    <div class="d-flex flex-column justify-content-center align-items-center">
-                                                        <button type="button" class="btn btn-outline-secondary text-uppercase fw-bold mx-2 w-25" data-bs-toggle="collapse" data-bs-target="#editCollapse<?= $key['id_category'] ?>" aria-expanded="false" aria-controls="editCollapse">edit</button>
-                                                        <div class="collapse" id="editCollapse<?= $key['id_category'] ?>">
-                                                            <form action="/controllers/dashboard/categories/update-ctrl.php" method="POST">
-                                                                <div class="mb-3 d-flex justify-content-center flex-column align-items-center">
-                                                                    <div><small id="lastnameHelp" class="form-text text-danger"><?= $error['name'] ?? '' ?></small></div>
-                                                                    <label for="name" class="form-label mt-3 fw-semibold">Modifier la catégorie du véhicule : <span class="fw-bold text-danger"><?= $key['name'] ?></span></label>
-                                                                    <input type="hidden" name="id_category" value="<?= $key['id_category'] ?>">
-                                                                    <input type="text" class="form-control" name="name" id="name" value="<?= htmlentities($name ?? '') ?>" aria-describedby="name" placeholder="Ex: Une chaise" minlength="2" maxlength="70">
-                                                                    <button type="submit" class="btn btn-outline-primary text-uppercase fw-bold mt-3">valider</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
+                                                <td class="py-3 d-flex align-items-center justify-content-center">
+                                                    <div class="d-flex flex-column justify-content-center align-items-center mx-2">
+                                                        <form action="/controllers/dashboard/categories/update-ctrl.php" method="GET">
+                                                            <input type="hidden" name="id_category" value="<?= $key['id_category'] ?>">
+                                                            <button type="submit" class="btn btn-outline-secondary fw-bold text-uppercase" id="editButton<?= $key['id_category'] ?>">
+                                                                edit
+                                                            </button>
+                                                        </form>
                                                     </div>
-                                                </td>
-                                                <td class="py-3">
                                                     <button type="button" class="btn btn-outline-danger formDelete" data-bs-toggle="modal" data-bs-target="#modal<?= $key['id_category'] ?>">
                                                         <i class="bi bi-trash3-fill"></i>
                                                     </button>
@@ -86,8 +88,8 @@
                                                                     <form action="/controllers/dashboard/categories/delete-ctrl.php" method="POST">
                                                                         <input type="hidden" name="id_category" value="<?= $key['id_category'] ?>">
                                                                         <input type="hidden" name="name" value="<?= $key['name'] ?>">
-                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                                                        <button type="submit" class="btn btn-danger">Sauvegarder les changements</button>
+                                                                        <button type="button" class="btn btn-secondary text-uppercase fw-bold" data-bs-dismiss="modal">annuler</button>
+                                                                        <button type="submit" class="btn btn-danger text-uppercase fw-bold">Supprimer</button>
                                                                     </form>
                                                                 </div>
                                                             </div>
