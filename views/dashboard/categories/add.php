@@ -31,12 +31,22 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
+                            <?php if (!empty($error)) { ?>
+                                <div class="alert alert-danger alert-dismissible fade show" erreur role="alert fw-bold text-uppercase">
+                                    Erreur d'insertion dans la base de données
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
                             <form action="" method="POST" class="shadow-lg p-5 rounded-4">
                                 <div class="mb-3">
                                     <div><small id="lastnameHelp" class="form-text text-danger"><?= $error['isExist'] ?? '' ?></small></div>
                                     <div><small id="lastnameHelp" class="form-text text-danger"><?= $error['name'] ?? '' ?></small></div>
                                     <label for="name" class="form-label">Ajouter une catégorie de véhicule</label>
-                                    <input type="text" class="form-control" name="name" id="name" value="<?= htmlentities($name ?? '') ?>" aria-describedby="name" placeholder="Ex: Une chaise" minlength="2" maxlength="70" pattern="<?= REGEX_NAME ?>">
+                                    <input type="text" class="form-control" name="name" id="name" value="<?= htmlentities($name ?? '') ?>" aria-describedby="name" placeholder="Ex: Une chaise" minlength="2" maxlength="70" pattern="<?= REGEX_NAME ?>" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary fw-bold text-uppercase">Ajouter une catégorie</button>
                                 <a href="/controllers/dashboard/categories/list-ctrl.php" class="btn btn-outline-primary fw-bold text-uppercase">Voir les catégories</a>

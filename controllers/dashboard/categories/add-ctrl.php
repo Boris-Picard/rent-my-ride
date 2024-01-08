@@ -30,10 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $mydb = new PDO($dsn, $userdb, $passdb);
             $mydb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $query = "INSERT INTO `categories` (`name`)
-                            VALUES(:name)";
+            $sql = 'INSERT INTO `categories` (`name`)
+                            VALUES(:name);';
 
-            $stmt = $mydb->prepare($query);
+            $stmt = $mydb->prepare($sql);
 
             $stmt->bindParam(':name', $name);
 

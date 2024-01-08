@@ -44,7 +44,7 @@
                                     </div>
                                     <label for="name" class="form-label fw-semibold">Modifier le nom de la catégorie de véhicule : <span class="text-danger fw-semibold"><?=$result['name']?></span></label>
                                     <input type="hidden" name="id_category" value="<?= $result['id_category'] ?>">
-                                    <input type="text" class="form-control" name="name" id="name" value="<?= $result['name'] ?>" aria-describedby="name" placeholder="Ex: Une chaise" minlength="2" maxlength="70" pattern="<?= REGEX_NAME ?>">
+                                    <input type="text" class="form-control" name="name" id="name" value="<?= $result['name'] ?>" aria-describedby="name" placeholder="Ex: Une chaise" minlength="2" maxlength="70" pattern="<?= REGEX_NAME ?>" require>
                                 </div>
                                 <button type="submit" class="btn btn-danger fw-bold text-uppercase">Modifier le nom de la catégorie</button>
                                 <a href="/controllers/dashboard/categories/list-ctrl.php" class="btn btn-outline-danger fw-bold text-uppercase">Annuler</a>
