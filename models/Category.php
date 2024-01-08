@@ -13,11 +13,6 @@ class Category
         $this->name = $name;
     }
 
-    // public function getAll()
-    // {
-
-    // }
-
     public function setIdCategory(?int $id_category)
     {
         $this->id_category = $id_category;
@@ -39,7 +34,7 @@ class Category
     }
 
     /**
-     * Permet d'insérer une donnée en base de données
+     * Méthode qui permet d'insérer une catégorie en base de données
      * @return [type]
      */
     public function insert()
@@ -52,7 +47,7 @@ class Category
 
         $stmt = $mydb->prepare($sql);
 
-        $stmt->bindParam(':name', $this->getName());
+        $stmt->bindValue(':name', $this->getName());
 
         $result = $stmt->execute();
 
@@ -60,7 +55,7 @@ class Category
     }
 
     /**
-     * Permet de retourner toutes les données de catégories
+     * Méthode qui permet de retourner toutes les données de catégories
      * @return [type]
      */
     public function getAll()
@@ -96,7 +91,28 @@ class Category
         $stmt->bindValue(':id_category', $this->getIdCategory(), PDO::PARAM_INT);
 
         $result = $stmt->execute();
-        
+
+        return $result;
+    }
+
+    /**
+     * Méthode qui permet de delete une catégorie
+     * @return [type]
+     */
+    public function delete()
+    {
+        $mydb = new PDO(DSN, USER, PASSWORD);
+        $mydb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "DELETE FROM `categories` WHERE `name`=:name AND `id_category` = :id_category";
+
+        $stmt = $mydb->prepare($sql);
+
+        $stmt->bindValue(':name', $this->getName());
+        $stmt->bindValue(':id_category', $this->getIdCategory(), PDO::PARAM_INT);
+
+        $result = $stmt->execute();
+
         return $result;
     }
 }

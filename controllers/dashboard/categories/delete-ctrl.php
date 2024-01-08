@@ -1,31 +1,25 @@
 <?php
 
-$dsn = 'mysql:host=localhost;dbname=rent_my_ride';
-$userdb = 'BorisRide';
-$passdb = 'M7cya2wS3QLr85YF';
+require_once __DIR__ . '/../../../config/config.php';
+require_once __DIR__ . '/../../../models/Category.php';
 
-$name = $_POST['name'];
-$id_category = $_POST['id_category'];
 
 try {
-    $mydb = new PDO($dsn, $userdb, $passdb);
-    $mydb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $name = $_POST['name'];
+        $id_category = $_POST['id_category'];
 
-    $query = "DELETE FROM `categories` WHERE `name`=:name AND `id_category` = :id_category";
+        $category = new Category();
 
-    $stmt = $mydb->prepare($query);
+        $category->setName($name);
+        $category->setIdCategory($id_category);
 
-    $stmt->bindParam(':name', $name);
-    $stmt->bindParam(':id_category', $id_category, PDO::PARAM_INT);
+        $result = $category->delete();
 
-    $stmt->execute();
+        header('Location:list-ctrl.php');
 
-    $mydb = null;
-    $stmt = null;
-
-    header('Location:list-ctrl.php');
-
-    die;
+        die;
+    }
 } catch (PDOException $e) {
     die('Erreur : ' . $e->getMessage());
 }

@@ -4,6 +4,7 @@ require_once __DIR__ . '/../../../config/config.php';
 require_once __DIR__ . '/../../../models/Category.php';
 
 try {
+    $msg = [];
     $title = 'Ajout d\'une catégorie';
     // Nettoyage et validation des inputs
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -29,15 +30,10 @@ try {
             $category->setName($name);
             $result = $category->insert();
 
-            if($result) {
-                $msg = 'La donnée a bien été insérée !';
-            } else {
-                $msg = 'Erreur, la donnée n\'a pas été insérée';
-            }
+            $result ? $msg['success'] = 'La donnée a bien été insérée !' : $msg['error'] = 'Erreur, la donnée n\'a pas été insérée';
+            
 
-            header('Location:list-ctrl.php');
-
-            die;
+            // header('Refresh:3; url=list-ctrl.php');
         }
     }
 } catch (PDOException $e) {

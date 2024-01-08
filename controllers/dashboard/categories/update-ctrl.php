@@ -3,7 +3,6 @@ require_once __DIR__ . '/../../../config/config.php';
 require_once __DIR__ . '/../../../models/Category.php';
 
 try {
-    session_start();
     $title = 'Modification d\'une catégorie';
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -23,15 +22,13 @@ try {
         }
 
         if (empty($error)) {
-            $name = $_GET['name'];
-            $id_category = $GET['id_category'];
+            $id_category = $_GET['id_category'];
 
             $category = new Category();
 
-            var_dump($category);
-            die;
+            $category->setName($name);
+            $category->setIdCategory($id_category);
 
-            $category->getName($name);
             $result = $category->update();
 
             // if ($result) {

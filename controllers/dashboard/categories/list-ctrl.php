@@ -8,7 +8,7 @@ try {
     
     $title = 'Liste des catégories';
     $category = new Category();
-
+    
     $result = $category->getAll();
 } catch (PDOException $e) {
     die('Erreur : ' . $e->getMessage());
