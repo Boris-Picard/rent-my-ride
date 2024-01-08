@@ -33,7 +33,7 @@
                         <div class="col-12 py-3">
                             <?php if (isset($_SESSION['status'])) { ?>
                                 <div class="alert alert-success alert-dismissible fade show fw-bold text-uppercase" role="alert">
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     <?= $_SESSION['status'] ?>
                                 </div>
                                 <?php unset($_SESSION['status']) ?>
@@ -57,7 +57,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($getAll as $value) { ?>
+                                        <?php foreach ($result as $value) { ?>
                                             <tr>
                                                 <th scope="row" class="py-3"><?= $value['id_category'] ?></th>
                                                 <td class="py-3"><?= $value['name'] ?></td>
@@ -65,7 +65,8 @@
                                                     <div class="d-flex flex-column justify-content-center align-items-center mx-2">
                                                         <form action="/controllers/dashboard/categories/update-ctrl.php" method="GET">
                                                             <input type="hidden" name="id_category" value="<?= $value['id_category'] ?>">
-                                                            <button type="submit" class="btn btn-outline-secondary fw-bold text-uppercase" id="editButton<?= $value['id_category'] ?>">
+                                                            <input type="hidden" name="name" value="<?= $value['name'] ?>">
+                                                            <button href="/controllers/dashboard/categories/update-ctrl.php ?>" class="btn btn-outline-secondary fw-bold text-uppercase" id="editButton<?= $value['id_category'] ?>">
                                                                 edit
                                                             </button>
                                                         </form>

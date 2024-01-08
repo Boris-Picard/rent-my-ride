@@ -1,65 +1,52 @@
 <?php
-require __DIR__ . '/../../../config/config.php';
+require_once __DIR__ . '/../../../config/config.php';
+require_once __DIR__ . '/../../../models/Category.php';
 
-session_start();
+try {
+    session_start();
+    $title = 'Modification d\'une catégorie';
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-$dsn = 'mysql:host=localhost;dbname=rent_my_ride';
-$userdb = 'BorisRide';
-$passdb = 'M7cya2wS3QLr85YF';
+        $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
 
-if (isset($_GET['id_category'])) {
-    $id_category = $_GET['id_category'];
-    try {
-        $mydb = new PDO($dsn, $userdb, $passdb);
-        $mydb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $query = "SELECT * FROM `categories` WHERE `id_category`=:id_category LIMIT 1";
-
-        $stmt = $mydb->prepare($query);
-
-        $stmt->bindParam(':id_category', $id_category, PDO::PARAM_INT);
-
-        $stmt->execute();
-
-        $result = $stmt->fetch();
-
-        $mydb = null;
-        $stmt = null;
-    } catch (PDOException $e) {
-        die('Erreur : ' . $e->getMessage());
-    }
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id_category = $_POST['id_category'];
-    $name = $_POST['name'];
-    try {
-        $mydb = new PDO($dsn, $userdb, $passdb);
-        $mydb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $query = "UPDATE `categories` SET `name`=:name WHERE `id_category`=:id_category";
-
-        $stmt = $mydb->prepare($query);
-
-        $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':id_category', $id_category, PDO::PARAM_INT);
-
-        var_dump($_POST);
-
-        $result = $stmt->execute();
-
-        $mydb = null;
-        $stmt = null;
-
-        if($result) {
-            $_SESSION['status'] = "Catégorie modifié avec succès !";
-            header('Location:list-ctrl.php');
+        if (empty($name)) {
+            $error['name'] = "Veuillez remplir le champ";
+        } else {
+            $isOk = filter_var($name, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => '/' . REGEX_NAME . '/')));
+            if (!$isOk) {
+                $error['name'] = "La catégorie du véhicule n'est pas valide";
+            } else {
+                if (strlen($name) <= 2 || strlen($name) >= 70) {
+                    $error['name'] = "La longueur de la catégorie n'est pas bon";
+                }
+            }
         }
-        
-        die;
-    } catch (PDOException $e) {
-        die('Erreur : ' . $e->getMessage());
+
+        if (empty($error)) {
+            $name = $_GET['name'];
+            $id_category = $GET['id_category'];
+
+            $category = new Category();
+
+            var_dump($category);
+            die;
+
+            $category->getName($name);
+            $result = $category->update();
+
+            // if ($result) {
+            //     $msg = 'La donnée a bien été insérée !';
+            // } else {
+            //     $msg = 'Erreur, la donnée n\'a pas été insérée';
+            // }
+
+            header('Location:list-ctrl.php');
+
+            die;
+        }
     }
+} catch (PDOException $e) {
+    die('Erreur : ' . $e->getMessage());
 }
 
 

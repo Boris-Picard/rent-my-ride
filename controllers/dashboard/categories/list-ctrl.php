@@ -1,31 +1,20 @@
 <?php
 
-require __DIR__ . '/../../../config/config.php';
-
-session_start();
-
-$dsn = 'mysql:host=localhost;dbname=rent_my_ride';
-$userdb = 'BorisRide';
-$passdb = 'M7cya2wS3QLr85YF';
+require_once __DIR__ . '/../../../config/config.php';
+require_once __DIR__ . '/../../../models/Category.php';
 
 try {
-    $mydb = new PDO($dsn, $userdb, $passdb);
-    $mydb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    session_start();
+    
+    $title = 'Liste des catégories';
+    $category = new Category();
 
-    $stmt = ("SELECT *FROM `categories`");
-
-    $result = $mydb->prepare($stmt);
-
-    $result->execute();
-
-    $getAll = $result->fetchAll();
-
-    $mydb = null;
-    $stmt = null;
-
+    $result = $category->getAll();
 } catch (PDOException $e) {
-    die('Erreur : ' . $e->getMessage()); 
+    die('Erreur : ' . $e->getMessage());
 }
+
+
 
 
 include __DIR__ . '/../../../views/templates/header-dashboard.php';

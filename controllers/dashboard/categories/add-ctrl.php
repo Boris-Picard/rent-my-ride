@@ -1,55 +1,49 @@
 <?php
 
-require __DIR__ . '/../../../config/config.php';
+require_once __DIR__ . '/../../../config/config.php';
+require_once __DIR__ . '/../../../models/Category.php';
 
-// Nettoyage et validation des inputs
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+try {
+    $title = 'Ajout d\'une catégorie';
+    // Nettoyage et validation des inputs
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
+        $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
 
-    if (empty($name)) {
-        $error['name'] = "Veuillez remplir le champ";
-    } else {
-        $isOk = filter_var($name, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => '/' . REGEX_NAME . '/')));
-        if (!$isOk) {
-            $error['name'] = "La catégorie du véhicule n'est pas valide";
+        if (empty($name)) {
+            $error['name'] = "Veuillez remplir le champ";
         } else {
-            if (strlen($name) <= 2 || strlen($name) >= 70) {
-                $error['name'] = "La longueur de la catégorie n'est pas bon";
+            $isOk = filter_var($name, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => '/' . REGEX_NAME . '/')));
+            if (!$isOk) {
+                $error['name'] = "La catégorie du véhicule n'est pas valide";
+            } else {
+                if (strlen($name) <= 2 || strlen($name) >= 70) {
+                    $error['name'] = "La longueur de la catégorie n'est pas bon";
+                }
             }
         }
-    } 
 
-    if (empty($error)) {
-        // Connection a la database
-        $dsn = 'mysql:host=localhost;dbname=rent_my_ride';
-        $userdb = 'BorisRide';
-        $passdb = 'M7cya2wS3QLr85YF';
+        if (empty($error)) {
+            $category = new Category();
 
-        try {
-            $mydb = new PDO($dsn, $userdb, $passdb);
-            $mydb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $category->setName($name);
+            $result = $category->insert();
 
-            $sql = 'INSERT INTO `categories` (`name`)
-                            VALUES(:name);';
-
-            $stmt = $mydb->prepare($sql);
-
-            $stmt->bindParam(':name', $name);
-
-            $stmt->execute();
-
-            $mydb = null;
-            $stmt = null;
+            if($result) {
+                $msg = 'La donnée a bien été insérée !';
+            } else {
+                $msg = 'Erreur, la donnée n\'a pas été insérée';
+            }
 
             header('Location:list-ctrl.php');
 
             die;
-        } catch (PDOException $e) {
-            die('Erreur : ' . $e->getMessage());
         }
     }
+} catch (PDOException $e) {
+    die('Erreur : ' . $e->getMessage());
 }
+
 
 
 
