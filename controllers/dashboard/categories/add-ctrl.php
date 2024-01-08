@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $error['name'] = "La longueur de la catégorie n'est pas bon";
             }
         }
-    }
+    } 
 
     if (empty($error)) {
         // Connection a la database
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $mydb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $query = "INSERT INTO `categories` (`name`)
-                            VALUES(:name);";
+                            VALUES(:name)";
 
             $stmt = $mydb->prepare($query);
 
@@ -50,8 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
-
-
 
 
 

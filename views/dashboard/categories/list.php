@@ -1,4 +1,4 @@
-<section class="myAccount bg-light">
+<section class="myAccount bg-light h-100">
     <main class="d-flex flex-nowrap">
         <!-- SIDEBAR -->
         <div class="container-fluid sidebar rounded-4 py-5 mt-4">
@@ -21,7 +21,7 @@
             </div>
         </div>
         <!-- Main -->
-        <div class="container-fluid h-100">
+        <div class="container-fluid">
             <div class="row py-5 mt-4">
                 <div class="col-8 mx-auto">
                     <div class="row">
@@ -48,37 +48,37 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="table-responsive shadow-lg p-4 bg-white rounded-4 text-center">
-                                <table class="table  table-borderless">
+                                <table class="table table-borderless table-hover table-responsive">
                                     <thead>
                                         <tr>
                                             <th scope="col">N</th>
                                             <th scope="col">Nom</th>
-                                            <th scope="col">Edit</th>
+                                            <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($result as $key) { ?>
+                                        <?php foreach ($getAll as $value) { ?>
                                             <tr>
-                                                <th scope="row" class="py-3"><?= $key['id_category'] ?></th>
-                                                <td class="py-3"><?= $key['name'] ?></td>
+                                                <th scope="row" class="py-3"><?= $value['id_category'] ?></th>
+                                                <td class="py-3"><?= $value['name'] ?></td>
                                                 <td class="py-3 d-flex align-items-center justify-content-center">
                                                     <div class="d-flex flex-column justify-content-center align-items-center mx-2">
                                                         <form action="/controllers/dashboard/categories/update-ctrl.php" method="GET">
-                                                            <input type="hidden" name="id_category" value="<?= $key['id_category'] ?>">
-                                                            <button type="submit" class="btn btn-outline-secondary fw-bold text-uppercase" id="editButton<?= $key['id_category'] ?>">
+                                                            <input type="hidden" name="id_category" value="<?= $value['id_category'] ?>">
+                                                            <button type="submit" class="btn btn-outline-secondary fw-bold text-uppercase" id="editButton<?= $value['id_category'] ?>">
                                                                 edit
                                                             </button>
                                                         </form>
                                                     </div>
-                                                    <button type="button" class="btn btn-outline-danger formDelete" data-bs-toggle="modal" data-bs-target="#modal<?= $key['id_category'] ?>">
+                                                    <button type="button" class="btn btn-outline-danger formDelete" data-bs-toggle="modal" data-bs-target="#modal<?= $value['id_category'] ?>">
                                                         <i class="bi bi-trash3-fill"></i>
                                                     </button>
                                                     <!-- Modal -->
-                                                    <div class="modal fade" id="modal<?= $key['id_category'] ?>" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+                                                    <div class="modal fade" id="modal<?= $value['id_category'] ?>" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h1 class="modal-title fs-5" id="modal<?= $key['id_category'] ?>">Supprimer la catégorie : <span class="text-danger text-uppercase"><?= $key['name'] ?></span></h1>
+                                                                    <h1 class="modal-title fs-5" id="modal<?= $value['id_category'] ?>">Supprimer la catégorie : <span class="text-danger text-uppercase"><?= $value['name'] ?></span></h1>
                                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                 </div>
                                                                 <div class="modal-body">
@@ -86,8 +86,8 @@
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <form action="/controllers/dashboard/categories/delete-ctrl.php" method="POST">
-                                                                        <input type="hidden" name="id_category" value="<?= $key['id_category'] ?>">
-                                                                        <input type="hidden" name="name" value="<?= $key['name'] ?>">
+                                                                        <input type="hidden" name="id_category" value="<?= $value['id_category'] ?>">
+                                                                        <input type="hidden" name="name" value="<?= $value['name'] ?>">
                                                                         <button type="button" class="btn btn-secondary text-uppercase fw-bold" data-bs-dismiss="modal">annuler</button>
                                                                         <button type="submit" class="btn btn-danger text-uppercase fw-bold">Supprimer</button>
                                                                     </form>

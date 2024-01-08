@@ -13,9 +13,7 @@ class Category
 
     public function getAll()
     {
-        $category = $this->id_category;
-        $name = $this->name;
-        return [$category, $name];
+        
     }
 
     public function setIdCategory(?int $id_category)

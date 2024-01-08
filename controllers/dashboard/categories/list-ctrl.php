@@ -12,11 +12,13 @@ try {
     $mydb = new PDO($dsn, $userdb, $passdb);
     $mydb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $stmt = ("SELECT *, GROUP_CONCAT(`name`) FROM `categories` GROUP BY `id_category`");
+    $stmt = ("SELECT *FROM `categories`");
 
     $result = $mydb->prepare($stmt);
 
     $result->execute();
+
+    $getAll = $result->fetchAll();
 
     $mydb = null;
     $stmt = null;
