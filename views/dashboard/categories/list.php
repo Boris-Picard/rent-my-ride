@@ -31,13 +31,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12 py-3">
-                            <?php if (isset($_SESSION['status'])) { ?>
-                                <div class="alert alert-success alert-dismissible fade show fw-bold text-uppercase" role="alert">
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    <?= $_SESSION['status'] ?>
-                                </div>
-                                <?php unset($_SESSION['status']) ?>
-                            <?php } ?>
+                            
                         </div>
                     </div>
                     <div class="row g-2">

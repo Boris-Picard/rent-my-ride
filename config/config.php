@@ -1,6 +1,7 @@
 <?php
 
 $error = [];
+$alert = [];
 
 define('REGEX_NAME', '^[A-Za-zé \'-]+$');
 

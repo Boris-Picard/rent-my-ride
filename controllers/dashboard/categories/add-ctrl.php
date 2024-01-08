@@ -4,7 +4,6 @@ require_once __DIR__ . '/../../../config/config.php';
 require_once __DIR__ . '/../../../models/Category.php';
 
 try {
-    $msg = [];
     $title = 'Ajout d\'une catégorie';
     // Nettoyage et validation des inputs
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -13,13 +12,16 @@ try {
 
         if (empty($name)) {
             $error['name'] = "Veuillez remplir le champ";
+            $alert['error'] = 'Erreur, la donnée n\'a pas été insérée';
         } else {
             $isOk = filter_var($name, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => '/' . REGEX_NAME . '/')));
             if (!$isOk) {
                 $error['name'] = "La catégorie du véhicule n'est pas valide";
+                $alert['error'] = 'Erreur, la donnée n\'a pas été insérée';
             } else {
                 if (strlen($name) <= 2 || strlen($name) >= 70) {
                     $error['name'] = "La longueur de la catégorie n'est pas bon";
+                    $alert['error'] = 'Erreur, la donnée n\'a pas été insérée';
                 }
             }
         }
@@ -30,10 +32,12 @@ try {
             $category->setName($name);
             $result = $category->insert();
 
-            $result ? $msg['success'] = 'La donnée a bien été insérée !' : $msg['error'] = 'Erreur, la donnée n\'a pas été insérée';
+            if($result) {
+                $alert['success'] = 'La donnée a bien été insérée ! Vous allez être redirigé(e).'; 
+            }
             
 
-            // header('Refresh:3; url=list-ctrl.php');
+            header('Refresh:3; url=list-ctrl.php');
         }
     }
 } catch (PDOException $e) {

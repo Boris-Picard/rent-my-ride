@@ -31,13 +31,14 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <?php if (!empty($msg['success'])) { ?>
+                            <?php if(isset($alert['success'])) { ?>
                                 <div class="alert alert-success">
-                                <?= htmlspecialchars($msg['success']) ?>
+                                <?= $alert['success'] ?>
                             </div>
-                            <?php } elseif (!empty($msg['error'])) { ?>
-                                <div class="alert alert-danger">
-                                <?= htmlspecialchars($msg['error']) ?>
+                            <?php } elseif (isset($alert['error'])) { ?>
+                                <div class="alert alert-danger alert-dismissible fade show">
+                                <?= $alert['error'] ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                             <?php } ?>
                         </div>
