@@ -22,16 +22,31 @@ try {
             }
         }
 
-        $id_category = $_POST['id_category'];
+        $id_category = intval(filter_input(INPUT_POST, 'id_category', FILTER_SANITIZE_NUMBER_INT));
 
-        $category = new Category();
+        if (empty($id_category)) {
+            $error['id_category'] = "Veuillez remplir le champ";
+        } else {
+            $isOk = filter_var($id_category, FILTER_VALIDATE_INT);
+            if (!$isOk) {
+                $error['id_category'] = "La catégorie du véhicule n'est pas valide";
+            } else {
+                if (strlen($id_category) <= 2 || strlen($id_category) >= 70) {
+                    $error['id_category'] = "La longueur de la catégorie n'est pas bon";
+                }
+            }
+        }
 
-        $category->setName($name);
-        $category->setIdCategory($id_category);
+        if (empty($error)) {
+            $category = new Category();
 
-        $result = $category->delete();
+            $category->setName($name);
+            $category->setIdCategory($id_category);
 
-        header('Location:/controllers/dashboard/categories/list-ctrl.php');
+            $result = $category->delete();
+
+            header('Location:/controllers/dashboard/categories/list-ctrl.php');
+        }
     }
 } catch (PDOException $e) {
     die('Erreur : ' . $e->getMessage());

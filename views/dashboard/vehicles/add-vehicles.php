@@ -48,24 +48,24 @@
                             <form action="" method="POST" class="shadow-lg p-5 rounded-4" novalidate>
                                 <div class="row">
                                     <div class="mb-3 col-md-6">
-                                        <div><small id="brandHelp" class="form-text text-danger"><?= $error['brand'] ?? '' ?></small></div>
+                                        <div><small class="form-text text-danger"><?= $error['brand'] ?? '' ?></small></div>
                                         <label for="brand" class="form-label">Marque du véhicule</label>
                                         <input type="text" class="form-control" name="brand" id="brand" value="<?= htmlentities($brand ?? '') ?>" aria-describedby="brand" placeholder="Ex: BMW" minlength="2" maxlength="50" pattern="<?= REGEX_NAME ?>" required>
                                     </div>
                                     <div class="mb-3 col-md-6">
-                                        <div><small id="modelHelp" class="form-text text-danger"><?= $error['model'] ?? '' ?></small></div>
+                                        <div><small class="form-text text-danger"><?= $error['model'] ?? '' ?></small></div>
                                         <label for="model" class="form-label">Modèle du véhicule</label>
                                         <input type="text" class="form-control" name="model" id="model" value="<?= htmlentities($model ?? '') ?>" aria-describedby="model" placeholder="Ex: BMW i7" minlength="2" maxlength="50" pattern="<?= REGEX_MODEL ?>" required>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="mb-3 col-md-6">
-                                        <div><small id="registrationHelp" class="form-text text-danger"><?= $error['registration'] ?? '' ?></small></div>
+                                        <div><small class="form-text text-danger"><?= $error['registration'] ?? '' ?></small></div>
                                         <label for="registration" class="form-label">Immatriculation du véhicule</label>
                                         <input type="text" class="form-control" name="registration" id="registration" value="<?= htmlentities($registration ?? '') ?>" aria-describedby="registration" placeholder="Ex: AA-112-AA" minlength="9" maxlength="9" pattern="<?= REGEX_REGISTRATION ?>" required>
                                     </div>
                                     <div class="mb-3 col-md-6">
-                                        <div><small id="mileageHelp" class="form-text text-danger"><?= $error['mileage'] ?? '' ?></small></div>
+                                        <div><small class="form-text text-danger"><?= $error['mileage'] ?? '' ?></small></div>
                                         <label for="mileage" class="form-label">Kilomètrage du véhicule</label>
                                         <input type="text" class="form-control" name="mileage" id="mileage" value="<?= $mileage ?? '' ?>" aria-describedby="mileage" placeholder="Ex: 100 000" maxlength="10" pattern="<?= REGEX_MILEAGE ?>" required>
                                     </div>

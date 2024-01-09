@@ -45,11 +45,11 @@ class Category
         $sql = 'INSERT INTO `categories` (`name`)
                             VALUES(:name);';
 
-        $stmt = $pdo->prepare($sql);
+        $sth = $pdo->prepare($sql);
 
-        $stmt->bindValue(':name', $this->getName());
+        $sth->bindValue(':name', $this->getName());
 
-        $result = $stmt->execute();
+        $result = $sth->execute();
 
         return $result;
     }
@@ -64,13 +64,19 @@ class Category
 
         $sql = ('SELECT * FROM `categories`;');
 
-        $stmt = $pdo->query($sql);
+        $sth = $pdo->query($sql);
 
-        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $result = $sth->fetchAll(PDO::FETCH_OBJ);
 
         return $result;
     }
 
+    /**
+     * Méthode qui permet de retourner un objet des élélements qui nous intéresse
+     * @param int $id
+     * 
+     * @return object
+     */
     public static function get(int $id):object|false
     {
         $pdo = Database::connect();
@@ -98,12 +104,12 @@ class Category
 
         $sql = 'UPDATE `categories` SET `name`=:name WHERE `id_category`=:id_category;';
 
-        $stmt = $pdo->prepare($sql);
+        $sth = $pdo->prepare($sql);
 
-        $stmt->bindValue(':name', $this->getName());
-        $stmt->bindValue(':id_category', $this->getIdCategory(), PDO::PARAM_INT);
+        $sth->bindValue(':name', $this->getName());
+        $sth->bindValue(':id_category', $this->getIdCategory(), PDO::PARAM_INT);
 
-        $result = $stmt->execute();
+        $result = $sth->execute();
 
         return $result;
     }
@@ -118,12 +124,12 @@ class Category
 
         $sql = 'DELETE FROM `categories` WHERE `name`=:name AND `id_category` = :id_category;';
 
-        $stmt = $pdo->prepare($sql);
+        $sth = $pdo->prepare($sql);
 
-        $stmt->bindValue(':name', $this->getName());
-        $stmt->bindValue(':id_category', $this->getIdCategory(), PDO::PARAM_INT);
+        $sth->bindValue(':name', $this->getName());
+        $sth->bindValue(':id_category', $this->getIdCategory(), PDO::PARAM_INT);
 
-        $result = $stmt->execute();
+        $result = $sth->execute();
 
         return $result;
     }
@@ -138,26 +144,30 @@ class Category
 
         $sql = 'SELECT * from `categories` WHERE `name`=:name;';
 
-        $stmt = $pdo->prepare($sql);
+        $sth = $pdo->prepare($sql);
 
-        $stmt->bindValue(':name', $this->getName());
+        $sth->bindValue(':name', $this->getName());
 
-        $stmt->execute();
+        $sth->execute();
 
-        $result = $stmt->fetchColumn();
+        $result = $sth->fetchColumn();
 
         return $result;
     }
 
+    /**
+     * Méthode qui permet de retourner le nombre de row dans une table
+     * @return [type]
+     */
     public function rowNumber()
     {
         $pdo = Database::connect();
 
         $sql = 'SELECT count(*) FROM `categories`;';
 
-        $stmt = $pdo->query($sql);
+        $sth = $pdo->query($sql);
 
-        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $result = $sth->fetchAll(PDO::FETCH_OBJ);
 
         return $result;
     }

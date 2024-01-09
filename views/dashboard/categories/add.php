@@ -47,7 +47,7 @@
                         <div class="col-12">
                             <form action="" method="POST" class="shadow-lg p-5 rounded-4">
                                 <div class="mb-3">
-                                    <div><small id="lastnameHelp" class="form-text text-danger"><?= $error['name'] ?? '' ?></small></div>
+                                    <div><small class="form-text text-danger"><?= $error['name'] ?? '' ?></small></div>
                                     <label for="name" class="form-label">Ajouter une catégorie de véhicule</label>
                                     <input type="text" class="form-control" name="name" id="name" value="<?= htmlentities($name ?? '') ?>" aria-describedby="name" placeholder="Ex: Une chaise" minlength="2" maxlength="70" pattern="<?= REGEX_NAME ?>" required>
                                 </div>
