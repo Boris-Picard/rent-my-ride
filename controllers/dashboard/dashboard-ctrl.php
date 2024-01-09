@@ -1,20 +1,12 @@
 <?php
 
-$dsn = 'mysql:host=localhost;dbname=rent_my_ride';
-$userdb = 'BorisRide';
-$passdb = 'M7cya2wS3QLr85YF';
+require_once __DIR__ . '/../../config/config.php';
+require_once __DIR__ . '/../../models/Category.php';
 
 try {
-    $mydb = new PDO($dsn, $userdb, $passdb);
-    $mydb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $category = new Category();
 
-    $count = "SELECT count(*) FROM `categories`";
-
-    $stmt = $mydb->prepare($count);
-
-    $stmt->execute();
-
-    $result = $stmt->fetchAll();
+    $category->rowNumber();
 
 } catch (PDOException $e) {
     die('Erreur : ' . $e->getMessage());

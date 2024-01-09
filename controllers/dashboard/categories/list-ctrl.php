@@ -4,7 +4,6 @@ require_once __DIR__ . '/../../../config/config.php';
 require_once __DIR__ . '/../../../models/Category.php';
 
 try {
-    session_start();
     
     $title = 'Liste des catégories';
     $category = new Category();

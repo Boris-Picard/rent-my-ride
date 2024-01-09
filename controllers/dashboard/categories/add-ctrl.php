@@ -30,14 +30,16 @@ try {
             $category = new Category();
 
             $category->setName($name);
-            $result = $category->insert();
+            $isExist = $category->isExist();
 
-            if($result) {
-                $alert['success'] = 'La donnée a bien été insérée ! Vous allez être redirigé(e).'; 
+            if ($isExist > 0) {
+                $alert['error'] = 'Donnée déjà existante';
+            } else {
+                $result = $category->insert();
+                $alert['success'] = 'La donnée a bien été insérée ! Vous allez être redirigé(e).';
+                header('Refresh:3; url=list-ctrl.php');
             }
             
-
-            header('Refresh:3; url=list-ctrl.php');
         }
     }
 } catch (PDOException $e) {

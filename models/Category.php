@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../helpers/Database.php';
 
 class Category
 {
@@ -39,13 +40,12 @@ class Category
      */
     public function insert()
     {
-        $mydb = new PDO(DSN, USER, PASSWORD);
-        $mydb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo = Database::connect();
 
         $sql = 'INSERT INTO `categories` (`name`)
                             VALUES(:name);';
 
-        $stmt = $mydb->prepare($sql);
+        $stmt = $pdo->prepare($sql);
 
         $stmt->bindValue(':name', $this->getName());
 
@@ -60,12 +60,11 @@ class Category
      */
     public function getAll()
     {
-        $mydb = new PDO(DSN, USER, PASSWORD);
-        $mydb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo = Database::connect();
 
-        $sql = ("SELECT * FROM `categories`");
+        $sql = ('SELECT * FROM `categories`;');
 
-        $stmt = $mydb->prepare($sql);
+        $stmt = $pdo->prepare($sql);
 
         $stmt->execute();
 
@@ -80,12 +79,11 @@ class Category
      */
     public function update()
     {
-        $mydb = new PDO(DSN, USER, PASSWORD);
-        $mydb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo = Database::connect();
 
-        $sql = "UPDATE `categories` SET `name`=:name WHERE `id_category`=:id_category";
+        $sql = 'UPDATE `categories` SET `name`=:name WHERE `id_category`=:id_category;';
 
-        $stmt = $mydb->prepare($sql);
+        $stmt = $pdo->prepare($sql);
 
         $stmt->bindValue(':name', $this->getName());
         $stmt->bindValue(':id_category', $this->getIdCategory(), PDO::PARAM_INT);
@@ -101,17 +99,52 @@ class Category
      */
     public function delete()
     {
-        $mydb = new PDO(DSN, USER, PASSWORD);
-        $mydb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo = Database::connect();
 
-        $sql = "DELETE FROM `categories` WHERE `name`=:name AND `id_category` = :id_category";
+        $sql = 'DELETE FROM `categories` WHERE `name`=:name AND `id_category` = :id_category;';
 
-        $stmt = $mydb->prepare($sql);
+        $stmt = $pdo->prepare($sql);
 
         $stmt->bindValue(':name', $this->getName());
         $stmt->bindValue(':id_category', $this->getIdCategory(), PDO::PARAM_INT);
 
         $result = $stmt->execute();
+
+        return $result;
+    }
+
+    /**
+     * Méthode qui permet de savoir si une donnée est déjà existante dans notre table
+     * @return [type]
+     */
+    public function isExist()
+    {
+        $pdo = Database::connect();
+
+        $sql = 'SELECT * from `categories` WHERE `name`=:name;';
+
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->bindValue(':name', $this->getName());
+
+        $stmt->execute();
+
+        $result = $stmt->fetchColumn();
+
+        return $result;
+    }
+
+    public function rowNumber()
+    {
+        $pdo = Database::connect();
+
+        $sql = 'SELECT count(*) FROM `categories`;';
+
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->execute();
+
+        $result = $stmt->fetchAll();
 
         return $result;
     }
