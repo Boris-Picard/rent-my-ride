@@ -5,8 +5,8 @@ require_once __DIR__ . '/../helpers/Database.php';
 
 class Category
 {
-    private ?int $id_category;
-    private string $name;
+    protected ?int $id_category;
+    protected string $name;
 
     public function __construct(string $name = '', ?int $id_category = null)
     {
@@ -67,6 +67,23 @@ class Category
         $stmt = $pdo->query($sql);
 
         $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        return $result;
+    }
+
+    public static function get(int $id):object|false
+    {
+        $pdo = Database::connect();
+
+        $sql = 'SELECT * FROM `categories` WHERE `id_category`=:id_category;';
+
+        $sth = $pdo->prepare($sql);
+
+        $sth->bindValue(':id_category', $id, PDO::PARAM_INT);
+
+        $sth->execute();
+
+        $result = $sth->fetch(PDO::FETCH_OBJ);
 
         return $result;
     }

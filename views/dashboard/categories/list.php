@@ -31,7 +31,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12 py-3">
-                            
+
                         </div>
                     </div>
                     <div class="row g-2">
@@ -58,11 +58,9 @@
                                                 <td class="py-3 d-flex align-items-center justify-content-center">
                                                     <div class="d-flex flex-column justify-content-center align-items-center mx-2">
                                                         <form action="/controllers/dashboard/categories/update-ctrl.php" method="GET">
-                                                            <input type="hidden" name="id_category" value="<?= $category->id_category ?>">
-                                                            <input type="hidden" name="name" value="<?= $category->name ?>">
-                                                            <button href="/controllers/dashboard/categories/update-ctrl.php ?>" class="btn btn-outline-secondary fw-bold text-uppercase" id="editButton<?= $category->id_category ?>">
+                                                            <a href="/controllers/dashboard/categories/update-ctrl.php?id=<?= $category->id_category ?>" class="btn btn-outline-secondary fw-bold text-uppercase" name="edit">
                                                                 edit
-                                                            </button>
+                                                            </a>
                                                         </form>
                                                     </div>
                                                     <button type="button" class="btn btn-outline-danger formDelete" data-bs-toggle="modal" data-bs-target="#modal<?= $category->id_category ?>">
@@ -73,7 +71,7 @@
                                                         <div class="modal-dialog modal-dialog-centered">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h1 class="modal-title fs-5" id="modal<?= $category->id_category ?>">Supprimer la catégorie : <span class="text-danger text-uppercase"><?= $category->name ?></span></h1>
+                                                                    <h1 class="modal-title fs-5" id="modal<?= $category->id_category?>">Supprimer la catégorie : <span class="text-danger text-uppercase"><?= $category->name?></span></h1>
                                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                 </div>
                                                                 <div class="modal-body">
@@ -81,7 +79,7 @@
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <form action="/controllers/dashboard/categories/delete-ctrl.php" method="POST">
-                                                                        <input type="hidden" name="id_category" value="<?= $category->id_category ?>">
+                                                                        <input type="hidden" name="id_category" value="<?= $category->id_category?>">
                                                                         <input type="hidden" name="name" value="<?= $category->name ?>">
                                                                         <button type="button" class="btn btn-secondary text-uppercase fw-bold" data-bs-dismiss="modal">annuler</button>
                                                                         <button type="submit" class="btn btn-danger text-uppercase fw-bold">Supprimer</button>
