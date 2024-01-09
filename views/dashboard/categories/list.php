@@ -54,7 +54,7 @@
                                         <?php foreach ($categories as $category) { ?>
                                             <tr>
                                                 <th scope="row" class="py-3"><?= $category->id_category ?></th>
-                                                <td class="py-3"><?= $category->name ?></td>
+                                                <td class="py-3 fw-semibold"><?= $category->name ?></td>
                                                 <td class="py-3 d-flex align-items-center justify-content-center">
                                                     <div class="d-flex flex-column justify-content-center align-items-center mx-2">
                                                         <form action="/controllers/dashboard/categories/update-ctrl.php" method="GET">
