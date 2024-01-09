@@ -4,9 +4,7 @@ require_once __DIR__ . '/../../config/config.php';
 require_once __DIR__ . '/../../models/Category.php';
 
 try {
-    $category = new Category();
-
-    $category->rowNumber();
+    $categories = Category::getAll();
 
 } catch (PDOException $e) {
     die('Erreur : ' . $e->getMessage());

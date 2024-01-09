@@ -58,17 +58,15 @@ class Category
      * Méthode qui permet de retourner toutes les données de catégories
      * @return [type]
      */
-    public function getAll()
+    public static function getAll()
     {
         $pdo = Database::connect();
 
         $sql = ('SELECT * FROM `categories`;');
 
-        $stmt = $pdo->prepare($sql);
+        $stmt = $pdo->query($sql);
 
-        $stmt->execute();
-
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
 
         return $result;
     }
@@ -140,11 +138,9 @@ class Category
 
         $sql = 'SELECT count(*) FROM `categories`;';
 
-        $stmt = $pdo->prepare($sql);
+        $stmt = $pdo->query($sql);
 
-        $stmt->execute();
-
-        $result = $stmt->fetchAll();
+        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
 
         return $result;
     }

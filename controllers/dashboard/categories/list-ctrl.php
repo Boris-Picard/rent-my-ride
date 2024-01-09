@@ -6,9 +6,9 @@ require_once __DIR__ . '/../../../models/Category.php';
 try {
     
     $title = 'Liste des catégories';
-    $category = new Category();
     
-    $result = $category->getAll();
+    $categories = Category::getAll();
+
 } catch (PDOException $e) {
     die('Erreur : ' . $e->getMessage());
 }
