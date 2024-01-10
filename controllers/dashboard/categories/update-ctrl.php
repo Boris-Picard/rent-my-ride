@@ -40,9 +40,10 @@ try {
 
             $category->setName($name);
             $category->setIdCategory($id_category);
-            $isExist = $category->isExist();
+            
+            $isExist = Category::isExist($name);
 
-            if ($isExist > 0) {
+            if ($isExist) {
                 $alert['error'] = 'Donnée déjà existante';
             } else {
                 $result = $category->update();

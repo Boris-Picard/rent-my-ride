@@ -77,7 +77,7 @@ class Category
      * 
      * @return object
      */
-    public static function get(int $id):object|false
+    public static function get(int $id): object|false
     {
         $pdo = Database::connect();
 
@@ -115,19 +115,20 @@ class Category
     }
 
     /**
-     * Méthode qui permet de delete une catégorie
-     * @return [type]
+     * Méthode static qui prend un paramètre, l'id pour supprimer une catégorie
+     * @param int $id
+     * 
+     * @return bool
      */
-    public function delete()
+    public static function delete(int $id):bool
     {
         $pdo = Database::connect();
 
-        $sql = 'DELETE FROM `categories` WHERE `name`=:name AND `id_category` = :id_category;';
+        $sql = 'DELETE FROM `categories` WHERE `id_category` = :id_category;';
 
         $sth = $pdo->prepare($sql);
 
-        $sth->bindValue(':name', $this->getName());
-        $sth->bindValue(':id_category', $this->getIdCategory(), PDO::PARAM_INT);
+        $sth->bindValue(':id_category', $id, PDO::PARAM_INT);
 
         $result = $sth->execute();
 
@@ -138,7 +139,7 @@ class Category
      * Méthode qui permet de savoir si une donnée est déjà existante dans notre table
      * @return [type]
      */
-    public function isExist()
+    public static function isExist(string $name):object|false
     {
         $pdo = Database::connect();
 
@@ -146,11 +147,11 @@ class Category
 
         $sth = $pdo->prepare($sql);
 
-        $sth->bindValue(':name', $this->getName());
+        $sth->bindValue(':name', $name);
 
         $sth->execute();
 
-        $result = $sth->fetchColumn();
+        $result = $sth->fetch(PDO::FETCH_OBJ);
 
         return $result;
     }

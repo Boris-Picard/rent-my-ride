@@ -62,37 +62,14 @@
                                                 <td class="py-3 fw-semibold"><?= $category->name ?></td>
                                                 <td class="py-3 d-flex align-items-center justify-content-center">
                                                     <div class="d-flex flex-column justify-content-center align-items-center mx-2">
-                                                        <form action="/controllers/dashboard/categories/update-ctrl.php" method="GET">
-                                                            <a href="/controllers/dashboard/categories/update-ctrl.php?id=<?= $category->id_category ?>" class="btn btn-outline-secondary fw-bold text-uppercase" name="edit">
-                                                                edit
-                                                            </a>
-                                                        </form>
+                                                        <a href="/controllers/dashboard/categories/update-ctrl.php?id=<?= $category->id_category ?>" class="btn btn-outline-secondary fw-bold text-uppercase" name="edit">
+                                                            edit
+                                                        </a>
                                                     </div>
-                                                    <button type="button" class="btn btn-outline-danger formDelete" data-bs-toggle="modal" data-bs-target="#modal<?= $category->id_category ?>">
+                                                    <a href="/controllers/dashboard/categories/delete-ctrl.php?id=<?= $category->id_category ?>" class="btn btn-outline-danger formDelete" data-bs-toggle="modal" data-bs-target="#modal">
                                                         <i class="bi bi-trash3-fill"></i>
-                                                    </button>
-                                                    <!-- Modal -->
-                                                    <div class="modal fade" id="modal<?= $category->id_category ?>" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h1 class="modal-title fs-5" id="modal<?= $category->id_category ?>">Supprimer la catégorie : <span class="text-danger text-uppercase"><?= $category->name ?></span></h1>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    Êtes-vous sûr de vouloir supprimer cet élément ? Cette action est irréversible et entraînera la perte définitive des données associées.
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <form action="/controllers/dashboard/categories/delete-ctrl.php" method="POST">
-                                                                        <input type="hidden" name="id_category" value="<?= $category->id_category ?>">
-                                                                        <input type="hidden" name="name" value="<?= $category->name ?>">
-                                                                        <button type="button" class="btn btn-secondary text-uppercase fw-bold" data-bs-dismiss="modal">annuler</button>
-                                                                        <button type="submit" class="btn btn-danger text-uppercase fw-bold">Supprimer</button>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    </a>
+                                                    
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -100,6 +77,24 @@
                                 </table>
                             </div>
                         </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5" id="modal">Supprimer la catégorie : <span class="text-danger text-uppercase"><?= $category->name ?></span></h1>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Êtes-vous sûr de vouloir supprimer cet élément ? Cette action est irréversible et entraînera la perte définitive des données associées.
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary text-uppercase fw-bold" data-bs-dismiss="modal">annuler</button>
+                                                                    <a href="/controllers/dashboard/categories/delete-ctrl.php?id=<?= $category->id_category ?>" class="btn btn-danger text-uppercase fw-bold">Supprimer</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                     </div>
                 </div>
             </div>

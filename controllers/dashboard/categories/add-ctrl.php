@@ -30,9 +30,9 @@ try {
             $category = new Category();
 
             $category->setName($name);
-            $isExist = $category->isExist();
+            $isExist = Category::isExist($name);
 
-            if ($isExist > 0) {
+            if ($isExist) {
                 $alert['error'] = 'Donnée déjà existante';
             } else {
                 $result = $category->insert();
