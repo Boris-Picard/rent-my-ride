@@ -5,10 +5,12 @@ require_once __DIR__ . '/../../../models/Category.php';
 try {
     $title = 'Ajout d\'un véhicule';
 
+    // ulilisation de la méthode static getAll qui permet de récuper les données dans categories
     $listCategories = Category::getAll();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+        // filter et sanitize de la marque
         $brand = filter_input(INPUT_POST, 'brand', FILTER_SANITIZE_SPECIAL_CHARS);
 
         if (empty($brand)) {
@@ -27,6 +29,7 @@ try {
             }
         }
 
+        // filter et sanitize du modèle
         $model = filter_input(INPUT_POST, 'model', FILTER_SANITIZE_SPECIAL_CHARS);
 
         if (empty($model)) {
@@ -45,6 +48,7 @@ try {
             }
         }
 
+        // filter et sanitize de l'immatriculation
         $registration = filter_input(INPUT_POST, 'registration', FILTER_SANITIZE_SPECIAL_CHARS);
 
         if (empty($registration)) {
@@ -63,6 +67,7 @@ try {
             }
         }
 
+        // filter et sanitize du kilomètrage
         $mileage = filter_input(INPUT_POST, 'mileage', FILTER_SANITIZE_NUMBER_INT);
 
         if (empty($mileage)) {
@@ -80,15 +85,54 @@ try {
             }
         }
 
-        $id_category = filter_input(INPUT_POST,'categories', FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
+        // Nouvelle variable qui va stocker dans un tableau chaque id de mon objet $listcategories
+        $categoryIds = [];
+        foreach ($listCategories as $category) {
+            $categoryIds[] = $category->id_category;
+        }
 
-        if($id_category != null) {
-            foreach ($id_category as $category) {
-                if(!empty($categories) && !in_array($category,$categories)) {
-                    $error['checkbox'] = "Veuillez séléctionner un langage valide";
-                }
+        // filter et sanitize du select d'une catégorie
+        $id_category = filter_input(INPUT_POST, 'categories', FILTER_SANITIZE_NUMBER_INT);
+
+        if (empty($id_category)) {
+            $error['categories'] = 'Veuillez sélectionner une catégorie';
+            $alert['error'] = 'Erreur, la donnée n\'a pas été insérée';
+        } else {
+            if (!in_array($id_category, $categoryIds)) {
+                $error['categories'] = 'Ce n\'est pas une catégorie valide';
+                $alert['error'] = 'Erreur, la donnée n\'a pas été insérée';
             }
         }
+
+        if(isset($_FILES['picture'])) {
+            try {
+                // if(!empty($_FILES['picture']['name'])) {
+                    // throw new Exception("Photo obligatoire");
+                // }
+                if($_FILES['picture']['error'] != 0) {
+                    throw new Exception("Error");
+                }
+                if(!in_array($_FILES['picture']['type'], IMAGE_TYPES)) {
+                    throw new Exception("Format non autorisé");
+                }
+                if($_FILES['picture']['size'] > IMAGE_SIZE) {
+                    throw new Exception("Image trop grande");
+                }
+                $from = $_FILES['picture']['tmp_name'];
+    
+                $fileName = uniqid('img_');
+                $extension = pathinfo($_FILES['picture']['name'], PATHINFO_EXTENSION);
+                // $front = $fileName . '.'. $extension;
+    
+                $to =  __DIR__ . '/public/uploads/vehicles/' .$fileName.'.'.$extension;
+    
+                $moveFile = move_uploaded_file($from,$to);
+        
+            } catch (\Throwable $th) {
+                $error['picture'] = $th->getMessage();
+            }
+        }
+        
 
     }
 } catch (PDOException $e) {

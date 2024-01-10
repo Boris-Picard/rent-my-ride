@@ -72,18 +72,20 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
+                                        <div><small class="form-text text-danger"><?= $error['categories'] ?? '' ?></small></div>
                                         <label for="" class="mb-2">Catégorie du véhicule</label>
                                         <select class="form-select" name="categories" aria-label="Default select example">
                                             <option selected disabled></option>
-                                            <?php foreach ($categories as $category) { ?>
-                                                <option value="<?= $category->id_category ?>" <?=(isset($categories) && $categories==$category->name) ? 'selected' : ''?>><?= $category->name ?></option>
+                                            <?php foreach ($listCategories as $category) { ?>
+                                                <option value="<?= $category->id_category ?>" <?= (isset($id_category) && $id_category == $category->id_category) ? 'selected' : '' ?>><?= $category->name ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
+                                            <div><small class="form-text text-danger"><?= $error['picture'] ?? '' ?></small></div>
                                             <label for="picture" class="form-label">Ajouter une photo du véhicule (optionnel)</label>
-                                            <input class="form-control" type="file" id="picture" name="picture">
+                                            <input class="form-control" type="file" id="picture" name="picture" placeholder="Photo" >
                                         </div>
                                     </div>
                                 </div>
@@ -97,3 +99,5 @@
         </div>
     </main>
 </section>
+
+<!-- accept="image/png, image/jpeg" -->

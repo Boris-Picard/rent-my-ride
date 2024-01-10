@@ -11,3 +11,6 @@ define('REGEX_MILEAGE', '^[0-9]{10}$');
 define('DSN', 'mysql:host=localhost;dbname=rent_my_ride');
 define('USER', 'BorisRide');
 define('PASSWORD', 'M7cya2wS3QLr85YF');
+
+define('IMAGE_TYPES',  ['image/jpeg', 'image/png']);
+define('IMAGE_SIZE', 2*1024*1024);

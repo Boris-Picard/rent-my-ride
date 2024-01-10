@@ -58,7 +58,7 @@ class Category
      * Méthode qui permet de retourner toutes les données de catégories
      * @return [type]
      */
-    public static function getAll()
+    public static function getAll():array|false
     {
         $pdo = Database::connect();
 
@@ -98,7 +98,7 @@ class Category
      * Méthode qui permet de update une catégorie
      * @return [type]
      */
-    public function update()
+    public function update():bool
     {
         $pdo = Database::connect();
 
@@ -160,7 +160,7 @@ class Category
      * Méthode qui permet de retourner le nombre de row dans une table
      * @return [type]
      */
-    public function rowNumber()
+    public function rowNumber():array|false
     {
         $pdo = Database::connect();
 
