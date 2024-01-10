@@ -8,10 +8,9 @@ const formDelete = document.querySelectorAll('.formDelete');
 
 formDelete.forEach(button => {
     button.addEventListener('click', (event) => {
-        let page = event.target.search;
-        let modal = document.getElementById('modal');
+        let page = event.target.search
+        console.log(page);
         
-        console.log(modal);
     })
 });
 

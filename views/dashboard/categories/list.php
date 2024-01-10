@@ -78,7 +78,7 @@
                             </div>
                         </div>
                         <!-- Modal -->
-                        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+                        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal" aria-hidden="true" data-id="<?= $category->id_category ?>">
                                                         <div class="modal-dialog modal-dialog-centered">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
