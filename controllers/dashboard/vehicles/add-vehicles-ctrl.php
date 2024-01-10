@@ -1,11 +1,12 @@
 <?php
 require_once __DIR__ . '/../../../config/config.php';
 require_once __DIR__ . '/../../../models/Category.php';
+require_once __DIR__ . '/../../../models/Vehicle.php';
 
 try {
     $title = 'Ajout d\'un véhicule';
 
-    // ulilisation de la méthode static getAll qui permet de récuper les données dans categories
+    // ulilisation de la méthode static getAll qui permet de récuper toutes les données dans categories
     $listCategories = Category::getAll();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -85,7 +86,7 @@ try {
             }
         }
 
-        // Nouvelle variable qui va stocker dans un tableau chaque id de mon objet $listcategories
+        // nouvelle variable qui va stocker dans un tableau chaque id de mon objet $listcategories
         $categoryIds = [];
         foreach ($listCategories as $category) {
             $categoryIds[] = $category->id_category;
@@ -104,11 +105,9 @@ try {
             }
         }
 
-        if(isset($_FILES['picture'])) {
+        // filter de l'upload d'une image donnée non obligatoire
+        if(!empty($_FILES['picture']['name'])) {
             try {
-                // if(!empty($_FILES['picture']['name'])) {
-                    // throw new Exception("Photo obligatoire");
-                // }
                 if($_FILES['picture']['error'] != 0) {
                     throw new Exception("Error");
                 }
@@ -118,13 +117,13 @@ try {
                 if($_FILES['picture']['size'] > IMAGE_SIZE) {
                     throw new Exception("Image trop grande");
                 }
+
                 $from = $_FILES['picture']['tmp_name'];
     
                 $fileName = uniqid('img_');
                 $extension = pathinfo($_FILES['picture']['name'], PATHINFO_EXTENSION);
-                // $front = $fileName . '.'. $extension;
     
-                $to =  __DIR__ . '/public/uploads/vehicles/' .$fileName.'.'.$extension;
+                $to =  __DIR__ . '/../../../public/uploads/vehicles/' .$fileName.'.'.$extension;
     
                 $moveFile = move_uploaded_file($from,$to);
         
@@ -133,6 +132,16 @@ try {
             }
         }
         
+        if(empty($error)) {
+            $vehicles = new Vehicle($id_category);
+
+            $vehicles->setBrand($brand);
+            $vehicles->setModel($model);
+            $vehicles->setRegistration($registration);
+            $vehicles->setMileage($mileage);
+
+            $result = $vehicles->insert();
+        }
 
     }
 } catch (PDOException $e) {

@@ -45,7 +45,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <form action="" method="POST" class="shadow-lg p-5 rounded-4" novalidate>
+                            <form action="" method="POST" class="shadow-lg p-5 rounded-4" enctype="multipart/form-data" novalidate>
                                 <div class="row">
                                     <div class="mb-3 col-md-6">
                                         <div><small class="form-text text-danger"><?= $error['brand'] ?? '' ?></small></div>
@@ -85,7 +85,7 @@
                                         <div class="mb-3">
                                             <div><small class="form-text text-danger"><?= $error['picture'] ?? '' ?></small></div>
                                             <label for="picture" class="form-label">Ajouter une photo du véhicule (optionnel)</label>
-                                            <input class="form-control" type="file" id="picture" name="picture" placeholder="Photo" >
+                                            <input class="form-control" type="file" id="picture" name="picture" placeholder="Photo" accept="image/png, image/jpeg" >
                                         </div>
                                     </div>
                                 </div>
@@ -100,4 +100,3 @@
     </main>
 </section>
 
-<!-- accept="image/png, image/jpeg" -->
