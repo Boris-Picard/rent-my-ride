@@ -11,7 +11,7 @@ try {
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        // filter et sanitize de la marque
+        // nettoyage et validation de la marque
         $brand = filter_input(INPUT_POST, 'brand', FILTER_SANITIZE_SPECIAL_CHARS);
 
         if (empty($brand)) {
@@ -30,7 +30,7 @@ try {
             }
         }
 
-        // filter et sanitize du modèle
+        // nettoyage et validation du modèle
         $model = filter_input(INPUT_POST, 'model', FILTER_SANITIZE_SPECIAL_CHARS);
 
         if (empty($model)) {
@@ -49,7 +49,7 @@ try {
             }
         }
 
-        // filter et sanitize de l'immatriculation
+        // nettoyage et validation de l'immatriculation
         $registration = filter_input(INPUT_POST, 'registration', FILTER_SANITIZE_SPECIAL_CHARS);
 
         if (empty($registration)) {
@@ -68,7 +68,7 @@ try {
             }
         }
 
-        // filter et sanitize du kilomètrage
+        // nettoyage et validation du kilomètrage
         $mileage = filter_input(INPUT_POST, 'mileage', FILTER_SANITIZE_NUMBER_INT);
 
         if (empty($mileage)) {
@@ -92,7 +92,7 @@ try {
             $categoryIds[] = $category->id_category;
         }
 
-        // filter et sanitize du select d'une catégorie
+        // nettoyage et validation du select d'une catégorie
         $id_category = filter_input(INPUT_POST, 'categories', FILTER_SANITIZE_NUMBER_INT);
 
         if (empty($id_category)) {
@@ -105,7 +105,7 @@ try {
             }
         }
 
-        // filter de l'upload d'une image donnée non obligatoire
+        // nettoyage et validation de l'upload d'une image donnée non obligatoire
         if(!empty($_FILES['picture']['name'])) {
             try {
                 if($_FILES['picture']['error'] != 0) {
