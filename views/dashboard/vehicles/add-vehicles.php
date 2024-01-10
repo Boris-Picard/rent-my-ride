@@ -71,9 +71,18 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <label for="" class="mb-2">Catégorie du véhicule</label>
+                                        <select class="form-select" name="categories" aria-label="Default select example">
+                                            <option selected disabled></option>
+                                            <?php foreach ($categories as $category) { ?>
+                                                <option value="<?= $category->id_category ?>" <?=(isset($categories) && $categories==$category->name) ? 'selected' : ''?>><?= $category->name ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="picture" class="form-label">Ajouter une photo du véhicule</label>
+                                            <label for="picture" class="form-label">Ajouter une photo du véhicule (optionnel)</label>
                                             <input class="form-control" type="file" id="picture" name="picture">
                                         </div>
                                     </div>

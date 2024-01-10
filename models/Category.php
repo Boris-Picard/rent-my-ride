@@ -120,7 +120,7 @@ class Category
      * 
      * @return bool
      */
-    public static function delete(int $id):bool
+    public static function delete(int $id): bool
     {
         $pdo = Database::connect();
 
@@ -139,7 +139,7 @@ class Category
      * Méthode qui permet de savoir si une donnée est déjà existante dans notre table
      * @return [type]
      */
-    public static function isExist(string $name):object|false
+    public static function isExist(string $name): object|false
     {
         $pdo = Database::connect();
 
