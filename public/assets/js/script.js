@@ -6,9 +6,12 @@ backBtn.addEventListener('click', () => {
 
 const formDelete = document.querySelectorAll('.formDelete');
 
-
 formDelete.forEach(button => {
-    button.addEventListener('click', () => {
-        console.log(button.urlParams.get);
+    button.addEventListener('click', (event) => {
+        let page = event.target.search;
+        let modal = document.getElementById('modal');
+        
+        console.log(modal);
     })
 });
+

@@ -40,17 +40,18 @@ try {
 
             $category->setName($name);
             $category->setIdCategory($id_category);
-            
+
             $isExist = Category::isExist($name);
 
             if ($isExist) {
                 $alert['error'] = 'Donnée déjà existante';
             } else {
-                $result = $category->update();
+                $category->update();
                 $alert['success'] = 'La donnée a bien été modifiée ! Vous allez être redirigé(e).';
                 header('Refresh:3; url=list-ctrl.php');
             }
         }
+        $category = Category::get($id_category);
     }
 } catch (PDOException $e) {
     die('Erreur : ' . $e->getMessage());
