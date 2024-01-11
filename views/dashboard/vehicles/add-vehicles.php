@@ -67,7 +67,7 @@
                                     <div class="mb-3 col-md-6">
                                         <div><small class="form-text text-danger"><?= $error['mileage'] ?? '' ?></small></div>
                                         <label for="mileage" class="form-label">Kilomètrage du véhicule</label>
-                                        <input type="text" class="form-control" name="mileage" id="mileage" value="<?= $mileage ?? '' ?>" aria-describedby="mileage" placeholder="Ex: 100 000" maxlength="10" pattern="<?= REGEX_MILEAGE ?>" required>
+                                        <input type="text" class="form-control" name="mileage" id="mileage" value="<?= $mileage ?? '' ?>" aria-describedby="mileage" placeholder="Ex: 100 000" minlength="1" maxlength="10" pattern="<?= REGEX_MILEAGE ?>" required>
                                     </div>
                                 </div>
                                 <div class="row">

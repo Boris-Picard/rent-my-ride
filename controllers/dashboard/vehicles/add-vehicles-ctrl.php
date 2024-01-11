@@ -6,7 +6,7 @@ require_once __DIR__ . '/../../../models/Vehicle.php';
 try {
     $title = 'Ajout d\'un véhicule';
 
-    // ulilisation de la méthode static getAll qui permet de récuper toutes les données dans categories
+    // utilisation de la méthode static getAll qui permet de récuper toutes les données dans categories
     $listCategories = Category::getAll();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -79,8 +79,8 @@ try {
             if (!$isOk) {
                 $error['mileage'] = "Vous devez entrer un kilométrage valide";
             } else {
-                if (strlen($mileage) > 10) {
-                    $error['registration'] = 'La longueur du kilomètrage doit faire 10 caractères maximum';
+                if (strlen($mileage) < 1 || strlen($mileage) > 10) {
+                    $error['registration'] = 'La longueur du kilomètrage doit avoir 1 chiffre minimum 10 chiffres maximum';
                     $alert['error'] = 'Erreur, la donnée n\'a pas été insérée';
                 }
             }
@@ -133,7 +133,7 @@ try {
         }
         
         if(empty($error)) {
-            $vehicles = new Vehicle($id_category);
+            $vehicles = new Vehicle();
 
             $vehicles->setBrand($brand);
             $vehicles->setModel($model);

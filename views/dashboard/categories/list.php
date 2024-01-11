@@ -31,12 +31,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12 py-3">
-                            <div>
-                                <small class="form-text text-danger"><?= $error['name'] ?? '' ?></small>
-                            </div>
-                            <div>
-                                <small class="form-text text-danger"><?= $error['id_category'] ?? '' ?></small>
-                            </div>
+                            <?= $msg ?>
                         </div>
                     </div>
                     <div class="row g-2">
