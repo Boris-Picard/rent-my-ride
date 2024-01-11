@@ -86,11 +86,9 @@ try {
             }
         }
 
-        // nouvelle variable qui va stocker dans un tableau chaque id de mon objet $listcategories
-        $categoryIds = [];
-        foreach ($listCategories as $category) {
-            $categoryIds[] = $category->id_category;
-        }
+        /* array_column permet de transformer mon tableau d'ojects en tableau 
+            2 paramètres requis => tableau d'ojects et ce que je recherche dans ce dernier */
+        $categoryIds = array_column($listCategories, 'id_category');
 
         // nettoyage et validation du select d'une catégorie
         $id_category = filter_input(INPUT_POST, 'categories', FILTER_SANITIZE_NUMBER_INT);
@@ -104,6 +102,8 @@ try {
                 $alert['error'] = 'Erreur, la donnée n\'a pas été insérée';
             }
         }
+        
+        $namePicture = null;
 
         // nettoyage et validation de l'upload d'une image donnée non obligatoire
         if(!empty($_FILES['picture']['name'])) {
@@ -124,6 +124,8 @@ try {
                 $extension = pathinfo($_FILES['picture']['name'], PATHINFO_EXTENSION);
     
                 $to =  __DIR__ . '/../../../public/uploads/vehicles/' .$fileName.'.'.$extension;
+
+                $namePicture = $fileName. '.' . $extension;
     
                 $moveFile = move_uploaded_file($from,$to);
         
@@ -139,8 +141,16 @@ try {
             $vehicles->setModel($model);
             $vehicles->setRegistration($registration);
             $vehicles->setMileage($mileage);
+            $vehicles->setPicture($namePicture);
 
-            $result = $vehicles->insert();
+            Vehicle::getAll($id_category);
+
+            $result = $vehicles->insert($id_category);
+
+            if($result) {
+                $alert['success'] = 'La donnée a bien été insérée ! Vous allez être redirigé(e).';
+                header('Refresh:3; url=list-vehicles-ctrl.php');
+            }
         }
 
     }
