@@ -90,7 +90,7 @@
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary fw-bold text-uppercase">Ajouter un véhicule</button>
-                                <a href="/controllers/dashboard/vehicles/list-vehicles-ctrl.php" class="btn btn-outline-primary fw-bold text-uppercase">Voir les catégories</a>
+                                <a href="/controllers/dashboard/vehicles/list-vehicles-ctrl.php" class="btn btn-outline-primary fw-bold text-uppercase">Voir les véhicules</a>
                             </form>
                         </div>
                     </div>

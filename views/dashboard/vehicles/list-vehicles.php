@@ -63,7 +63,7 @@
                                                             <i class="bi bi-pencil-square text-dark fs-4"></i>
                                                         </a>
                                                     </div> -->
-                                                    <a href="" class="formDelete" data-category-name="<?= $vehicle->name ?>" data-category-id="<?= $vehicle->id_vehicle ?>" data-bs-toggle="modal" data-bs-target="#modalDelete">
+                                                    <a href="" class="formDelete" data-category-name="<?= $vehicle->name ?>" data-category-id="<?= $vehicle->id_vehicle ?>" data-vehicle-model="<?= $vehicle->model ?>" data-bs-toggle="modal" data-bs-target="#modalDelete">
                                                         <i class="bi bi-trash3-fill fs-4 text-danger"></i>
                                                     </a>
                                                 </td>
@@ -78,7 +78,7 @@
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="modalDelete">Supprimer la catégorie : <span class="text-danger"><?= $vehicle->model ?></span></h1>
+                                        <h1 class="modal-title modalVehicle fs-5" >Supprimer le véhicule : <span class="text-danger"><?= $vehicle->model ?></span></h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">

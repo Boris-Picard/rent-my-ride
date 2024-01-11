@@ -139,7 +139,7 @@ class Vehicle
     {
         $pdo = Database::connect();
 
-        $sql = ('SELECT * FROM `vehicles`INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`;');
+        $sql = ('SELECT * FROM `vehicles` INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`;');
 
         $sth = $pdo->query($sql);
 

@@ -15,7 +15,7 @@ try {
     //     $_SESSION['msg'] = 'Erreur la donnée n\'a pas été supprimée !';
     // }
 
-    header('Location: /controllers/dashboard/categories/list-vehicle-ctrl.php');
+    header('Location: /controllers/dashboard/vehicles/list-vehicles-ctrl.php');
     die;
 
 } catch (PDOException $e) {
@@ -25,5 +25,5 @@ try {
 
 
 include __DIR__ . '/../../../views/templates/header-dashboard.php';
-include __DIR__ . '/../../../views/dashboard/categories/list.php';
+include __DIR__ . '/../../../views/dashboard/vehicles/list-vehicles.php';
 include __DIR__ . '/../../../views/templates/footer-dashboard.php';

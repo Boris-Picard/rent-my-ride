@@ -4,47 +4,41 @@ backBtn.addEventListener("click", () => {
     history.back();
 });
 
-// document.addEventListener("DOMContentLoaded", () => {
-//     const deleteButtons = document.querySelectorAll('.formDelete');
-//     const modalTitle = document.querySelector('#modalDelete .modal-title span');
-//     const deleteLink = document.querySelector('#modalDelete .deleteModalBtn');
 
-//     deleteButtons.forEach(button => {
-//         button.addEventListener('click', (event) => {
-//             const categoryId = event.currentTarget.getAttribute('data-category-id');
-//             const categoryName = event.currentTarget.getAttribute('data-category-name');
-//             modalTitle.textContent = categoryName;
-//             deleteLink.href = '/controllers/dashboard/categories/delete-ctrl.php?id=' + categoryId;
-//         });
-//     });
-// });
-
-function generateDeleteUrl(categoryId) {
+let generateDeleteUrl = (categoryId) => {
     const currentPage = window.location.pathname;
+    let baseUrl = '';
 
-    // Ici, vous définirez la logique pour choisir la bonne URL de base
-    // en fonction de la valeur de `currentPage`.
     if (currentPage.includes('/vehicles')) {
-        baseUrl = '/controllers/dashboard/vehicles/delete-vehicle-ctrl.php';
+        baseUrl = '/controllers/dashboard/vehicles/delete-vehicles-ctrl.php';
     } else if (currentPage.includes('/categories')) {
         baseUrl = '/controllers/dashboard/categories/delete-ctrl.php';
-    } // Ajoutez d'autres conditions ici si nécessaire
-
+    } 
+    
     return baseUrl + '?id=' + categoryId;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     const deleteButtons = document.querySelectorAll('.formDelete');
-    const modalTitle = document.querySelector('#modalDelete .modal-title span');
+    const modalTitle = document.querySelector('.modal-title.modalVehicle span'); 
+
     const deleteLink = document.querySelector('#modalDelete .deleteModalBtn');
 
     deleteButtons.forEach(button => {
         button.addEventListener('click', (event) => {
             const categoryId = event.currentTarget.getAttribute('data-category-id');
             const categoryName = event.currentTarget.getAttribute('data-category-name');
-            modalTitle.textContent = categoryName;
+            const vehicleModel = event.currentTarget.getAttribute('data-vehicle-model');
+
+            if (window.location.pathname.includes('/vehicles')) {
+                modalTitle.textContent = vehicleModel;
+            } else if (window.location.pathname.includes('/categories')) {
+                modalTitle.textContent = categoryName;
+            }
+
             deleteLink.href = generateDeleteUrl(categoryId);
         });
     });
 });
-console.log(generateDeleteUrl());
+
+generateDeleteUrl()
