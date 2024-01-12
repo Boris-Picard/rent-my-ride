@@ -135,17 +135,16 @@ try {
         }
         
         if(empty($error)) {
-            $vehicles = new Vehicle();
+            $vehicle = new Vehicle();
 
-            $vehicles->setBrand($brand);
-            $vehicles->setModel($model);
-            $vehicles->setRegistration($registration);
-            $vehicles->setMileage($mileage);
-            $vehicles->setPicture($namePicture);
+            $vehicle->setBrand($brand);
+            $vehicle->setModel($model);
+            $vehicle->setRegistration($registration);
+            $vehicle->setMileage($mileage);
+            $vehicle->setPicture($namePicture);
+            $vehicle->setIdCategory($id_category);
 
-            Vehicle::getAll($id_category);
-
-            $result = $vehicles->insert($id_category);
+            $result = $vehicle->insert();
 
             if($result) {
                 $alert['success'] = 'La donnée a bien été insérée ! Vous allez être redirigé(e).';

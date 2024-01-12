@@ -138,7 +138,7 @@ class Vehicle
         return $this->id_category;
     }
 
-    public function insert(int $id)
+    public function insert()
     {
         $pdo = Database::connect();
 
@@ -151,7 +151,7 @@ class Vehicle
         $sth->bindValue(':registration', $this->getRegistration());
         $sth->bindValue(':mileage', $this->getMileage(), PDO::PARAM_INT);
         $sth->bindValue(':picture', $this->getPicture());
-        $sth->bindValue(':id_category', $id, PDO::PARAM_INT);
+        $sth->bindValue(':id_category', $this->getIdCategory(), PDO::PARAM_INT);
 
         $result = $sth->execute();
 
@@ -167,6 +167,21 @@ class Vehicle
         $sth = $pdo->query($sql);
 
         $result = $sth->fetchAll(PDO::FETCH_OBJ);
+
+        return $result;
+    }
+
+    public static function get(int $id): object|false
+    {
+        $pdo = Database::connect();
+
+        $sql = 'SELECT * FROM `vehicles` WHERE `id_vehicle`=:id_vehicle;';
+
+        $sth = $pdo->prepare($sql);
+        $sth->bindValue(':id_vehicle', $id, PDO::PARAM_INT);
+        $sth->execute();
+
+        $result = $sth->fetch(PDO::FETCH_OBJ);
 
         return $result;
     }
@@ -190,7 +205,7 @@ class Vehicle
     {
         $pdo = Database::connect();
 
-        $sql = 'UPDATE `categories` SET `brand`=:brand, `model`=:model, `registration`=:registration, `mileage`=:mileage `picture`=:picture  WHERE `id_vehicle`=:id_vehicle;';
+        $sql = 'UPDATE `vehicles` SET `brand`=:brand, `model`=:model, `registration`=:registration, `mileage`=:mileage, `picture`=:picture, `id_category`=:id_category  WHERE `id_vehicle`=:id_vehicle;';
 
         $sth = $pdo->prepare($sql);
 
@@ -199,6 +214,7 @@ class Vehicle
         $sth->bindValue(':registration', $this->getRegistration());
         $sth->bindValue(':mileage', $this->getMileage(),PDO::PARAM_INT);
         $sth->bindValue(':picture', $this->getPicture());
+        $sth->bindValue(':id_category', $this->getIdCategory(), PDO::PARAM_INT);
         $sth->bindValue(':id_vehicle', $this->getIdVehicle(), PDO::PARAM_INT);
 
         $result = $sth->execute();

@@ -10,8 +10,9 @@ try {
 
     $id_vehicle = intval(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
 
-    // utilisation de la méthode static getAll qui permet de récuper toutes les données dans categories
     $listCategories = Category::getAll();
+
+    $vehicle = Vehicle::get($id_vehicle);
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -107,7 +108,7 @@ try {
             }
         }
         
-        $namePicture = null;
+        $namePicture = $vehicle->picture ?? null;
 
         // nettoyage et validation de l'upload d'une image donnée non obligatoire
         if(!empty($_FILES['picture']['name'])) {
@@ -139,24 +140,24 @@ try {
         }
         
         if(empty($error)) {
-            $vehicles = new Vehicle();
+            $vehicle = new Vehicle();
 
-            $vehicles->setBrand($brand);
-            $vehicles->setModel($model);
-            $vehicles->setRegistration($registration);
-            $vehicles->setMileage($mileage);
-            $vehicles->setPicture($namePicture);
+            $vehicle->setBrand($brand);
+            $vehicle->setModel($model);
+            $vehicle->setRegistration($registration);
+            $vehicle->setMileage($mileage);
+            $vehicle->setPicture($namePicture);
+            $vehicle->setIdVehicle($id_vehicle);
+            $vehicle->setIdCategory($id_category);
 
-            Vehicle::getAll($id_vehicle);
-
-            $result = $vehicles->insert($id_vehicle);
+            $result = $vehicle->update();
 
             if($result) {
                 $alert['success'] = 'La donnée a bien été insérée ! Vous allez être redirigé(e).';
                 header('Refresh:3; url=list-ctrl.php');
             }
         }
-
+        $vehicle = Vehicle::get($id_vehicle);
     }
 } catch (PDOException $e) {
     die('Erreur : ' . $e->getMessage());

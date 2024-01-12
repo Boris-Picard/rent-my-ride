@@ -31,7 +31,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12 py-3">
-                            
+
                         </div>
                     </div>
                     <div class="row g-2">
@@ -42,27 +42,29 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="table-responsive shadow-lg p-4 bg-white rounded-4 text-center">
-                                <table class="table table-borderless table-hover table-responsive">
+                                <table class="table table-borderless table-hover table-responsive align-middle">
                                     <thead>
                                         <tr>
                                             <th scope="col">Catégorie</th>
                                             <th scope="col">Marque</th>
                                             <th scope="col">Modèle</th>
+                                            <th scope="col">Image</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php foreach ($vehicles as $vehicle) { ?>
                                             <tr>
-                                                <th scope="row" class="py-3"><?= $vehicle->name ?></th>
-                                                <td class="py-3 fw-semibold"><?= $vehicle->brand ?></td>
-                                                <td class="py-3 fw-semibold"><?= $vehicle->model ?></td>
-                                                <td class="py-3 d-flex align-items-center justify-content-center">
-                                                    <div class="d-flex flex-column justify-content-center align-items-center mx-2">
-                                                        <a href="/controllers/dashboard/vehicles/update-ctrl.php?id=<?= $vehicle->id_vehicle ?>">
-                                                            <i class="bi bi-pencil-square text-dark fs-4"></i>
-                                                        </a>
-                                                    </div>
+                                                <th scope="row" ><?= $vehicle->name ?></th>
+                                                <td class="fw-semibold"><?= $vehicle->brand ?></td>
+                                                <td class="fw-semibold"><?= $vehicle->model ?></td>
+                                                <td class="fw-semibold">
+                                                    <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" alt="" class="object-fit-cover rounded-circle imgVehicles">
+                                                </td>
+                                                <td>
+                                                    <a href="/controllers/dashboard/vehicles/update-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="text-decoration-none">
+                                                        <i class="bi bi-pencil-square text-dark fs-4"></i>
+                                                    </a>
                                                     <a href="" class="formDelete" data-category-name="<?= $vehicle->name ?>" data-category-id="<?= $vehicle->id_vehicle ?>" data-vehicle-model="<?= $vehicle->model ?>" data-bs-toggle="modal" data-bs-target="#modalDelete">
                                                         <i class="bi bi-trash3-fill fs-4 text-danger"></i>
                                                     </a>
@@ -78,7 +80,7 @@
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title modalVehicle fs-5" >Supprimer le véhicule : <span class="text-danger"><?= $vehicle->model ?></span></h1>
+                                        <h1 class="modal-title modalVehicle fs-5">Supprimer le véhicule : <span class="text-danger"><?= $vehicle->model ?></span></h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
