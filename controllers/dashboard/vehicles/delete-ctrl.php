@@ -1,5 +1,5 @@
 <?php
-// session_start();
+session_start();
 
 require_once __DIR__ . '/../../../config/config.php';
 require_once __DIR__ . '/../../../models/Vehicle.php';
@@ -7,17 +7,20 @@ require_once __DIR__ . '/../../../models/Vehicle.php';
 try {
     $id_vehicle = intval(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
 
-    $isDeleted = Vehicle::delete($id_vehicle);
+    $vehicle = Vehicle::get($id_vehicle);
+    if ($vehicle) {
+        $link = unlink('../../../public/uploads/vehicles/'.$vehicle->picture);
+        $isDeleted = Vehicle::delete($id_vehicle);
+    }
 
-    // if($isDeleted) {
-    //     $_SESSION['msg'] = 'La donnée a bien été supprimée !';
-    // } else {
-    //     $_SESSION['msg'] = 'Erreur la donnée n\'a pas été supprimée !';
-    // }
+    if($isDeleted) {
+        $_SESSION['msg'] = 'La donnée a bien été supprimée !';
+    } else {
+        $_SESSION['msg'] = 'Erreur la donnée n\'a pas été supprimée !';
+    }
 
     header('Location: /controllers/dashboard/vehicles/list-ctrl.php');
     die;
-
 } catch (PDOException $e) {
     die('Erreur : ' . $e->getMessage());
 }

@@ -41,8 +41,8 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <div class="table-responsive shadow-lg p-4 bg-white rounded-4 text-center">
-                                <table class="table table-borderless table-hover table-responsive">
+                            <div class="table-responsive shadow-lg p-4 bg-white rounded-4 text-center ">
+                                <table class="table table-borderless table-hover table-responsive align-middle">
                                     <thead>
                                         <tr>
                                             <th scope="col">N</th>
@@ -54,13 +54,11 @@
                                         <?php foreach ($categories as $category) { ?>
                                             <tr>
                                                 <th scope="row" class="py-3"><?= $category->id_category ?></th>
-                                                <td class="py-3 fw-semibold"><?= $category->name ?></td>
-                                                <td class="py-3 d-flex align-items-center justify-content-center">
-                                                    <div class="d-flex flex-column justify-content-center align-items-center mx-2">
-                                                        <a href="/controllers/dashboard/categories/update-ctrl.php?id=<?= $category->id_category ?>">
-                                                            <i class="bi bi-pencil-square text-dark fs-4"></i>
-                                                        </a>
-                                                    </div>
+                                                <td class="fw-semibold"><?= $category->name ?></td>
+                                                <td>
+                                                    <a href="/controllers/dashboard/categories/update-ctrl.php?id=<?= $category->id_category ?>" class="text-decoration-none">
+                                                        <i class="bi bi-pencil-square text-dark fs-4"></i>
+                                                    </a>
                                                     <a href="" class="formDelete" data-category-name="<?= $category->name ?>" data-category-id="<?= $category->id_category ?>" data-bs-toggle="modal" data-bs-target="#modalDelete">
                                                         <i class="bi bi-trash3-fill fs-4 text-danger"></i>
                                                     </a>

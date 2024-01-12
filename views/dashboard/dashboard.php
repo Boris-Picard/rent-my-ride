@@ -37,7 +37,9 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Nombre de catégories de véhicules :</h5>
                                     <p class="card-text fw-bold fs-1">
-                                            <p class="fw-bold fs-1"><?= count($categories) ?></p>
+                                    <p class="fw-bold fs-1">
+                                        <?= count($categories) ?>
+                                    </p>
                                     </p>
                                 </div>
                             </div>
@@ -47,7 +49,12 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Nombre de véhicules :</h5>
                                     <p class="card-text fw-bold fs-1">
-                                        
+                                        <?= count($vehicles) ?>
+                                    </p>
+                                    <p>
+                                        <?php if($vehicles) { ?>
+                                            Dernier ajout : <?= $vehicles[0]->created_at ?>
+                                        <?php } ?>
                                     </p>
                                 </div>
                             </div>

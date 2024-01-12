@@ -31,7 +31,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12 py-3">
-
+                            <?= $msg ?>
                         </div>
                     </div>
                     <div class="row g-2">
@@ -55,11 +55,13 @@
                                     <tbody>
                                         <?php foreach ($vehicles as $vehicle) { ?>
                                             <tr>
-                                                <th scope="row" ><?= $vehicle->name ?></th>
+                                                <th scope="row"><?= $vehicle->name ?></th>
                                                 <td class="fw-semibold"><?= $vehicle->brand ?></td>
                                                 <td class="fw-semibold"><?= $vehicle->model ?></td>
                                                 <td class="fw-semibold">
-                                                    <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" alt="" class="object-fit-cover rounded-circle imgVehicles">
+                                                    <?php if (isset($vehicle->picture)) { ?>
+                                                        <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" alt="" class="object-fit-cover rounded-circle imgVehicles">
+                                                    <?php } ?>
                                                 </td>
                                                 <td>
                                                     <a href="/controllers/dashboard/vehicles/update-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="text-decoration-none">

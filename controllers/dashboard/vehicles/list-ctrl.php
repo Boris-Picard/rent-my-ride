@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once __DIR__ . '/../../../config/config.php';
 require_once __DIR__ . '/../../../models/Vehicle.php';
 
@@ -8,11 +10,11 @@ try {
     
     $vehicles = Vehicle::getAll();
 
-    // $msg = filter_var($_SESSION['msg'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
+    $msg = filter_var($_SESSION['msg'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
 
-    // if(isset($_SESSION['msg'])) {
-    //     unset($_SESSION['msg']);
-    // }
+    if(isset($_SESSION['msg'])) {
+        unset($_SESSION['msg']);
+    }
     
 
 

@@ -15,17 +15,18 @@ class Vehicle
     private ?string $deleted_at;
     private ?int $id_category;
 
-    public function __construct(string $brand = '', 
-                                string $model = '', 
-                                string $registration = '', 
-                                int $mileage = 0, 
-                                ?int $id_category = null,
-                                ?int $id_vehicle = null,
-                                ?string $picture = null,
-                                ?string $created_at = null,
-                                ?string $updated_at = null, 
-                                ?string $deleted_at = null)
-    {
+    public function __construct(
+        string $brand = '',
+        string $model = '',
+        string $registration = '',
+        int $mileage = 0,
+        ?int $id_category = null,
+        ?int $id_vehicle = null,
+        ?string $picture = null,
+        ?string $created_at = null,
+        ?string $updated_at = null,
+        ?string $deleted_at = null
+    ) {
         $this->brand = $brand;
         $this->model = $model;
         $this->registration = $registration;
@@ -212,7 +213,7 @@ class Vehicle
         $sth->bindValue(':brand', $this->getBrand());
         $sth->bindValue(':model', $this->getModel());
         $sth->bindValue(':registration', $this->getRegistration());
-        $sth->bindValue(':mileage', $this->getMileage(),PDO::PARAM_INT);
+        $sth->bindValue(':mileage', $this->getMileage(), PDO::PARAM_INT);
         $sth->bindValue(':picture', $this->getPicture());
         $sth->bindValue(':id_category', $this->getIdCategory(), PDO::PARAM_INT);
         $sth->bindValue(':id_vehicle', $this->getIdVehicle(), PDO::PARAM_INT);
@@ -221,4 +222,5 @@ class Vehicle
 
         return $result;
     }
+
 }

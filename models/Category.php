@@ -149,21 +149,4 @@ class Category
 
         return $result;
     }
-
-    /**
-     * Méthode qui permet de retourner le nombre de row dans une table
-     * @return [type]
-     */
-    public function rowNumber():array|false
-    {
-        $pdo = Database::connect();
-
-        $sql = 'SELECT count(*) FROM `categories`;';
-
-        $sth = $pdo->query($sql);
-
-        $result = $sth->fetchAll(PDO::FETCH_OBJ);
-
-        return $result;
-    }
 }
