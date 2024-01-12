@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../config/config.php';
-require_once __DIR__ . '/Category.php';
+require_once __DIR__ . '/../helpers/Database.php';
 
 class Vehicle
 {
@@ -13,16 +13,29 @@ class Vehicle
     private ?string $created_at;
     private ?string $updated_at;
     private ?string $deleted_at;
+    private ?int $id_category;
 
-    public function __construct(string $brand = '', string $model = '', string $registration = '', int $mileage = 0, ?string $picture = null, ?string $deleted_at = null, ?int $id_vehicle = null,)
+    public function __construct(string $brand = '', 
+                                string $model = '', 
+                                string $registration = '', 
+                                int $mileage = 0, 
+                                ?int $id_category = null,
+                                ?int $id_vehicle = null,
+                                ?string $picture = null,
+                                ?string $created_at = null,
+                                ?string $updated_at = null, 
+                                ?string $deleted_at = null)
     {
         $this->brand = $brand;
         $this->model = $model;
         $this->registration = $registration;
         $this->mileage = $mileage;
-        $this->picture = $picture;
-        $this->created_at = $deleted_at;
         $this->id_vehicle = $id_vehicle;
+        $this->id_category = $id_category;
+        $this->picture = $picture;
+        $this->created_at = $created_at;
+        $this->updated_at = $updated_at;
+        $this->deleted_at = $deleted_at;
     }
 
     public function setIdVehicle(?int $id_vehicle)
@@ -85,34 +98,44 @@ class Vehicle
         return $this->picture;
     }
 
-    public function setCreated_at(string $created_at)
+    public function setCreatedAt(?string $created_at)
     {
         $this->created_at = $created_at;
     }
 
-    public function getCreated_at(): string
+    public function getCreatedAt(): ?string
     {
         return $this->created_at;
     }
 
-    public function setUpdated_at(string $updated_at)
+    public function setUpdatedAt(?string $updated_at)
     {
         $this->updated_at = $updated_at;
     }
 
-    public function getUpdated_at(): string
+    public function getUpdatedAt(): ?string
     {
         return $this->updated_at;
     }
 
-    public function setDeleted_at(?string $deleted_at)
+    public function setDeletedAt(?string $deleted_at)
     {
         $this->deleted_at = $deleted_at;
     }
 
-    public function getDeleted_at(): string
+    public function getDeletedAt(): string
     {
         return $this->deleted_at;
+    }
+
+    public function setIdCategory(int $id_category)
+    {
+        $this->id_category = $id_category;
+    }
+
+    public function getIdCategory(): int
+    {
+        return $this->id_category;
     }
 
     public function insert(int $id)

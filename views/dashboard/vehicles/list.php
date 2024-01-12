@@ -11,7 +11,7 @@
                         <div class="col-12 d-flex flex-column p-0 sidebar rounded colSidebar g-5">
                             <a href="/controllers/dashboard/dashboard-ctrl.php" class="py-3 nav-link navLink sidebarLink"><span><i class="bi bi-house px-3"></i> Dashboard</span></a>
                             <a href="/controllers/dashboard/categories/add-ctrl.php" class="py-3 nav-link navLink sidebarLink"><span><i class="bi bi-tag px-3"></i>Category</span></a>
-                            <a href="/controllers/dashboard/vehicles/add-vehicle-ctrl.php" class="py-3 active nav-link navLink sidebarLink"><span><i class="bi bi-car-front-fill px-3"></i>Véhicle</span></a>
+                            <a href="/controllers/dashboard/vehicles/add-ctrl.php" class="py-3 active nav-link navLink sidebarLink"><span><i class="bi bi-car-front-fill px-3"></i>Véhicle</span></a>
                             <!-- <a href="" class="py-3 nav-link navLink sidebarLink"><span><i class="bi bi-bookmarks px-3"></i> Collections</span></a> -->
                             <!-- <a href="" class="py-3 nav-link navLink sidebarLink"><span><i class="bi bi-people px-3"></i> Users</span></a> -->
                             <!-- <a href="" class="mb-3 py-3 navLink logout position-absolute sidebarLink w-100 nav-link"><span><i class="bi bi-box-arrow-right px-3"></i>Logout</span></a> -->
@@ -59,7 +59,7 @@
                                                 <td class="py-3 fw-semibold"><?= $vehicle->model ?></td>
                                                 <td class="py-3 d-flex align-items-center justify-content-center">
                                                     <div class="d-flex flex-column justify-content-center align-items-center mx-2">
-                                                        <a href="/controllers/dashboard/vehicles/update-vehicle-ctrl.php?id=<?= $vehicle->id_vehicle ?>">
+                                                        <a href="/controllers/dashboard/vehicles/update-ctrl.php?id=<?= $vehicle->id_vehicle ?>">
                                                             <i class="bi bi-pencil-square text-dark fs-4"></i>
                                                         </a>
                                                     </div>

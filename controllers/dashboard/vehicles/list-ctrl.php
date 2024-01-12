@@ -23,5 +23,5 @@ try {
 
 
 include __DIR__ . '/../../../views/templates/header-dashboard.php';
-include __DIR__ . '/../../../views/dashboard/vehicles/list-vehicles.php';
+include __DIR__ . '/../../../views/dashboard/vehicles/list.php';
 include __DIR__ . '/../../../views/templates/footer-dashboard.php';

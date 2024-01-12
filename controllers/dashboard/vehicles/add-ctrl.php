@@ -149,7 +149,7 @@ try {
 
             if($result) {
                 $alert['success'] = 'La donnée a bien été insérée ! Vous allez être redirigé(e).';
-                header('Refresh:3; url=list-vehicles-ctrl.php');
+                header('Refresh:3; url=list-ctrl.php');
             }
         }
 
@@ -159,5 +159,5 @@ try {
 }
 
 include __DIR__ . '/../../../views/templates/header-dashboard.php';
-include __DIR__ . '/../../../views/dashboard/vehicles/add-vehicle.php';
+include __DIR__ . '/../../../views/dashboard/vehicles/add.php';
 include __DIR__ . '/../../../views/templates/footer-dashboard.php';
