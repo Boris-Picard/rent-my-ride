@@ -15,7 +15,7 @@ try {
         $_SESSION['msg'] = 'Erreur la donnée n\'a pas été supprimée !';
     }
 
-    header('Location: /controllers/dashboard/categories/list-vehicle-ctrl.php');
+    header('Location: /controllers/dashboard/categories/list-ctrl.php');
     die;
 
 } catch (PDOException $e) {

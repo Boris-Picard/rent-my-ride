@@ -163,4 +163,23 @@ class Vehicle
         return $result;
     }
 
+    public function update(): bool
+    {
+        $pdo = Database::connect();
+
+        $sql = 'UPDATE `categories` SET `brand`=:brand, `model`=:model, `registration`=:registration, `mileage`=:mileage `picture`=:picture  WHERE `id_vehicle`=:id_vehicle;';
+
+        $sth = $pdo->prepare($sql);
+
+        $sth->bindValue(':brand', $this->getBrand());
+        $sth->bindValue(':model', $this->getModel());
+        $sth->bindValue(':registration', $this->getRegistration());
+        $sth->bindValue(':mileage', $this->getMileage(),PDO::PARAM_INT);
+        $sth->bindValue(':picture', $this->getPicture());
+        $sth->bindValue(':id_vehicle', $this->getIdVehicle(), PDO::PARAM_INT);
+
+        $result = $sth->execute();
+
+        return $result;
+    }
 }

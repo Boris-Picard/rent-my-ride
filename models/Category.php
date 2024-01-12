@@ -46,7 +46,6 @@ class Category
                             VALUES(:name);';
 
         $sth = $pdo->prepare($sql);
-
         $sth->bindValue(':name', $this->getName());
 
         $result = $sth->execute();
@@ -72,7 +71,7 @@ class Category
     }
 
     /**
-     * Méthode qui permet de retourner un objet des élélements qui nous intéresse
+     * Méthode qui permet de retourner un objet des élements qui nous intéresse
      * @param int $id
      * 
      * @return object
@@ -84,9 +83,7 @@ class Category
         $sql = 'SELECT * FROM `categories` WHERE `id_category`=:id_category;';
 
         $sth = $pdo->prepare($sql);
-
         $sth->bindValue(':id_category', $id, PDO::PARAM_INT);
-
         $sth->execute();
 
         $result = $sth->fetch(PDO::FETCH_OBJ);
@@ -127,7 +124,6 @@ class Category
         $sql = 'DELETE FROM `categories` WHERE `id_category` = :id_category;';
 
         $sth = $pdo->prepare($sql);
-
         $sth->bindValue(':id_category', $id, PDO::PARAM_INT);
 
         $result = $sth->execute();
@@ -146,9 +142,7 @@ class Category
         $sql = 'SELECT * from `categories` WHERE `name`=:name;';
 
         $sth = $pdo->prepare($sql);
-
         $sth->bindValue(':name', $name);
-
         $sth->execute();
 
         $result = $sth->fetch(PDO::FETCH_OBJ);

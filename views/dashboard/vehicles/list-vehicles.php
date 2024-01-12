@@ -58,11 +58,11 @@
                                                 <td class="py-3 fw-semibold"><?= $vehicle->brand ?></td>
                                                 <td class="py-3 fw-semibold"><?= $vehicle->model ?></td>
                                                 <td class="py-3 d-flex align-items-center justify-content-center">
-                                                    <!-- <div class="d-flex flex-column justify-content-center align-items-center mx-2">
-                                                        <a href="/controllers/dashboard/categories/update-ctrl.php?id=<?= $vehicle->id_category ?>">
+                                                    <div class="d-flex flex-column justify-content-center align-items-center mx-2">
+                                                        <a href="/controllers/dashboard/vehicles/update-vehicle-ctrl.php?id=<?= $vehicle->id_vehicle ?>">
                                                             <i class="bi bi-pencil-square text-dark fs-4"></i>
                                                         </a>
-                                                    </div> -->
+                                                    </div>
                                                     <a href="" class="formDelete" data-category-name="<?= $vehicle->name ?>" data-category-id="<?= $vehicle->id_vehicle ?>" data-vehicle-model="<?= $vehicle->model ?>" data-bs-toggle="modal" data-bs-target="#modalDelete">
                                                         <i class="bi bi-trash3-fill fs-4 text-danger"></i>
                                                     </a>

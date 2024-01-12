@@ -10,7 +10,7 @@ let generateDeleteUrl = (categoryId) => {
     let baseUrl = '';
 
     if (currentPage.includes('/vehicles')) {
-        baseUrl = '/controllers/dashboard/vehicles/delete-vehicles-ctrl.php';
+        baseUrl = '/controllers/dashboard/vehicles/delete-vehicle-ctrl.php';
     } else if (currentPage.includes('/categories')) {
         baseUrl = '/controllers/dashboard/categories/delete-ctrl.php';
     } 

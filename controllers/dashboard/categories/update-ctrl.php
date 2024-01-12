@@ -8,7 +8,7 @@ try {
 
     $category = Category::get($id_category);
 
-    if(!$category) {
+    if (!$category) {
         header('Location: /controllers/dashboard/categories/list-ctrl.php');
         die;
     }
@@ -34,6 +34,11 @@ try {
             }
         }
 
+        if (Category::isExist($name) && $name != $category->name) {
+            $error['isExist'] = 'Donnée déjà existante';
+            $alert['error'] = 'Donnée déjà existante';
+        }
+
         if (empty($error)) {
 
             $category = new Category();
@@ -41,15 +46,10 @@ try {
             $category->setName($name);
             $category->setIdCategory($id_category);
 
-            $isExist = Category::isExist($name);
+            $category->update();
 
-            if ($isExist) {
-                $alert['error'] = 'Donnée déjà existante';
-            } else {
-                $category->update();
-                $alert['success'] = 'La donnée a bien été modifiée ! Vous allez être redirigé(e).';
-                header('Refresh:3; url=list-ctrl.php');
-            }
+            $alert['success'] = 'La donnée a bien été modifiée ! Vous allez être redirigé(e).';
+            header('Refresh:3; url=list-ctrl.php');
         }
         $category = Category::get($id_category);
     }

@@ -26,20 +26,19 @@ try {
             }
         }
 
+        if (Category::isExist($name)) {
+            $error['isExist'] = 'Donnée déjà existante';
+            $alert['error'] = 'Donnée déjà existante';
+        }
+
         if (empty($error)) {
             $category = new Category();
 
             $category->setName($name);
-            $isExist = Category::isExist($name);
+            $result = $category->insert();
 
-            if ($isExist) {
-                $alert['error'] = 'Donnée déjà existante';
-            } else {
-                $result = $category->insert();
-                $alert['success'] = 'La donnée a bien été insérée ! Vous allez être redirigé(e).';
-                header('Refresh:3; url=list-ctrl.php');
-            }
-            
+            $alert['success'] = 'La donnée a bien été insérée ! Vous allez être redirigé(e).';
+            header('Refresh:3; url=list-ctrl.php');
         }
     }
 } catch (PDOException $e) {
