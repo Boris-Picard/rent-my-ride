@@ -93,6 +93,11 @@
                                                 <?php if (isset($vehicle->picture)) { ?>
                                                     <div class="pt-3 d-flex justify-content-center">
                                                         <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" alt="" class="object-fit-cover imgVehiclesUpdate rounded-circle">
+                                                        <div class="mx-2 d-flex align-items-center">
+                                                            <a href="" class="btn btn-outline-danger text-uppercase fw-bold">
+                                                                supprimer
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 <?php } ?>
                                             </div>
