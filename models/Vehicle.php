@@ -223,4 +223,33 @@ class Vehicle
         return $result;
     }
 
+    public static function isExist(string $model): object|false
+    {
+        $pdo = Database::connect();
+
+        $sql = 'SELECT * from `vehicles` WHERE `model`=:model;';
+
+        $sth = $pdo->prepare($sql);
+        $sth->bindValue(':model', $model);
+        $sth->execute();
+
+        $result = $sth->fetch(PDO::FETCH_OBJ);
+
+        return $result;
+    }
+
+    public static function archive(int $id)
+    {
+        $pdo = Database::connect();
+
+        $sql = 'UPDATE `vehicles` SET `deleted_at`= NOW() WHERE `id_vehicle`=:id_vehicle;';
+
+        $sth = $pdo->prepare($sql);
+
+        $sth->bindValue(':id_vehicle', $id, PDO::PARAM_INT);
+
+        $result = $sth->execute();
+
+        return $result;
+    }
 }

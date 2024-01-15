@@ -133,7 +133,10 @@ try {
                 $error['picture'] = $th->getMessage();
             }
         }
-        
+        if (Vehicle::isExist($model)) {
+            $error['isExist'] = 'Donnée déjà existante';
+            $alert['error'] = 'Donnée déjà existante';
+        }
         if(empty($error)) {
             $vehicle = new Vehicle();
 

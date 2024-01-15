@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <div class="row g-2">
-                        <div class="col-12 pb-3 ">
+                        <div class="col-8 pb-3 ">
                             <button class="btn border-0" id="backBtn"><i class="bi bi-arrow-left fs-4 align-middle"></i><span class="px-2">Revenir à la page précédente</span></button>
                         </div>
                     </div>
@@ -54,7 +54,11 @@
                                     </thead>
                                     <tbody>
                                         <?php foreach ($vehicles as $vehicle) { ?>
+                                            <?php if ($vehicle->deleted_at == null) { ?>
                                             <tr>
+                                            <div class="d-flex justify-content-end m-0">
+                                <a href="/controllers/dashboard/vehicles/archive-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="btn btn-primary text-uppercase fw-bold">Voir les véhicules archivés</a>
+                            </div>
                                                 <th scope="row"><?= $vehicle->name ?></th>
                                                 <td class="fw-semibold"><?= $vehicle->brand ?></td>
                                                 <td class="fw-semibold"><?= $vehicle->model ?></td>
@@ -67,12 +71,16 @@
                                                     <a href="/controllers/dashboard/vehicles/update-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="text-decoration-none">
                                                         <i class="bi bi-pencil-square text-dark fs-4"></i>
                                                     </a>
+                                                    <a href="/controllers/dashboard/vehicles/archive-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="text-decoration-none">
+                                                        <i class="bi bi-archive text-dark fs-4"></i>
+                                                    </a>
                                                     <a href="" class="formDelete" data-category-name="<?= $vehicle->name ?>" data-category-id="<?= $vehicle->id_vehicle ?>" data-vehicle-model="<?= $vehicle->model ?>" data-bs-toggle="modal" data-bs-target="#modalDelete">
                                                         <i class="bi bi-trash3-fill fs-4 text-danger"></i>
                                                     </a>
                                                 </td>
                                             </tr>
-                                        <?php } ?>
+                                        <?php } 
+                                        } ?>
                                     </tbody>
                                 </table>
                             </div>
