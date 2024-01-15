@@ -74,7 +74,7 @@
                                     <div class="col-md-6">
                                         <div><small class="form-text text-danger"><?= $error['categories'] ?? '' ?></small></div>
                                         <label for="" class="mb-2">Catégorie du véhicule</label>
-                                        <select class="form-select" name="categories" aria-label="Default select example">
+                                        <select class="form-select" name="id_category" aria-label="Default select example">
                                             <option selected disabled></option>
                                             <?php foreach ($listCategories as $category) { ?>
                                                 <option value="<?= $category->id_category ?>" <?= (isset($id_category) && $id_category == $category->id_category) ? 'selected' : '' ?>><?= $category->name ?></option>

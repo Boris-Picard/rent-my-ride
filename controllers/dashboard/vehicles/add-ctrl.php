@@ -69,7 +69,7 @@ try {
         }
 
         // nettoyage et validation du kilomètrage
-        $mileage = filter_input(INPUT_POST, 'mileage', FILTER_SANITIZE_NUMBER_INT);
+        $mileage = intval(filter_input(INPUT_POST, 'mileage', FILTER_SANITIZE_NUMBER_INT));
 
         if (empty($mileage)) {
             $error['mileage'] = 'Veuillez remplir le champ';
@@ -78,12 +78,7 @@ try {
             $isOk = filter_var($mileage, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => '/' . REGEX_MILEAGE . '/')));
             if (!$isOk) {
                 $error['mileage'] = "Vous devez entrer un kilométrage valide";
-            } else {
-                if (strlen($mileage) < 1 || strlen($mileage) > 10) {
-                    $error['registration'] = 'La longueur du kilomètrage doit avoir 1 chiffre minimum 10 chiffres maximum';
-                    $alert['error'] = 'Erreur, la donnée n\'a pas été insérée';
-                }
-            }
+            } 
         }
 
         /* array_column permet de transformer mon tableau d'ojects en tableau 
@@ -91,7 +86,7 @@ try {
         $categoryIds = array_column($listCategories, 'id_category');
 
         // nettoyage et validation du select d'une catégorie
-        $id_category = filter_input(INPUT_POST, 'categories', FILTER_SANITIZE_NUMBER_INT);
+        $id_category = intval(filter_input(INPUT_POST, 'id_category', FILTER_SANITIZE_NUMBER_INT));
 
         if (empty($id_category)) {
             $error['categories'] = 'Veuillez sélectionner une catégorie';

@@ -139,11 +139,12 @@ class Vehicle
         return $this->id_category;
     }
 
-    public function insert()
+    public function insert():bool
     {
         $pdo = Database::connect();
 
-        $sql = 'INSERT INTO `vehicles` (`brand`, `model`, `registration`, `mileage`, `picture`, `id_category`) VALUES(:brand, :model, :registration, :mileage, :picture, :id_category)';
+        $sql = 'INSERT INTO `vehicles` (`brand`, `model`, `registration`, `mileage`, `picture`, `id_category`) 
+        VALUES(:brand, :model, :registration, :mileage, :picture, :id_category)';
 
         $sth = $pdo->prepare($sql);
 
@@ -154,9 +155,9 @@ class Vehicle
         $sth->bindValue(':picture', $this->getPicture());
         $sth->bindValue(':id_category', $this->getIdCategory(), PDO::PARAM_INT);
 
-        $result = $sth->execute();
+        $sth->execute();
 
-        return $result;
+        return $sth->rowCount() > 0;
     }
 
     public static function getAll(): array|false
