@@ -90,6 +90,11 @@
                                                 <div><small class="form-text text-danger"><?= $error['picture'] ?? '' ?></small></div>
                                                 <label for="picture" class="form-label">Ajouter une photo du véhicule (optionnel)</label>
                                                 <input class="form-control" type="file" id="picture" name="picture" placeholder="Photo" accept="image/png, image/jpeg">
+                                                <?php if (isset($vehicle->picture)) { ?>
+                                                    <div class="pt-3 d-flex justify-content-center">
+                                                        <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" alt="" class="object-fit-cover imgVehiclesUpdate rounded-circle">
+                                                    </div>
+                                                <?php } ?>
                                             </div>
                                         </div>
                                     </div>

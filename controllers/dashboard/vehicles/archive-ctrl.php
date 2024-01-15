@@ -3,19 +3,17 @@ require_once __DIR__ . '/../../../config/config.php';
 require_once __DIR__ . '/../../../models/Vehicle.php';
 
 try {
-    $title = 'Liste des véhicules';
+    $title = 'Liste des véhicules archivées';
 
     $id_vehicle = intval(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
 
     $vehicle = Vehicle::get($id_vehicle);
+    $vehicles = Vehicle::getAll();
 
     if($vehicle) {
         Vehicle::archive($id_vehicle);
-        $vehicles = Vehicle::getAll();
+        header('location: /controllers/dashboard/vehicles/archive-ctrl.php');
     }
-    // if($vehicle->deleted_at != null) {
-    //     
-    // }
 
     // $msg = filter_var($_SESSION['msg'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
 

@@ -38,6 +38,11 @@
                         <div class="col-8 pb-3 ">
                             <button class="btn border-0" id="backBtn"><i class="bi bi-arrow-left fs-4 align-middle"></i><span class="px-2">Revenir à la page précédente</span></button>
                         </div>
+                        <div class="col-4 pt-3">
+                            <div class="d-flex justify-content-end m-0">
+                                <a href="/controllers/dashboard/vehicles/archive-ctrl.php" class="btn btn-primary text-uppercase fw-bold">Voir les véhicules archivées</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
@@ -55,52 +60,28 @@
                                     <tbody>
                                         <?php foreach ($vehicles as $vehicle) { ?>
                                             <?php if ($vehicle->deleted_at == null) { ?>
-                                            <tr>
-                                            <div class="d-flex justify-content-end m-0">
-                                <a href="/controllers/dashboard/vehicles/archive-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="btn btn-primary text-uppercase fw-bold">Voir les véhicules archivés</a>
-                            </div>
-                                                <th scope="row"><?= $vehicle->name ?></th>
-                                                <td class="fw-semibold"><?= $vehicle->brand ?></td>
-                                                <td class="fw-semibold"><?= $vehicle->model ?></td>
-                                                <td class="fw-semibold">
-                                                    <?php if (isset($vehicle->picture)) { ?>
-                                                        <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" alt="" class="object-fit-cover rounded-circle imgVehicles">
-                                                    <?php } ?>
-                                                </td>
-                                                <td>
-                                                    <a href="/controllers/dashboard/vehicles/update-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="text-decoration-none">
-                                                        <i class="bi bi-pencil-square text-dark fs-4"></i>
-                                                    </a>
-                                                    <a href="/controllers/dashboard/vehicles/archive-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="text-decoration-none">
-                                                        <i class="bi bi-archive text-dark fs-4"></i>
-                                                    </a>
-                                                    <a href="" class="formDelete" data-category-name="<?= $vehicle->name ?>" data-category-id="<?= $vehicle->id_vehicle ?>" data-vehicle-model="<?= $vehicle->model ?>" data-bs-toggle="modal" data-bs-target="#modalDelete">
-                                                        <i class="bi bi-trash3-fill fs-4 text-danger"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        <?php } 
+                                                <tr>
+                                                    <th scope="row"><?= $vehicle->name ?></th>
+                                                    <td class="fw-semibold"><?= $vehicle->brand ?></td>
+                                                    <td class="fw-semibold"><?= $vehicle->model ?></td>
+                                                    <td class="fw-semibold">
+                                                        <?php if (isset($vehicle->picture)) { ?>
+                                                            <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" alt="" class="object-fit-cover rounded-circle imgVehicles">
+                                                        <?php } ?>
+                                                    </td>
+                                                    <td>
+                                                        <a href="/controllers/dashboard/vehicles/update-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="text-decoration-none">
+                                                            <i class="bi bi-pencil-square text-dark fs-4"></i>
+                                                        </a>
+                                                        <a href="/controllers/dashboard/vehicles/archive-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="text-decoration-none">
+                                                            <i class="bi bi-archive text-dark fs-4"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                        <?php }
                                         } ?>
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
-                        <!-- Modal -->
-                        <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title modalVehicle fs-5">Supprimer le véhicule : <span class="text-danger"><?= $vehicle->model ?></span></h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Êtes-vous sûr de vouloir supprimer cet élément ? Cette action est irréversible et entraînera la perte définitive des données associées.
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary text-uppercase fw-bold" data-bs-dismiss="modal">annuler</button>
-                                        <a href="" class="btn btn-danger deleteModalBtn text-uppercase fw-bold">Supprimer</a>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

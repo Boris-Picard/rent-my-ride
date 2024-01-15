@@ -26,7 +26,7 @@
                 <div class="col-8 mx-auto">
                     <div class="row">
                         <div class="col-12 pb-5">
-                            <h1 class="fw-bold text-uppercase">Liste des véhicules</h1>
+                            <h1 class="fw-bold text-uppercase">Liste des véhicules archivées</h1>
                         </div>
                     </div>
                     <div class="row">
@@ -65,15 +65,36 @@
                                                         <?php } ?>
                                                     </td>
                                                     <td>
-                                                        <!-- <a href="/controllers/dashboard/vehicles/update-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="text-decoration-none">
-                <i class="bi bi-archive text-dark fs-4"></i>
-            </a> -->
+                                                        <a href="/controllers/dashboard/vehicles/list-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="text-decoration-none">
+                                                            <i class="bi bi-archive text-dark fs-4"></i>
+                                                        </a>
+                                                        <a href="" class="formDelete" data-category-name="<?= $vehicle->name ?>" data-category-id="<?= $vehicle->id_vehicle ?>" data-vehicle-model="<?= $vehicle->model ?>" data-bs-toggle="modal" data-bs-target="#modalDelete">
+                                                            <i class="bi bi-trash3-fill fs-4 text-danger"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                         <?php }
                                         } ?>
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title modalVehicle fs-5">Supprimer le véhicule : <span class="text-danger"><?= $vehicle->model ?></span></h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Êtes-vous sûr de vouloir supprimer cet élément ? Cette action est irréversible et entraînera la perte définitive des données associées.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary text-uppercase fw-bold" data-bs-dismiss="modal">annuler</button>
+                                        <a href="" class="btn btn-danger deleteModalBtn text-uppercase fw-bold">Supprimer</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -223,14 +223,14 @@ class Vehicle
         return $result;
     }
 
-    public static function isExist(string $model): object|false
+    public static function isExist(string $registration): object|false
     {
         $pdo = Database::connect();
 
-        $sql = 'SELECT * from `vehicles` WHERE `model`=:model;';
+        $sql = 'SELECT * from `vehicles` WHERE `registration`=:registration;';
 
         $sth = $pdo->prepare($sql);
-        $sth->bindValue(':model', $model);
+        $sth->bindValue(':registration', $registration);
         $sth->execute();
 
         $result = $sth->fetch(PDO::FETCH_OBJ);
@@ -238,11 +238,26 @@ class Vehicle
         return $result;
     }
 
-    public static function archive(int $id)
+    public static function archive(int $id): bool
     {
         $pdo = Database::connect();
 
         $sql = 'UPDATE `vehicles` SET `deleted_at`= NOW() WHERE `id_vehicle`=:id_vehicle;';
+
+        $sth = $pdo->prepare($sql);
+
+        $sth->bindValue(':id_vehicle', $id, PDO::PARAM_INT);
+
+        $result = $sth->execute();
+
+        return $result;
+    }
+
+    public static function unarchive($id):bool
+    {
+        $pdo = Database::connect();
+
+        $sql = 'UPDATE `vehicles` SET `deleted_at`= null WHERE `id_vehicle`=:id_vehicle;';
 
         $sth = $pdo->prepare($sql);
 

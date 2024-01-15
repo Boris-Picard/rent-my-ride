@@ -139,7 +139,7 @@ try {
             }
         }
         
-        if (Vehicle::isExist($model)) {
+        if (Vehicle::isExist($registration)) {
             $error['isExist'] = 'Donnée déjà existante';
             $alert['error'] = 'Donnée déjà existante';
         }
