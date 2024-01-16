@@ -12,7 +12,7 @@ try {
 
     if($orders === 'desc') {
         $vehicles = Vehicle::getAllDesc();
-    }
+    } 
 
     $msg = filter_var($_SESSION['msg'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
 

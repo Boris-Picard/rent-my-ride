@@ -53,7 +53,9 @@
                                     </p>
                                     <p>
                                         <?php if($vehicles) { ?>
-                                            Dernier ajout : <?= $vehicles[0]->created_at ?>
+                                            <small>Dernier ajout : <?= $date ?></small>
+                                            <p>Marque : <span class="fw-semibold"><?= $vehicles[0]['brand'] ?></span></p>
+                                            <p>Modèle : <span class="fw-semibold"><?= $vehicles[0]['model'] ?></span></p>
                                         <?php } ?>
                                     </p>
                                 </div>

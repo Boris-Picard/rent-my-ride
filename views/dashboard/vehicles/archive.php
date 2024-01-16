@@ -36,7 +36,7 @@
                     </div>
                     <div class="row g-2">
                         <div class="col-12 pb-3 ">
-                            <button class="btn border-0" id="backBtn"><i class="bi bi-arrow-left fs-4 align-middle"></i><span class="px-2">Revenir à la page précédente</span></button>
+                            <button class="btn border-0 btn-light" id="backBtn"><i class="bi bi-arrow-left fs-4 align-middle"></i><span class="px-2">Revenir à la page précédente</span></button>
                         </div>
                     </div>
                     <div class="row">
@@ -65,10 +65,10 @@
                                                         <?php } ?>
                                                     </td>
                                                     <td>
-                                                        <a href="/controllers/dashboard/vehicles/list-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="text-decoration-none">
+                                                        <a href="/controllers/dashboard/vehicles/list-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="text-decoration-none btn btn-sm btn-light">
                                                             <i class="bi bi-archive text-dark fs-4"></i>
                                                         </a>
-                                                        <a href="" class="formDelete" data-category-name="<?= $vehicle->name ?>" data-category-id="<?= $vehicle->id_vehicle ?>" data-vehicle-model="<?= $vehicle->model ?>" data-bs-toggle="modal" data-bs-target="#modalDelete">
+                                                        <a href="" class="formDelete btn btn-sm btn-light" data-category-name="<?= $vehicle->name ?>" data-category-id="<?= $vehicle->id_vehicle ?>" data-vehicle-model="<?= $vehicle->model ?>" data-bs-toggle="modal" data-bs-target="#modalDelete">
                                                             <i class="bi bi-trash3-fill fs-4 text-danger"></i>
                                                         </a>
                                                     </td>

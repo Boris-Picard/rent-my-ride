@@ -36,12 +36,12 @@
                     </div>
                     <div class="row g-2">
                         <div class="col-6 pb-3 ">
-                            <button class="btn border-0" id="backBtn"><i class="bi bi-arrow-left fs-4 align-middle"></i><span class="px-2">Revenir à la page précédente</span></button>
+                            <button class="btn border-0 btn-light" id="backBtn"><i class="bi bi-arrow-left fs-4 align-middle "></i><span class="px-2">Revenir à la page précédente</span></button>
                         </div>
                         <div class="col-6 pt-3">
                             <div class="d-flex justify-content-end m-0">
                                 <a href="/controllers/dashboard/vehicles/add-ctrl.php" class="btn btn-primary text-uppercase fw-bold mx-2">Ajouter une véhicule</a>
-                                <a href="/controllers/dashboard/vehicles/archive-ctrl.php" class="btn btn-primary text-uppercase fw-bold">Voir les véhicules archivées</a>
+                                <a href="/controllers/dashboard/vehicles/archive-ctrl.php" class="btn btn-outline-primary text-uppercase fw-bold">Voir les véhicules archivées</a>
                             </div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                                         <tr>
                                             <th scope="col">
                                                 Catégorie
-                                                <a href="/controllers/dashboard/vehicles/order-ctrl.php?id=asc" class="btn btn-sm btn-light"><i class="bi bi-caret-up-fill mx-1 text-dark"></i></a>
+                                                <a href="/controllers/dashboard/vehicles/order-ctrl.php" class="btn btn-sm btn-light"><i class="bi bi-caret-up-fill mx-1 text-dark"></i></a>
                                                 <a href="/controllers/dashboard/vehicles/order-ctrl.php?id=desc" class="btn btn-sm btn-light"><i class="bi bi-caret-down-fill text-dark"></i></a>
                                             </th>
                                             <th scope="col">Marque</th>
@@ -75,10 +75,10 @@
                                                         <?php } ?>
                                                     </td>
                                                     <td>
-                                                        <a href="/controllers/dashboard/vehicles/update-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="text-decoration-none">
+                                                        <a href="/controllers/dashboard/vehicles/update-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="text-decoration-none btn btn-sm btn-light">
                                                             <i class="bi bi-pencil-square text-dark fs-4"></i>
                                                         </a>
-                                                        <a href="/controllers/dashboard/vehicles/archive-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="text-decoration-none">
+                                                        <a href="/controllers/dashboard/vehicles/archive-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="text-decoration-none btn btn-sm btn-light">
                                                             <i class="bi bi-archive text-dark fs-4"></i>
                                                         </a>
                                                     </td>

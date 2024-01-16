@@ -36,7 +36,7 @@
                     </div>
                     <div class="row g-2">
                         <div class="col-6 pb-3 ">
-                            <button class="btn border-0" id="backBtn"><i class="bi bi-arrow-left fs-4 align-middle"></i><span class="px-2">Revenir à la page précédente</span></button>
+                            <button class="btn border-0 btn-light" id="backBtn"><i class="bi bi-arrow-left fs-4 align-middle"></i><span class="px-2">Revenir à la page précédente</span></button>
                         </div>
                         <div class="col-6 pt-3">
                             <div class="d-flex justify-content-end m-0">
@@ -61,10 +61,10 @@
                                                 <th scope="row" class="py-3"><?= $category->id_category ?></th>
                                                 <td class="fw-semibold"><?= $category->name ?></td>
                                                 <td>
-                                                    <a href="/controllers/dashboard/categories/update-ctrl.php?id=<?= $category->id_category ?>" class="text-decoration-none">
+                                                    <a href="/controllers/dashboard/categories/update-ctrl.php?id=<?= $category->id_category ?>" class="text-decoration-none btn btn-sm btn-light">
                                                         <i class="bi bi-pencil-square text-dark fs-4"></i>
                                                     </a>
-                                                    <a href="" class="formDelete" data-category-name="<?= $category->name ?>" data-category-id="<?= $category->id_category ?>" data-bs-toggle="modal" data-bs-target="#modalDelete">
+                                                    <a href="" class="formDelete btn btn-sm btn-light" data-category-name="<?= $category->name ?>" data-category-id="<?= $category->id_category ?>" data-bs-toggle="modal" data-bs-target="#modalDelete">
                                                         <i class="bi bi-trash3-fill fs-4 text-danger"></i>
                                                     </a>
                                                 </td>

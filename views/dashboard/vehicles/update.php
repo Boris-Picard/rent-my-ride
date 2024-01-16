@@ -45,7 +45,7 @@
                         </div>
                         <div class="row g-2">
                             <div class="col-12 pb-3 ">
-                                <button class="btn border-0" id="backBtn"><i class="bi bi-arrow-left fs-4 align-middle"></i><span class="px-2">Revenir à la page précédente</span></button>
+                                <button class="btn border-0 btn-light" id="backBtn"><i class="bi bi-arrow-left fs-4 align-middle"></i><span class="px-2">Revenir à la page précédente</span></button>
                             </div>
                         </div>
                         <div class="row">

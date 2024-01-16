@@ -283,7 +283,8 @@ class Vehicle
 
         return $result;
     }
-    public static function updateImg(int $id):bool
+
+    public static function updateImg(int $id): bool
     {
         $pdo = Database::connect();
 
@@ -294,6 +295,21 @@ class Vehicle
         $sth->bindValue(':id_vehicle', $id, PDO::PARAM_INT);
 
         $result = $sth->execute();
+
+        return $result;
+    }
+
+    public static function getDateOrder(): array|false
+    {
+        $pdo = Database::connect();
+
+        $sql = 'SELECT * FROM `vehicles` WHERE `deleted_at` IS NULL ORDER BY `created_at` DESC;';
+
+        $sth = $pdo->query($sql);
+
+        $sth->execute();
+
+        $result = $sth->fetchAll();
 
         return $result;
     }
