@@ -174,6 +174,20 @@ class Vehicle
         return $result;
     }
 
+    public static function getAllDesc(): array|false
+    {
+        $pdo = Database::connect();
+
+        $sql = 'SELECT * FROM `vehicles` INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`
+        ORDER BY `categories`.`name` DESC;';
+
+        $sth = $pdo->query($sql);
+
+        $result = $sth->fetchAll(PDO::FETCH_OBJ);
+
+        return $result;
+    }
+
     public static function get(int $id): object|false
     {
         $pdo = Database::connect();
