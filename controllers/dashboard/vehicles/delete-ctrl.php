@@ -8,10 +8,11 @@ try {
     $id_vehicle = intval(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
 
     $vehicle = Vehicle::get($id_vehicle);
-    
-    if ($vehicle) {
+
+    $isDeleted = Vehicle::delete($id_vehicle);
+
+    if($isDeleted > 0) {
         $link = unlink('../../../public/uploads/vehicles/'.$vehicle->picture);
-        $isDeleted = Vehicle::delete($id_vehicle);
     }
 
     if($isDeleted) {

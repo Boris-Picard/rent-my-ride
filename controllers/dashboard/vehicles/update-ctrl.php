@@ -138,6 +138,11 @@ try {
                 $error['picture'] = $th->getMessage();
             }
         }
+
+        if (Category::isExist($registration) && $registration != $category->registration) {
+            $error['isExist'] = 'Donnée déjà existante';
+            $alert['error'] = 'Donnée déjà existante';
+        }
         
         if(empty($error)) {
             $vehicle = new Vehicle();

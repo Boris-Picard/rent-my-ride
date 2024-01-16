@@ -139,7 +139,7 @@ class Vehicle
         return $this->id_category;
     }
 
-    public function insert():bool
+    public function insert():int
     {
         $pdo = Database::connect();
 
@@ -188,7 +188,7 @@ class Vehicle
         return $result;
     }
 
-    public static function delete(int $id): bool
+    public static function delete(int $id):int
     {
         $pdo = Database::connect();
 
@@ -198,9 +198,9 @@ class Vehicle
 
         $sth->bindValue(':id_vehicle', $id, PDO::PARAM_INT);
 
-        $result = $sth->execute();
+        $sth->execute();
 
-        return $result;
+        return $sth->rowCount() > 0;
     }
 
     public function update(): bool
