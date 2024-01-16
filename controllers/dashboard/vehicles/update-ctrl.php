@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once __DIR__ . '/../../../config/config.php';
 require_once __DIR__ . '/../../../models/Category.php';
@@ -13,6 +14,12 @@ try {
     $listCategories = Category::getAll();
 
     $vehicle = Vehicle::get($id_vehicle);
+
+    $msg = filter_var($_SESSION['msg'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
+
+    if(isset($_SESSION['msg'])) {
+        unset($_SESSION['msg']);
+    }
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 

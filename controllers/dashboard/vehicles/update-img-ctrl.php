@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once __DIR__ . '/../../../models/Vehicle.php';
 
 try {
@@ -9,6 +9,13 @@ try {
 
     if($vehicle->picture) {
         $link = unlink('../../../public/uploads/vehicles/'.$vehicle->picture);
+        $deleteImg = Vehicle::updateImg($id_vehicle);
+    }
+
+    if($deleteImg) {
+        $_SESSION['msg'] = 'L\'image a bien été supprimée !';
+    } else {
+        $_SESSION['msg'] = 'Erreur la donnée n\'a pas été supprimée !';
     }
     
     header('Location: /controllers/dashboard/vehicles/update-ctrl.php?id='.$vehicle->id_vehicle);

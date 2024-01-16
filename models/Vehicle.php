@@ -139,7 +139,7 @@ class Vehicle
         return $this->id_category;
     }
 
-    public function insert():int
+    public function insert(): int
     {
         $pdo = Database::connect();
 
@@ -164,7 +164,8 @@ class Vehicle
     {
         $pdo = Database::connect();
 
-        $sql = ('SELECT * FROM `vehicles` INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`;');
+        $sql = 'SELECT * FROM `vehicles` INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`
+        ORDER BY `categories`.`name`;';
 
         $sth = $pdo->query($sql);
 
@@ -188,7 +189,7 @@ class Vehicle
         return $result;
     }
 
-    public static function delete(int $id):int
+    public static function delete(int $id): int
     {
         $pdo = Database::connect();
 
@@ -254,11 +255,25 @@ class Vehicle
         return $result;
     }
 
-    public static function unarchive($id):bool
+    public static function unarchive($id): bool
     {
         $pdo = Database::connect();
 
         $sql = 'UPDATE `vehicles` SET `deleted_at`= null WHERE `id_vehicle`=:id_vehicle;';
+
+        $sth = $pdo->prepare($sql);
+
+        $sth->bindValue(':id_vehicle', $id, PDO::PARAM_INT);
+
+        $result = $sth->execute();
+
+        return $result;
+    }
+    public static function updateImg(int $id):bool
+    {
+        $pdo = Database::connect();
+
+        $sql = 'UPDATE `vehicles` SET `picture`= null WHERE `id_vehicle`=:id_vehicle;';
 
         $sth = $pdo->prepare($sql);
 

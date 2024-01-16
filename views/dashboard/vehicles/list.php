@@ -10,8 +10,8 @@
                         </div>
                         <div class="col-12 d-flex flex-column p-0 sidebar rounded colSidebar g-5">
                             <a href="/controllers/dashboard/dashboard-ctrl.php" class="py-3 nav-link navLink sidebarLink"><span><i class="bi bi-house px-3"></i> Dashboard</span></a>
-                            <a href="/controllers/dashboard/categories/add-ctrl.php" class="py-3 nav-link navLink sidebarLink"><span><i class="bi bi-tag px-3"></i>Category</span></a>
-                            <a href="/controllers/dashboard/vehicles/add-ctrl.php" class="py-3 active nav-link navLink sidebarLink"><span><i class="bi bi-car-front-fill px-3"></i>Véhicle</span></a>
+                            <a href="/controllers/dashboard/categories/list-ctrl.php" class="py-3 nav-link navLink sidebarLink"><span><i class="bi bi-tag px-3"></i>Category</span></a>
+                            <a href="/controllers/dashboard/vehicles/list-ctrl.php" class="py-3 active nav-link navLink sidebarLink"><span><i class="bi bi-car-front-fill px-3"></i>Véhicle</span></a>
                             <!-- <a href="" class="py-3 nav-link navLink sidebarLink"><span><i class="bi bi-bookmarks px-3"></i> Collections</span></a> -->
                             <!-- <a href="" class="py-3 nav-link navLink sidebarLink"><span><i class="bi bi-people px-3"></i> Users</span></a> -->
                             <!-- <a href="" class="mb-3 py-3 navLink logout position-absolute sidebarLink w-100 nav-link"><span><i class="bi bi-box-arrow-right px-3"></i>Logout</span></a> -->
@@ -35,11 +35,12 @@
                         </div>
                     </div>
                     <div class="row g-2">
-                        <div class="col-8 pb-3 ">
+                        <div class="col-6 pb-3 ">
                             <button class="btn border-0" id="backBtn"><i class="bi bi-arrow-left fs-4 align-middle"></i><span class="px-2">Revenir à la page précédente</span></button>
                         </div>
-                        <div class="col-4 pt-3">
+                        <div class="col-6 pt-3">
                             <div class="d-flex justify-content-end m-0">
+                                <a href="/controllers/dashboard/vehicles/add-ctrl.php" class="btn btn-primary text-uppercase fw-bold mx-2">Ajouter une véhicule</a>
                                 <a href="/controllers/dashboard/vehicles/archive-ctrl.php" class="btn btn-primary text-uppercase fw-bold">Voir les véhicules archivées</a>
                             </div>
                         </div>

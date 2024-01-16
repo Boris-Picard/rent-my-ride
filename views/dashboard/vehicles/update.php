@@ -10,8 +10,8 @@
                         </div>
                         <div class="col-12 d-flex flex-column p-0 sidebar rounded colSidebar g-5">
                             <a href="/controllers/dashboard/dashboard-ctrl.php" class="py-3 nav-link navLink sidebarLink"><span><i class="bi bi-house px-3"></i> Dashboard</span></a>
-                            <a href="/controllers/dashboard/categories/add-ctrl.php" class="py-3 nav-link  navLink sidebarLink"><span><i class="bi bi-tag px-3"></i>Category</span></a>
-                            <a href="/controllers/dashboard/vehicles/add-ctrl.php" class="py-3 nav-link active navLink sidebarLink"><span><i class="bi bi-car-front-fill px-3"></i>Véhicle</span></a>
+                            <a href="/controllers/dashboard/categories/list-ctrl.php" class="py-3 nav-link  navLink sidebarLink"><span><i class="bi bi-tag px-3"></i>Category</span></a>
+                            <a href="/controllers/dashboard/vehicles/list-ctrl.php" class="py-3 nav-link active navLink sidebarLink"><span><i class="bi bi-car-front-fill px-3"></i>Véhicle</span></a>
                             <!-- <a href="" class="py-3 nav-link navLink sidebarLink"><span><i class="bi bi-bookmarks px-3"></i> Collections</span></a> -->
                             <!-- <a href="" class="py-3 nav-link navLink sidebarLink"><span><i class="bi bi-people px-3"></i> Users</span></a> -->
                             <!-- <a href="" class="mb-3 py-3 navLink logout position-absolute sidebarLink w-100 nav-link"><span><i class="bi bi-box-arrow-right px-3"></i>Logout</span></a> -->
@@ -31,6 +31,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
+                            <?= $msg ?>
                             <?php if (isset($alert['success'])) { ?>
                                 <div class="alert alert-success">
                                     <?= $alert['success'] ?>
@@ -87,9 +88,6 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <div><small class="form-text text-danger"><?= $error['picture'] ?? '' ?></small></div>
-                                                <label for="picture" class="form-label">Ajouter une photo du véhicule (optionnel)</label>
-                                                <input class="form-control" type="file" id="picture" name="picture" placeholder="Photo" accept="image/png, image/jpeg">
                                                 <?php if (isset($vehicle->picture)) { ?>
                                                     <div class="pt-3 d-flex justify-content-center">
                                                         <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" alt="" class="object-fit-cover imgVehiclesUpdate rounded-circle">
@@ -99,6 +97,10 @@
                                                             </a>
                                                         </div>
                                                     </div>
+                                                <?php } else { ?>
+                                                    <div><small class="form-text text-danger"><?= $error['picture'] ?? '' ?></small></div>
+                                                    <label for="picture" class="form-label">Ajouter une photo du véhicule (optionnel)</label>
+                                                    <input class="form-control" type="file" id="picture" name="picture" placeholder="Photo" accept="image/png, image/jpeg">
                                                 <?php } ?>
                                             </div>
                                         </div>
