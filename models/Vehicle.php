@@ -335,7 +335,7 @@ class Vehicle
         return $result;
     }
 
-    public static function getPages(): int
+    public static function getPages()
     {
         $pdo = Database::connect();
 

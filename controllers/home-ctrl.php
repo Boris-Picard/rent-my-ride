@@ -27,7 +27,6 @@ try {
         $getPages = Vehicle::limitPages($resultOnpage, $start);
     }
 
-
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $categories = array_column($categories, 'id_category');
@@ -46,9 +45,6 @@ try {
 
         $categories = Category::getAll();
 
-        if($id_category) {
-            
-        }
 
     }
 } catch (PDOException $e) {

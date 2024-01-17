@@ -15,23 +15,37 @@
                 </div>
                 <div class="col-12">
                     <div class="row g-3">
-                        <?php foreach ($getPages as $vehicle) { ?>
-                            <div class="col-4">
-                                <div class="card shadow-lg border-0 rounded-4" style="width: 18rem;">
-                                    <!-- <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" class="card-img-top" alt="..."> -->
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?= $vehicle->name ?></h5>
-                                        <p class="card-text"><?= $vehicle->brand ?></p>
-                                        <p class="card-text"><?= $vehicle->model ?></p>
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <?php foreach ($getPages as $vehicle) {
+                            if (isset($id_category) && $id_category == $vehicle->id_category) { ?>
+                                <div class="col-4">
+                                    <div class="card shadow-lg border-0 rounded-4" style="width: 18rem;">
+                                        <!-- <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" class="card-img-top" alt="..."> -->
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?= $vehicle->name ?></h5>
+                                            <p class="card-text"><?= $vehicle->brand ?></p>
+                                            <p class="card-text"><?= $vehicle->model ?></p>
+                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        <?php } ?>
+                            <?php } elseif (empty($id_category)) { ?>
+                                <div class="col-4">
+                                    <div class="card shadow-lg border-0 rounded-4" style="width: 18rem;">
+                                        <!-- <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" class="card-img-top" alt="..."> -->
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?= $vehicle->name ?></h5>
+                                            <p class="card-text"><?= $vehicle->brand ?></p>
+                                            <p class="card-text"><?= $vehicle->model ?></p>
+                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php }
+                        } ?>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <div class="d-flex justify-content-center">
+                            <div class="d-flex justify-content-center py-2">
                                 <nav aria-label="Page navigation example">
                                     <ul class="pagination">
                                         <?php if ($page > 1) { ?>
