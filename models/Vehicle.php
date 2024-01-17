@@ -313,4 +313,20 @@ class Vehicle
 
         return $result;
     }
+
+    public static function getPage():int
+    {
+        $pdo = Database::connect();
+
+        $sql = 'SELECT * FROM `vehicles` 
+        INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category` 
+        ORDER BY `categories`.`name` 
+        LIMIT 1, 10;';
+
+        $sth = $pdo->prepare($sql);
+
+        $sth->execute();
+        
+        return $sth->rowCount() > 0;
+    }
 }
