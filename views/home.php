@@ -1,10 +1,10 @@
 <main>
-    <section class="py-5 bg-light">
+    <section class="p-5 bg-light">
         <div class="container">
             <div class="row">
-                <div class="col-4 pb-3">
+                <div class="col-5 pb-3">
                     <form action="" method="POST" novalidate class="d-flex">
-                        <select class="form-select" name="id_category" aria-label="Default select example">
+                        <select class="form-select w-50" name="id_category" aria-label="Default select example">
                             <option selected disabled>Séléctionner une catégorie</option>
                             <?php foreach ($categories as $category) { ?>
                                 <option value="<?= $category->id_category ?>" <?= (isset($id_category) && $id_category == $category->id_category) ? 'selected' : '' ?>><?= $category->name ?></option>
@@ -13,6 +13,25 @@
                         <button type="submit" class="btn btn-primary mx-3">Valider</button>
                     </form>
                 </div>
+                <!-- <div class="row"> -->
+                        <div class="col-6">
+                            <div class="d-flex align-items-center pb-3">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                        <?php if ($page > 1) { ?>
+                                            <li class="page-item"><a class="page-link " href="?page=<?= $page - 1 ?>">Previous</a></li>
+                                        <?php } ?>
+                                        <?php for ($i = 1; $i <= $nbPages; $i++) {  ?>
+                                            <li class="page-item"><a class="page-link <?= $page == $i ? 'active' : '' ?>" href="?page=<?= $i ?>"><?= $i ?></a></li>
+                                        <?php }  ?>
+                                        <?php if ($page < $nbPages) { ?>
+                                            <li class="page-item"><a class="page-link" href="?page=<?= $page + 1 ?>">Next</a></li>
+                                        <?php } ?>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    <!-- </div> -->
                 <div class="col-12">
                     <div class="row g-3">
                         <?php foreach ($getPages as $vehicle) {
@@ -42,25 +61,6 @@
                                 </div>
                         <?php }
                         } ?>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="d-flex justify-content-center py-2">
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination">
-                                        <?php if ($page > 1) { ?>
-                                            <li class="page-item rounded-circle"><a class="page-link" href="?page=<?= $page - 1 ?>">Previous</a></li>
-                                        <?php } ?>
-                                        <?php for ($i = 1; $i <= $nbPages; $i++) {  ?>
-                                            <li class="page-item"><a class="page-link <?= $page == $i ? 'active' : '' ?>" href="?page=<?= $i ?>"><?= $i ?></a></li>
-                                        <?php }  ?>
-                                        <?php if ($page < $nbPages) { ?>
-                                            <li class="page-item"><a class="page-link" href="?page=<?= $page + 1 ?>">Next</a></li>
-                                        <?php } ?>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
