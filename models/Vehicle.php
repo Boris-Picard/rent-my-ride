@@ -314,19 +314,35 @@ class Vehicle
         return $result;
     }
 
-    public static function getPage():int
+    public static function limitPages(int $limit, int $start): array|false
     {
         $pdo = Database::connect();
 
         $sql = 'SELECT * FROM `vehicles` 
         INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category` 
         ORDER BY `categories`.`name` 
-        LIMIT 1, 10;';
+        LIMIT :limit OFFSET :start;';
 
         $sth = $pdo->prepare($sql);
 
+        $sth->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $sth->bindValue(':start', $start, PDO::PARAM_INT);
+
         $sth->execute();
-        
-        return $sth->rowCount() > 0;
+
+        $result = $sth->fetchAll(PDO::FETCH_OBJ);
+
+        return $result;
+    }
+
+    public static function getPages(): int
+    {
+        $pdo = Database::connect();
+
+        $sql = 'SELECT COUNT(*) FROM `vehicles`;';
+
+        $sth = $pdo->query($sql);
+
+        return $sth->fetchColumn();
     }
 }

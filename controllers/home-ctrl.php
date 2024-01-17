@@ -1,31 +1,35 @@
 <?php
 
 require_once __DIR__ . '/../models/Vehicle.php';
-
+require_once __DIR__ . '/../models/Category.php';
 
 try {
-    $vehicles = Vehicle::getAll();
-
     $page = intval(filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT));
 
-    $resultNbPages = 10;
+    if($page < 1) {
+        $page = 1;
+    }
 
-    $start = ($page - 1) * $resultNbPages;
+    $categories = Category::getAll();
 
-    $getPages = Vehicle::getPage();
-    var_dump($getPages);
+    $pages = Vehicle::getPages();
 
-    $pages = ceil($getPages / $resultNbPages);
+    $resultOnpage = 10;
+
+    $nbPages = ceil($pages / $resultOnpage);
+
+    $start = ($page - 1) * $resultOnpage;
+
+    if(empty($page) || $page != $nbPages) {
+        $start = 0;
+        $getPages = Vehicle::limitPages($resultOnpage, $start);
+    } else {
+        $getPages = Vehicle::limitPages($resultOnpage, $start);
+    }
 
 } catch (PDOException $e) {
     die('Erreur : ' . $e->getMessage());
 }
-
-
-
-
-
-
 
 
 include __DIR__ . '/../views/templates/header.php';
