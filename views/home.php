@@ -4,10 +4,10 @@
             <div class="row">
                 <div class="col-4 pb-3">
                     <form action="" method="POST" novalidate class="d-flex">
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" name="id_category" aria-label="Default select example">
                             <option selected disabled>Séléctionner une catégorie</option>
                             <?php foreach ($categories as $category) { ?>
-                                <option value="<?= $category->id_category ?>"><?= $category->name ?></option>
+                                <option value="<?= $category->id_category ?>" <?= (isset($id_category) && $id_category == $category->id_category) ? 'selected' : '' ?>><?= $category->name ?></option>
                             <?php } ?>
                         </select>
                         <button type="submit" class="btn btn-primary mx-3">Valider</button>
