@@ -8,13 +8,18 @@ try {
 
     $id_vehicle = intval(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
 
+    $order = filter_input(INPUT_GET, 'order', FILTER_SANITIZE_SPECIAL_CHARS);
+
     $vehicle = Vehicle::get($id_vehicle);
 
     if($vehicle){
         Vehicle::unarchive($id_vehicle);
     }
+    if($order == null) {
+        $order = 'ASC';
+    }
     
-    $vehicles = Vehicle::getAll('ASC', false);
+    $vehicles = Vehicle::getAll($order, true);
 
     $msg = filter_var($_SESSION['msg'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
 

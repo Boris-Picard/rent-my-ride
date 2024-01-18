@@ -5,8 +5,9 @@
                 <div class="col-5 pb-3">
                     <form action="" method="GET" novalidate class="d-flex">
                         <select class="form-select w-50" name="id_category" aria-label="Default select example">
+                            <small class="text-danger"><?= $error['categories'] ?></small>
                             <option selected disabled>Séléctionner une catégorie</option>
-                            <?php foreach ($categories as $category) { ?>
+                            <?php foreach ($listCategories as $category) { ?>
                                 <option value="<?= $category->id_category ?>" <?= (isset($id_category) && $id_category == $category->id_category) ? 'selected' : '' ?>><?= $category->name ?></option>
                             <?php } ?>
                         </select>
@@ -14,7 +15,7 @@
                     </form>
                 </div>
                 <!-- <div class="row"> -->
-                <div class="col-6">
+                <!-- <div class="col-6">
                     <div class="d-flex align-items-center pb-3">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
@@ -30,11 +31,11 @@
                             </ul>
                         </nav>
                     </div>
-                </div>
+                </div> -->
                 <!-- </div> -->
                 <div class="col-12">
                     <div class="row g-3">
-                        <?php foreach ($getPages as $vehicle) { ?>
+                        <?php foreach ($limitPages as $vehicle) { ?>
                             <div class="col-4">
                                 <div class="card shadow-lg border-0 rounded-4" style="width: 18rem;">
                                     <!-- <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" class="card-img-top" alt="..."> -->

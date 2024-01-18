@@ -4,30 +4,29 @@ require_once __DIR__ . '/../models/Vehicle.php';
 require_once __DIR__ . '/../models/Category.php';
 
 try {
-    $page = intval(filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT));
+    // $page = intval(filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT));
 
-    if ($page < 1 || (empty($page))) {
-        $page = 1;
-    }
+    // if ($page < 1 || (empty($page))) {
+    //     $page = 1;
+    // }
 
-    $categories = Category::getAll();
+    // $pages = Vehicle::getPages();
 
-    $pages = Vehicle::getPages();
+    // $resultOnpage = 10;
 
-    $resultOnpage = 10;
+    // $nbPages = ceil($pages / $resultOnpage);
 
-    $nbPages = ceil($pages / $resultOnpage);
+    // $start = ($page - 1) * $resultOnpage;
 
-    $start = ($page - 1) * $resultOnpage;
+    $limitPages = Vehicle::getAll('ASC', true, 10, 0);
 
-    $getPages = Vehicle::limitPages($resultOnpage, $start);
-    
+    $listCategories = Category::getAll();
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         
-        $categories = array_column($categories, 'id_category');
-
-        $id_category = intval(filter_input(INPUT_POST, 'id_category', FILTER_SANITIZE_NUMBER_INT));
+        $categories = array_column($listCategories, 'id_category');
+        
+        $id_category = intval(filter_input(INPUT_GET, 'id_category', FILTER_SANITIZE_NUMBER_INT));
 
         if (empty($id_category)) {
             $error['categories'] = 'Veuillez sélectionner une catégorie';
@@ -37,9 +36,7 @@ try {
                 $error['categories'] = 'Ce n\'est pas une catégorie valide';
                 $alert['error'] = 'Erreur, la donnée n\'a pas été insérée';
             }
-        }
-
-        $categories = Category::getAll();
+        } 
     }
 } catch (PDOException $e) {
     die('Erreur : ' . $e->getMessage());

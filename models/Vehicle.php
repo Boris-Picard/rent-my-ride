@@ -160,26 +160,24 @@ class Vehicle
         return $sth->rowCount() > 0;
     }
 
-    public static function getAll(string $order = 'ASC', bool $showDeletedAt = false, int $limit = 10, int $start = 0): array|false
+    public static function getAll(string $order = 'ASC', bool $showDeletedAt = true, int $limit = 20, int $start = 0): array|false
     {
         $pdo = Database::connect();
 
-        if($order !== 'DESC' && $order !== 'ASC') {
+        if($order !== 'DESC' && $order !== 'ASC' && $order == null) {
             $order = 'ASC';
         }
 
         if($showDeletedAt !== false && $showDeletedAt !== true) {
-            $showDeletedAt = false;
+            $showDeletedAt = true;
         }
 
-        $deletedCondition = $showDeletedAt ? 'IS NOT NULL' : 'IS NULL';
+        $deletedCondition = $showDeletedAt ?  'IS NULL' :  'IS NOT NULL';
 
         $sql = 'SELECT * FROM `vehicles` INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`
         WHERE `deleted_at`' . $deletedCondition . ' ' .
         'ORDER BY `categories`.`name`' . $order . ' ' .
         'LIMIT :limit OFFSET :start;';
-
-        // $sth = $pdo->query($sql);
 
         $sth = $pdo->prepare($sql);
 
@@ -317,27 +315,6 @@ class Vehicle
         $sth->execute();
 
         $result = $sth->fetchAll();
-
-        return $result;
-    }
-
-    public static function limitPages(int $limit, int $start): array|false
-    {
-        $pdo = Database::connect();
-
-        $sql = 'SELECT * FROM `vehicles` 
-        INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category` 
-        ORDER BY `categories`.`name` 
-        LIMIT :limit OFFSET :start;';
-
-        $sth = $pdo->prepare($sql);
-
-        $sth->bindValue(':limit', $limit, PDO::PARAM_INT);
-        $sth->bindValue(':start', $start, PDO::PARAM_INT);
-
-        $sth->execute();
-
-        $result = $sth->fetchAll(PDO::FETCH_OBJ);
 
         return $result;
     }

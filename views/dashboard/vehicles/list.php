@@ -53,8 +53,8 @@
                                         <tr>
                                             <th scope="col">
                                                 Catégorie
-                                                <a href="/controllers/dashboard/vehicles/order-ctrl.php?order=ASC" class="btn btn-sm btn-light"><i class="bi bi-caret-up-fill mx-1 text-dark"></i></a>
-                                                <a href="/controllers/dashboard/vehicles/order-ctrl.php?order=DESC" class="btn btn-sm btn-light"><i class="bi bi-caret-down-fill text-dark"></i></a>
+                                                <a href="/controllers/dashboard/vehicles/list-ctrl.php?order=ASC" class="btn btn-sm btn-light"><i class="bi bi-caret-up-fill mx-1 text-dark"></i></a>
+                                                <a href="/controllers/dashboard/vehicles/list-ctrl.php?order=DESC" class="btn btn-sm btn-light"><i class="bi bi-caret-down-fill text-dark"></i></a>
                                             </th>
                                             <th scope="col">Marque</th>
                                             <th scope="col">Modèle</th>
