@@ -21,9 +21,10 @@ try {
     $start = ($page - 1) * $resultOnpage;
 
     $getPages = Vehicle::limitPages($resultOnpage, $start);
+    
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+        
         $categories = array_column($categories, 'id_category');
 
         $id_category = intval(filter_input(INPUT_POST, 'id_category', FILTER_SANITIZE_NUMBER_INT));

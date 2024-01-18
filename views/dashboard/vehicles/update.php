@@ -50,7 +50,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <form action="" method="POST" class="shadow-lg p-5 rounded-4" enctype="multipart/form-data" novalidate>
+                                <form action="" method="POST" class="shadow-lg p-5 rounded-4" enctype="multipart/form-data">
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <div><small class="form-text text-danger"><?= $error['brand'] ?? '' ?></small></div>

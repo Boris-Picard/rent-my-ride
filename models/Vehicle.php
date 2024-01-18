@@ -160,26 +160,23 @@ class Vehicle
         return $sth->rowCount() > 0;
     }
 
-    public static function getAll(): array|false
+    public static function getAll(string $order = 'ASC', string $page = ''): array|false
     {
         $pdo = Database::connect();
 
-        $sql = 'SELECT * FROM `vehicles` INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`
-        ORDER BY `categories`.`name`;';
-
-        $sth = $pdo->query($sql);
-
-        $result = $sth->fetchAll(PDO::FETCH_OBJ);
-
-        return $result;
-    }
-
-    public static function getAllDesc(): array|false
-    {
-        $pdo = Database::connect();
+        if($order !== 'DESC' && $order !== 'ASC') {
+            $order = 'ASC';
+        }
 
         $sql = 'SELECT * FROM `vehicles` INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`
-        ORDER BY `categories`.`name` DESC;';
+        WHERE `deleted_at` IS NULL
+        ORDER BY `categories`.`name`' . $order;
+
+        // $sth = $pdo->prepare($sql);
+
+        // $sth->bindValue(':page', $page);
+
+        // $sth->execute();
 
         $sth = $pdo->query($sql);
 
@@ -222,7 +219,9 @@ class Vehicle
     {
         $pdo = Database::connect();
 
-        $sql = 'UPDATE `vehicles` SET `brand`=:brand, `model`=:model, `registration`=:registration, `mileage`=:mileage, `picture`=:picture, `id_category`=:id_category  WHERE `id_vehicle`=:id_vehicle;';
+        $sql = 'UPDATE `vehicles` 
+        SET `brand`=:brand, `model`=:model, `registration`=:registration, `mileage`=:mileage, `picture`=:picture, `id_category`=:id_category  
+        WHERE `id_vehicle`=:id_vehicle;';
 
         $sth = $pdo->prepare($sql);
 
@@ -239,19 +238,19 @@ class Vehicle
         return $result;
     }
 
-    public static function isExist(string $registration): object|false
+    public static function isExist(string $registration): bool
     {
         $pdo = Database::connect();
 
-        $sql = 'SELECT * from `vehicles` WHERE `registration`=:registration;';
+        $sql = 'SELECT COUNT(`id_vehicle`) AS "count" FROM `vehicles` WHERE `registration`=:registration;';
 
         $sth = $pdo->prepare($sql);
         $sth->bindValue(':registration', $registration);
         $sth->execute();
 
-        $result = $sth->fetch(PDO::FETCH_OBJ);
-
-        return $result;
+        $result = $sth->fetchColumn();
+        
+        return (bool) $result > 0;
     }
 
     public static function archive(int $id): bool

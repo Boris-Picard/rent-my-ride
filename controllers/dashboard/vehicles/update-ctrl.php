@@ -120,6 +120,7 @@ try {
         // nettoyage et validation de l'upload d'une image donnée non obligatoire
         if(!empty($_FILES['picture']['name'])) {
             try {
+                // @unlink('../../../public/uploads/vehicles/'.$vehicle->picture);
                 if($_FILES['picture']['error'] != 0) {
                     throw new Exception("Error");
                 }
@@ -146,9 +147,9 @@ try {
             }
         }
 
-        if (Category::isExist($registration) && $registration != $category->registration) {
-            $error['isExist'] = 'Donnée déjà existante';
-            $alert['error'] = 'Donnée déjà existante';
+        if (Vehicle::isExist($registration) && $registration != $vehicle->registration) {
+            $error['isExist'] = 'Plaque d\'immatriculation déjà existante';
+            $alert['error'] = 'Plaque d\'immatriculation déjà existante';
         }
         
         if(empty($error)) {

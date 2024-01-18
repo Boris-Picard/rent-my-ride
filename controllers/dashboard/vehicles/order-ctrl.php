@@ -5,14 +5,10 @@ require_once __DIR__ . '/../../../models/Vehicle.php';
 
 try {
     $title = 'Liste des véhicules';
-    
-    $vehicles = Vehicle::getAll();
 
-    $orders = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+    $order = filter_input(INPUT_GET, 'order', FILTER_SANITIZE_SPECIAL_CHARS);
 
-    if($orders === 'desc') {
-        $vehicles = Vehicle::getAllDesc();
-    } 
+    $vehicles = Vehicle::getAll($order);
 
     $msg = filter_var($_SESSION['msg'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
 

@@ -54,27 +54,26 @@
                                     </thead>
                                     <tbody>
                                         <?php foreach ($vehicles as $vehicle) { ?>
-                                            <?php if ($vehicle->deleted_at) { ?>
-                                                <tr>
-                                                    <th scope="row"><?= $vehicle->name ?></th>
-                                                    <td class="fw-semibold"><?= $vehicle->brand ?></td>
-                                                    <td class="fw-semibold"><?= $vehicle->model ?></td>
-                                                    <td class="fw-semibold">
-                                                        <?php if (isset($vehicle->picture)) { ?>
-                                                            <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" alt="" class="object-fit-cover rounded-circle imgVehicles">
-                                                        <?php } ?>
-                                                    </td>
-                                                    <td>
-                                                        <a href="/controllers/dashboard/vehicles/list-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="text-decoration-none btn btn-sm btn-light">
-                                                            <i class="bi bi-archive text-dark fs-4"></i>
-                                                        </a>
-                                                        <a href="" class="formDelete btn btn-sm btn-light" data-category-name="<?= $vehicle->name ?>" data-category-id="<?= $vehicle->id_vehicle ?>" data-vehicle-model="<?= $vehicle->model ?>" data-bs-toggle="modal" data-bs-target="#modalDelete">
-                                                            <i class="bi bi-trash3-fill fs-4 text-danger"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <th scope="row"><?= $vehicle->name ?></th>
+                                                <td class="fw-semibold"><?= $vehicle->brand ?></td>
+                                                <td class="fw-semibold"><?= $vehicle->model ?></td>
+                                                <td class="fw-semibold">
+                                                    <?php if (isset($vehicle->picture)) { ?>
+                                                        <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" alt="" class="object-fit-cover rounded-circle imgVehicles">
+                                                    <?php } ?>
+                                                </td>
+                                                <td>
+                                                    <a href="/controllers/dashboard/vehicles/list-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="text-decoration-none btn btn-sm btn-light">
+                                                        <i class="bi bi-archive text-dark fs-4"></i>
+                                                    </a>
+                                                    <a href="" class="formDelete btn btn-sm btn-light" data-category-name="<?= $vehicle->name ?>" data-category-id="<?= $vehicle->id_vehicle ?>" data-vehicle-model="<?= $vehicle->model ?>" data-bs-toggle="modal" data-bs-target="#modalDelete">
+                                                        <i class="bi bi-trash3-fill fs-4 text-danger"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
                                         <?php }
-                                        } ?>
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>

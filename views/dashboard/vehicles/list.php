@@ -41,7 +41,7 @@
                         <div class="col-6 pt-3">
                             <div class="d-flex justify-content-end m-0">
                                 <a href="/controllers/dashboard/vehicles/add-ctrl.php" class="btn btn-primary text-uppercase fw-bold mx-2">Ajouter une véhicule</a>
-                                <a href="/controllers/dashboard/vehicles/archive-ctrl.php" class="btn btn-outline-primary text-uppercase fw-bold">Voir les véhicules archivées</a>
+                                <a href="/controllers/dashboard/vehicles/archive-ctrl.php?page=archive" class="btn btn-outline-primary text-uppercase fw-bold">Voir les véhicules archivées</a>
                             </div>
                         </div>
                     </div>
@@ -53,8 +53,8 @@
                                         <tr>
                                             <th scope="col">
                                                 Catégorie
-                                                <a href="/controllers/dashboard/vehicles/order-ctrl.php" class="btn btn-sm btn-light"><i class="bi bi-caret-up-fill mx-1 text-dark"></i></a>
-                                                <a href="/controllers/dashboard/vehicles/order-ctrl.php?id=desc" class="btn btn-sm btn-light"><i class="bi bi-caret-down-fill text-dark"></i></a>
+                                                <a href="/controllers/dashboard/vehicles/order-ctrl.php?order=ASC" class="btn btn-sm btn-light"><i class="bi bi-caret-up-fill mx-1 text-dark"></i></a>
+                                                <a href="/controllers/dashboard/vehicles/order-ctrl.php?order=DESC" class="btn btn-sm btn-light"><i class="bi bi-caret-down-fill text-dark"></i></a>
                                             </th>
                                             <th scope="col">Marque</th>
                                             <th scope="col">Modèle</th>
@@ -64,27 +64,26 @@
                                     </thead>
                                     <tbody>
                                         <?php foreach ($vehicles as $vehicle) { ?>
-                                            <?php if ($vehicle->deleted_at == null) { ?>
-                                                <tr>
-                                                    <th scope="row" class="fw-semibold"><?= $vehicle->name ?></th>
-                                                    <td class="fw-semibold"><?= $vehicle->brand ?></td>
-                                                    <td class="fw-semibold"><?= $vehicle->model ?></td>
-                                                    <td class="fw-semibold">
-                                                        <?php if (isset($vehicle->picture)) { ?>
-                                                            <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" alt="" class="object-fit-cover rounded-circle imgVehicles">
-                                                        <?php } ?>
-                                                    </td>
-                                                    <td>
-                                                        <a href="/controllers/dashboard/vehicles/update-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="text-decoration-none btn btn-sm btn-light">
-                                                            <i class="bi bi-pencil-square text-dark fs-4"></i>
-                                                        </a>
-                                                        <a href="/controllers/dashboard/vehicles/archive-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="text-decoration-none btn btn-sm btn-light">
-                                                            <i class="bi bi-archive text-dark fs-4"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <th scope="row" class="fw-semibold"><?= $vehicle->name ?></th>
+                                                <td class="fw-semibold"><?= $vehicle->brand ?></td>
+                                                <td class="fw-semibold"><?= $vehicle->model ?></td>
+                                                <td class="fw-semibold">
+                                                    <?php if (isset($vehicle->picture)) { ?>
+                                                        <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" alt="" class="object-fit-cover rounded-circle imgVehicles">
+                                                    <?php } ?>
+                                                </td>
+                                                <td>
+                                                    <a href="/controllers/dashboard/vehicles/update-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="text-decoration-none btn btn-sm btn-light">
+                                                        <i class="bi bi-pencil-square text-dark fs-4"></i>
+                                                    </a>
+                                                    <a href="/controllers/dashboard/vehicles/archive-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="text-decoration-none btn btn-sm btn-light">
+                                                        <i class="bi bi-archive text-dark fs-4"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
                                         <?php }
-                                        } ?>
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
