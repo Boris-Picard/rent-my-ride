@@ -14,7 +14,7 @@ try {
         Vehicle::unarchive($id_vehicle);
     }
     
-    $vehicles = Vehicle::getAll();
+    $vehicles = Vehicle::getAll('ASC', false);
 
     $msg = filter_var($_SESSION['msg'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
 

@@ -41,7 +41,7 @@
                         <div class="col-6 pt-3">
                             <div class="d-flex justify-content-end m-0">
                                 <a href="/controllers/dashboard/vehicles/add-ctrl.php" class="btn btn-primary text-uppercase fw-bold mx-2">Ajouter une véhicule</a>
-                                <a href="/controllers/dashboard/vehicles/archive-ctrl.php?page=archive" class="btn btn-outline-primary text-uppercase fw-bold">Voir les véhicules archivées</a>
+                                <a href="/controllers/dashboard/vehicles/archive-ctrl.php" class="btn btn-outline-primary text-uppercase fw-bold">Voir les véhicules archivées</a>
                             </div>
                         </div>
                     </div>
