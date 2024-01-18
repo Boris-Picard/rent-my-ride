@@ -15,7 +15,7 @@
                     </form>
                 </div>
                 <!-- <div class="row"> -->
-                <!-- <div class="col-6">
+                <div class="col-6">
                     <div class="d-flex align-items-center pb-3">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
@@ -31,7 +31,7 @@
                             </ul>
                         </nav>
                     </div>
-                </div> -->
+                </div>
                 <!-- </div> -->
                 <div class="col-12">
                     <div class="row g-3">
