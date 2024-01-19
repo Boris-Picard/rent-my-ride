@@ -23,7 +23,7 @@
                                     <li class="page-item"><a class="page-link " href="?page=<?= $page - 1 ?>">Previous</a></li>
                                 <?php } ?>
                                 <?php for ($i = 1; $i <= $nbPages; $i++) {  ?>
-                                    <li class="page-item"><a class="page-link <?= $page == $i ? 'active' : '' ?>" href="?page=<?= $i ?>"><?= $i ?></a></li>
+                                    <li class="page-item"><a class="page-link <?= $page == $i ? 'active' : '' ?>" href="?id_category=<?= $id_category . '&page=' . $i ?>"><?= $i ?></a></li>
                                 <?php }  ?>
                                 <?php if ($page < $nbPages) { ?>
                                     <li class="page-item"><a class="page-link" href="?page=<?= $page + 1 ?>">Next</a></li>
@@ -37,7 +37,7 @@
                     <div class="row g-3">
                         <?php foreach ($limitPages as $vehicle) { ?>
                             <div class="col-md-4 col-12">
-                                <div class="card shadow-lg border-0 rounded-4" style="width: 18rem;">
+                                <div class="card shadow-lg border-0 rounded-4" >
                                     <!-- <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" class="card-img-top" alt="..."> -->
                                     <div class="card-body">
                                         <h5 class="card-title"><?= $vehicle->name ?></h5>

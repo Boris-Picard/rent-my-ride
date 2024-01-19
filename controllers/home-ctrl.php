@@ -10,7 +10,7 @@ try {
         $page = 1;
     }
 
-    $pages = Vehicle::getPages();
+    $pages = Vehicle::nbVehicles();
 
     $resultOnpage = 10;
 
@@ -25,7 +25,12 @@ try {
     $id_category = filter_input(INPUT_GET, 'id_category', FILTER_SANITIZE_NUMBER_INT);
 
     if (!empty($id_category)) {
-        $limitPages = Vehicle::getAll(id: $id_category);
+        $pages = Vehicle::nbVehicles($id_category);
+        $nbPages = ceil($pages / $resultOnpage);
+        var_dump($pages);
+        $start = ($page - 1) * $resultOnpage;
+
+        $limitPages = Vehicle::getAll($resultOnpage, $start, id: $id_category);
     }
 } catch (PDOException $e) {
     die('Erreur : ' . $e->getMessage());

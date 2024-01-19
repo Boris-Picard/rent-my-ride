@@ -172,7 +172,7 @@ class Vehicle
 
         $order == 'DESC' ? $sql .= ' ORDER BY `categories`.`name` DESC ' : $sql .= ' ORDER BY `categories`.`name` ASC ';
 
-        if(isset($limit) && isset($start)) {
+        if (isset($limit) && isset($start)) {
             $sql .= ' LIMIT :limit OFFSET :start ';
         }
 
@@ -317,13 +317,22 @@ class Vehicle
         return $result;
     }
 
-    public static function getPages()
+    public static function nbVehicles(?int $id = null)
     {
         $pdo = Database::connect();
 
-        $sql = 'SELECT COUNT(*) FROM `vehicles` WHERE `deleted_at` IS NULL;';
+        $sql = 'SELECT COUNT(*) FROM `vehicles` 
+        INNER JOIN `categories` ON `categories`.`id_category` = `vehicles`.`id_category` 
+        WHERE `deleted_at` IS NULL
+        AND `categories`.`id_category`=:id_category;';
 
-        $sth = $pdo->query($sql);
+        $sth = $pdo->prepare($sql);
+
+        $sth->bindValue(':id_category', $id, PDO::PARAM_INT);
+
+        $sth->execute();
+
+        // $sth = $pdo->query($sql);
 
         return $sth->fetchColumn();
     }
