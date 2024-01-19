@@ -1,0 +1,14 @@
+body {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.nameLogoAccount {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1.5rem !important;
+    background: linear-gradient(to left, rgb(0, 0, 70), rgb(28, 181, 224));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+

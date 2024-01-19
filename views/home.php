@@ -1,5 +1,5 @@
 <main>
-    <section class="p-5 bg-light">
+    <section class="p-5 bg-dark">
         <div class="container">
             <div class="row">
                 <div class="col-5 pb-3">
@@ -20,13 +20,13 @@
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
                                 <?php if ($page > 1) { ?>
-                                    <li class="page-item"><a class="page-link " href="?page=<?= $page - 1 ?>">Previous</a></li>
+                                    <li class="page-item"><a class="page-link " href="?page=<?= $page - 1 ?><?= $id_category != null ? '&id_category=' . $id_category : '' ?>">Previous</a></li>
                                 <?php } ?>
                                 <?php for ($i = 1; $i <= $nbPages; $i++) {  ?>
-                                    <li class="page-item"><a class="page-link <?= $page == $i ? 'active' : '' ?>" href="?id_category=<?= $id_category . '&page=' . $i ?>"><?= $i ?></a></li>
+                                    <li class="page-item"><a class="page-link <?= $page == $i ? 'active' : '' ?>" href="?page=<?= $i ?><?= $id_category != null ? '&id_category=' . $id_category : '' ?>"><?= $i ?></a></li>
                                 <?php }  ?>
                                 <?php if ($page < $nbPages) { ?>
-                                    <li class="page-item"><a class="page-link" href="?page=<?= $page + 1 ?>">Next</a></li>
+                                    <li class="page-item"><a class="page-link" href="?page=<?= $page + 1 ?><?= $id_category != null ? '&id_category=' . $id_category : '' ?>">Next</a></li>
                                 <?php } ?>
                             </ul>
                         </nav>
@@ -37,13 +37,18 @@
                     <div class="row g-3">
                         <?php foreach ($limitPages as $vehicle) { ?>
                             <div class="col-md-4 col-12">
-                                <div class="card shadow-lg border-0 rounded-4" >
-                                    <!-- <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" class="card-img-top" alt="..."> -->
+                                <div class="card border-0 rounded-4 bg-light">
+                                    <?php if (isset($vehicle->picture)) { ?>
+                                        <div class="p-2 position-absolute ">
+                                            <span class="badge rounded-pill text-bg-warning p-2"><?= $vehicle->brand ?></span>
+                                        </div>
+                                        <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" class="card-img-top rounded-top-4" alt="<?= $vehicle->model ?>">
+                                    <?php } ?>
                                     <div class="card-body">
-                                        <h5 class="card-title"><?= $vehicle->name ?></h5>
-                                        <p class="card-text"><?= $vehicle->brand ?></p>
-                                        <p class="card-text"><?= $vehicle->model ?></p>
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        <h5 class="card-title fw-bold text-danger"><?= $vehicle->name ?></h5>
+                                        <!-- <p class="card-text fw-bold"><?= $vehicle->brand ?></p> -->
+                                        <p class="card-text fw-bold"><?= $vehicle->model ?></p>
+                                        <a href="#" class="btn btn-danger fw-bold shadow-lg">En voir plus</a>
                                     </div>
                                 </div>
                             </div>
