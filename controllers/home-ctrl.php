@@ -31,6 +31,7 @@ try {
         $start = ($page - 1) * $resultOnpage;
 
         $limitPages = Vehicle::getAll($resultOnpage, $start, id: $id_category);
+        
     }
 } catch (PDOException $e) {
     die('Erreur : ' . $e->getMessage());

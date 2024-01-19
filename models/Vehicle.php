@@ -323,16 +323,11 @@ class Vehicle
 
         $sql = 'SELECT COUNT(*) FROM `vehicles` 
         INNER JOIN `categories` ON `categories`.`id_category` = `vehicles`.`id_category` 
-        WHERE `deleted_at` IS NULL
-        AND `categories`.`id_category`=:id_category;';
+        WHERE `deleted_at` IS NULL';
 
-        $sth = $pdo->prepare($sql);
+        isset($id) ? $sql .= ' AND `categories`.`id_category`= ' . $id : null;
 
-        $sth->bindValue(':id_category', $id, PDO::PARAM_INT);
-
-        $sth->execute();
-
-        // $sth = $pdo->query($sql);
+        $sth = $pdo->query($sql);
 
         return $sth->fetchColumn();
     }
