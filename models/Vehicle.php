@@ -160,38 +160,46 @@ class Vehicle
         return $sth->rowCount() > 0;
     }
 
-    public static function getAll(string $order = 'ASC', bool $showDeletedAt = true, int $limit = 20, int $start = 0, int $id = 0): array|false
+    public static function getAll(int $limit = 20, int $start = 0, ?bool $showDeletedAt = true, ?string $order = 'ASC', ?int $id = null)
     {
         $pdo = Database::connect();
 
-        if($order !== 'DESC' && $order !== 'ASC') {
-            $order = 'ASC';
+        $sql = 'SELECT * FROM `vehicles` INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`';
+
+        if ($showDeletedAt == false) {
+            $sql .= ' WHERE `deleted_at` IS NOT NULL ';
+        } else {
+            $sql .= ' WHERE `deleted_at` IS NULL ';
         }
 
-        if($showDeletedAt !== false && $showDeletedAt !== true) {
-            $showDeletedAt = true;
+        if($id != null) {
+            $sql .= " AND `vehicles`.`id_category`=':id_category;' ";
         }
 
-        $deletedCondition = $showDeletedAt ?  'IS NULL' :  'IS NOT NULL';
+        if ($order == 'DESC') {
+            $sql .= ' ORDER BY `categories`.`name` DESC ';
+        } else {
+            $sql .= ' ORDER BY `categories`.`name` ASC ';
+        }
 
-        $sql = 'SELECT * FROM `vehicles` INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`
-        WHERE `deleted_at`' . $deletedCondition . ' ' .
-        'OR (`vehicles`.`id_category`=:id_category)
-        ORDER BY `categories`.`name`' . $order . ' ' .
-        'LIMIT :limit OFFSET :start;';
+        if(isset($limit) && isset($start)) {
+            $sql .= ' LIMIT :limit OFFSET :start ';
+        }
 
+        // $sth = $pdo->query($sql);
         $sth = $pdo->prepare($sql);
 
+        $sth
         $sth->bindValue(':limit', $limit, PDO::PARAM_INT);
         $sth->bindValue(':start', $start, PDO::PARAM_INT);
-        $sth->bindValue(':id_category', $id, PDO::PARAM_INT);
-        
+
         $sth->execute();
 
         $result = $sth->fetchAll(PDO::FETCH_OBJ);
 
         return $result;
     }
+
 
     public static function get(int $id): object|false
     {
@@ -208,22 +216,22 @@ class Vehicle
         return $result;
     }
 
-    // public static function getVehicleCategory(int $id): array|false
-    // {
-    //     $pdo = Database::connect();
+    public static function getVehicleCategory(int $id): array|false
+    {
+        $pdo = Database::connect();
 
-    //     $sql = 'SELECT * FROM `vehicles` 
-    //     INNER JOIN `categories` ON `categories`.`id_category` = `vehicles`.`id_category`
-    //     WHERE `vehicles`.`id_category`=:id_category;';
+        $sql = 'SELECT * FROM `vehicles` 
+        INNER JOIN `categories` ON `categories`.`id_category` = `vehicles`.`id_category`
+        WHERE `vehicles`.`id_category`=:id_category;';
 
-    //     $sth = $pdo->prepare($sql);
-    //     $sth->bindValue(':id_category', $id, PDO::PARAM_INT);
-    //     $sth->execute();
+        $sth = $pdo->prepare($sql);
+        $sth->bindValue(':id_category', $id, PDO::PARAM_INT);
+        $sth->execute();
 
-    //     $result = $sth->fetchAll(PDO::FETCH_OBJ);
+        $result = $sth->fetchAll(PDO::FETCH_OBJ);
 
-    //     return $result;
-    // }
+        return $result;
+    }
 
     public static function delete(int $id): int
     {
@@ -274,7 +282,7 @@ class Vehicle
         $sth->execute();
 
         $result = $sth->fetchColumn();
-        
+
         return (bool) $result > 0;
     }
 

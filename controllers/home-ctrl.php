@@ -18,7 +18,7 @@ try {
 
     $start = ($page - 1) * $resultOnpage;
 
-    $limitPages = Vehicle::getAll('ASC', true, $resultOnpage, $start);
+    $limitPages = Vehicle::getAll($resultOnpage, $start);
 
     $listCategories = Category::getAll();
 
@@ -36,7 +36,8 @@ try {
                 $error['categories'] = 'Ce n\'est pas une catégorie valide';
                 $alert['error'] = 'Erreur, la donnée n\'a pas été insérée';
             }
-            $limitPages = Vehicle::getAll('ASC', true, $resultOnpage, $start, $id_category);
+            $limitPages = Vehicle::getAll(id: $id_category);
+            var_dump($limitPages);
         }
     }
 } catch (PDOException $e) {
