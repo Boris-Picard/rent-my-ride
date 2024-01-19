@@ -8,7 +8,7 @@ try {
     $id_vehicle = intval(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
 
     $vehicle = Vehicle::get($id_vehicle);
-    $vehicles = Vehicle::getAll(false);
+    $vehicles = Vehicle::getAll(showDeletedAt: false);
 
     if($vehicle) {
         Vehicle::archive($id_vehicle);

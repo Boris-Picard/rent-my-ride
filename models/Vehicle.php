@@ -166,30 +166,18 @@ class Vehicle
 
         $sql = 'SELECT * FROM `vehicles` INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`';
 
-        if ($showDeletedAt == false) {
-            $sql .= ' WHERE `deleted_at` IS NOT NULL ';
-        } else {
-            $sql .= ' WHERE `deleted_at` IS NULL ';
-        }
+        $showDeletedAt == false ? $sql .= ' WHERE `deleted_at` IS NOT NULL ' : $sql .= ' WHERE `deleted_at` IS NULL ';
 
-        if($id != null) {
-            $sql .= " AND `vehicles`.`id_category`=':id_category;' ";
-        }
+        $id != null ? $sql .= " AND `vehicles`.`id_category`= $id " : '';
 
-        if ($order == 'DESC') {
-            $sql .= ' ORDER BY `categories`.`name` DESC ';
-        } else {
-            $sql .= ' ORDER BY `categories`.`name` ASC ';
-        }
+        $order == 'DESC' ? $sql .= ' ORDER BY `categories`.`name` DESC ' : $sql .= ' ORDER BY `categories`.`name` ASC ';
 
         if(isset($limit) && isset($start)) {
             $sql .= ' LIMIT :limit OFFSET :start ';
         }
 
-        // $sth = $pdo->query($sql);
         $sth = $pdo->prepare($sql);
 
-        $sth
         $sth->bindValue(':limit', $limit, PDO::PARAM_INT);
         $sth->bindValue(':start', $start, PDO::PARAM_INT);
 
@@ -212,23 +200,6 @@ class Vehicle
         $sth->execute();
 
         $result = $sth->fetch(PDO::FETCH_OBJ);
-
-        return $result;
-    }
-
-    public static function getVehicleCategory(int $id): array|false
-    {
-        $pdo = Database::connect();
-
-        $sql = 'SELECT * FROM `vehicles` 
-        INNER JOIN `categories` ON `categories`.`id_category` = `vehicles`.`id_category`
-        WHERE `vehicles`.`id_category`=:id_category;';
-
-        $sth = $pdo->prepare($sql);
-        $sth->bindValue(':id_category', $id, PDO::PARAM_INT);
-        $sth->execute();
-
-        $result = $sth->fetchAll(PDO::FETCH_OBJ);
 
         return $result;
     }
@@ -350,7 +321,7 @@ class Vehicle
     {
         $pdo = Database::connect();
 
-        $sql = 'SELECT COUNT(*) FROM `vehicles`;';
+        $sql = 'SELECT COUNT(*) FROM `vehicles` WHERE `deleted_at` IS NULL;';
 
         $sth = $pdo->query($sql);
 

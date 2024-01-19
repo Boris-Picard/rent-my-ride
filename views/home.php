@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-5 pb-3">
-                    <form action="" method="GET" novalidate class="d-flex">
+                    <form action="" novalidate class="d-flex">
                         <select class="form-select w-50" name="id_category" aria-label="Default select example">
                             <small class="text-danger"><?= $error['categories'] ?></small>
                             <option selected disabled>Séléctionner une catégorie</option>
@@ -36,7 +36,7 @@
                 <div class="col-12">
                     <div class="row g-3">
                         <?php foreach ($limitPages as $vehicle) { ?>
-                            <div class="col-4">
+                            <div class="col-md-4 col-12">
                                 <div class="card shadow-lg border-0 rounded-4" style="width: 18rem;">
                                     <!-- <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" class="card-img-top" alt="..."> -->
                                     <div class="card-body">
