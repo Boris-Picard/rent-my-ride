@@ -1,14 +1,31 @@
+@font-face {
+    font-family: "Gilroy";
+    src: url(../typo/Gilroy-Regular.ttf);
+}
+
 body {
-    font-family: 'Poppins', sans-serif !important;
+    font-family: "Gilroy" !important;
 }
 
 .nameLogoAccount {
     font-weight: 800;
     text-transform: uppercase;
     font-size: 1.5rem !important;
-    background: linear-gradient(to left, rgb(0, 0, 70), rgb(28, 181, 224));
+    background: linear-gradient(to left, rgb(212, 162, 103), rgb(243, 185, 118));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
+.nameColor {
+    color: rgb(212, 162, 103) !important;
+    font-size: 0.75rem;
+}
+
+.cardBrandModel {
+    font-size: 1.125rem;
+}
+
+small {
+    font-size: 0.813rem !important;
+}

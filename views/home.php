@@ -1,5 +1,5 @@
 <main>
-    <section class="p-5 bg-dark">
+    <section class="p-5 bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-5 pb-3">
@@ -37,18 +37,20 @@
                     <div class="row g-3">
                         <?php foreach ($limitPages as $vehicle) { ?>
                             <div class="col-md-4 col-12">
-                                <div class="card border-0 rounded-4 bg-light">
+                                <div class="card border-0 rounded-4 bg-white shadow-lg">
                                     <?php if (isset($vehicle->picture)) { ?>
-                                        <div class="p-2 position-absolute ">
-                                            <span class="badge rounded-pill text-bg-warning p-2"><?= $vehicle->brand ?></span>
-                                        </div>
                                         <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" class="card-img-top rounded-top-4" alt="<?= $vehicle->model ?>">
                                     <?php } ?>
                                     <div class="card-body">
-                                        <h5 class="card-title fw-bold text-danger"><?= $vehicle->name ?></h5>
+                                        <div class="pb-2">
+                                            <small class="card-title fw-semibold nameColor"><?= $vehicle->name ?></small>
+                                        </div>
                                         <!-- <p class="card-text fw-bold"><?= $vehicle->brand ?></p> -->
-                                        <p class="card-text fw-bold"><?= $vehicle->model ?></p>
-                                        <a href="#" class="btn btn-danger fw-bold shadow-lg">En voir plus</a>
+                                        <a href="" class="text-decoration-none stretched-link text-dark"><h2 class="card-text fw-bold cardBrandModel"><?= $vehicle->brand . ' ' . $vehicle->model ?></h2></a>
+                                        <hr>
+                                        <div class="justify-content-between d-flex">
+                                            <small class="text-muted fw-semibold"><?= $vehicle->mileage ?> km</small>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
