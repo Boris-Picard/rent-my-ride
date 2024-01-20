@@ -88,3 +88,16 @@ small {
     background-color: #222 !important;
     color: #eee !important;
 }
+
+.paginationColor:focus {
+    box-shadow: none !important;
+}
+
+.form-select:focus {
+    box-shadow: none !important;
+}
+
+.form-control:focus {
+    box-shadow: none !important;
+}
+

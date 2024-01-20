@@ -12,12 +12,12 @@
                                 </ol>
                             </nav>
                         </div>
-                        <div class="col-8">
+                        <div class="col-md-8 col-12">
                             <div class="ratio ratio-16x9">
                                 <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" class="img-fluid object-fit-cover rounded-4 shadow-lg" alt="<?= $vehicle->brand ?>">
                             </div>
                         </div>
-                        <div class="col-4 p-4 rounded-4 h-75 shadow-lg">
+                        <div class="col-md-4 col-12 p-4 rounded-4 h-75 shadow-lg">
                             <p class="fw-bold modelBrandVehicle"><?= $vehicle->brand ?> <?= $vehicle->model ?></p>
                             <div class="hr">
                                 <hr class="heightHrVehicle">
