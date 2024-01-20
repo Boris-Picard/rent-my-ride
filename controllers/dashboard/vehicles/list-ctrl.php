@@ -20,7 +20,7 @@ try {
     }
     
     // $vehicles = Vehicle::getAll($order, true);
-    $vehicles = Vehicle::getAll(order: $order);
+    $vehicles = Vehicle::getAll(order: $order, limit: 100);
 
 
     $msg = filter_var($_SESSION['msg'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);

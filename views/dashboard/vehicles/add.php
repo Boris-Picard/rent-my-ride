@@ -85,7 +85,7 @@
                                         <div class="mb-3">
                                             <div><small class="form-text text-danger"><?= $error['picture'] ?? '' ?></small></div>
                                             <label for="picture" class="form-label">Ajouter une photo du véhicule (optionnel)</label>
-                                            <input class="form-control" type="file" id="picture" name="picture" accept="image/png, image/jpeg" >
+                                            <input class="form-control" type="file" id="picture" name="picture" accept="image/png, image/jpeg, image/avif" >
                                         </div>
                                     </div>
                                 </div>

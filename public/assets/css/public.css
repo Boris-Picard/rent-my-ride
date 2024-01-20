@@ -30,3 +30,26 @@ small {
     font-size: 0.813rem !important;
 }
 
+.modelBrandVehicle {
+    font-size: 1.75rem !important;
+}
+
+.heightHrVehicle {
+    border: none;
+    height: 0.11rem;
+    background-color: rgb(212, 162, 103);
+}
+
+.sectionVh {
+    height: 94vh !important;
+}
+
+.reservationBtn {
+    color: rgb(212, 162, 103) !important;
+    border: 0.18rem solid rgb(212, 162, 103) !important;
+}
+
+.reservationBtn:hover {
+    color: #eee !important;
+    background: rgb(212, 162, 103) !important;
+}

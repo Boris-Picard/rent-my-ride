@@ -33,7 +33,7 @@
                     </div>
                     <div class="row py-5">
                         <div class="col-5">
-                            <div class="card rounded-4 shadow-lg py-5">
+                            <div class="card rounded-4 shadow-lg py-5 border-0">
                                 <div class="card-body">
                                     <h5 class="card-title">Nombre de catégories de véhicules :</h5>
                                     <p class="card-text fw-bold fs-1">
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                         <div class="col-5">
-                            <div class="card rounded-4 shadow-lg py-5">
+                            <div class="card rounded-4 shadow-lg py-5 border-0">
                                 <div class="card-body">
                                     <h5 class="card-title">Nombre de véhicules :</h5>
                                     <p class="card-text fw-bold fs-1">

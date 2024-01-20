@@ -1,11 +1,11 @@
 <main>
-    <section class="p-5 bg-light">
+    <section class="p-5 bg-light sectionVh">
         <div class="container">
             <div class="row">
                 <div class="col-6 pb-5">
-                    <form action="" novalidate class="d-flex">
+                    <form action="" class="d-flex">
                         <select class="form-select w-50" name="id_category" aria-label="Default select example">
-                            <small class="text-danger"><?= $error['categories'] ?></small>
+                            <!-- <small class="text-danger"><?= $error['categories'] ?></small> -->
                             <option selected disabled>Séléctionner une catégorie</option>
                             <?php foreach ($listCategories as $category) { ?>
                                 <option value="<?= $category->id_category ?>" <?= (isset($id_category) && $id_category == $category->id_category) ? 'selected' : '' ?>><?= $category->name ?></option>
@@ -20,10 +20,9 @@
                             <form action="" class="d-flex">
                                 <input class="form-control my-0 py-1 red-border" name="search" type="text" placeholder="Chercher une catégorie" aria-label="Search">
                                 <span class="input-group-text red lighten-3" id="basic-text1">
-                                <i class="bi bi-search text-grey" aria-hidden="true"></i>
-                            </span>
+                                    <i class="bi bi-search text-grey" aria-hidden="true"></i>
+                                </span>
                             </form>
-                            
                         </div>
                     </div>
                 </div>
@@ -40,10 +39,12 @@
                                             <small class="card-title fw-semibold nameColor"><?= $vehicle->name ?></small>
                                         </div>
                                         <!-- <p class="card-text fw-bold"><?= $vehicle->brand ?></p> -->
-                                        <a href="" class="text-decoration-none stretched-link text-dark">
+                                        <a href="/controllers/home/vehicle-ctrl.php?id=<?=$vehicle->id_vehicle?>" class="text-decoration-none stretched-link text-dark">
                                             <h2 class="card-text fw-bold cardBrandModel"><?= $vehicle->brand . ' ' . $vehicle->model ?></h2>
                                         </a>
-                                        <hr>
+                                        <div class="hr">
+                                            <hr>
+                                        </div>
                                         <div class="justify-content-between d-flex">
                                             <small class="text-muted fw-semibold"><?= $vehicle->mileage ?> km</small>
                                         </div>
