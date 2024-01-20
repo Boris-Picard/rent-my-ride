@@ -19,7 +19,7 @@ try {
         $page = 1;
     }
 
-    $resultOnpage = 9;
+    $resultOnpage = 6;
 
     $vehicles = Vehicle::nbVehicles($id_category, search: $searched);
 

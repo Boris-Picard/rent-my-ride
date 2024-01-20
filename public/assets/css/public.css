@@ -53,3 +53,38 @@ small {
     color: #eee !important;
     background: rgb(212, 162, 103) !important;
 }
+
+.homeSelectBtn {
+    background-color: rgb(212, 162, 103) !important;
+    color: #eee !important;
+}
+
+.homeSelectBtn:hover {
+    background-color: #222 !important
+}
+
+.onlyColor {
+    color: rgb(212, 162, 103) !important;
+}
+
+.onlyColor:hover {
+    color: #222 !important;
+}
+
+.searchLogo {
+    background-color: rgb(212, 162, 103) !important;
+}
+
+.paginationColor {
+    color:#222 !important;
+}
+
+.paginationColor.active {
+    color: #eee !important;
+    background-color: rgb(212, 162, 103) !important;
+}
+
+.paginationColor:hover {
+    background-color: #222 !important;
+    color: #eee !important;
+}

@@ -6,8 +6,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav mx-auto">
-                <a class="nav-link active fw-semibold" aria-current="page" href="/controllers/home/home-ctrl.php">Accueil</a>
-                <a class="nav-link fw-semibold" href="/controllers/dashboard/dashboard-ctrl.php">Dashboard</a>
+                <a class="nav-link active fw-semibold onlyColor" aria-current="page" href="/controllers/home/home-ctrl.php">Accueil</a>
+                <a class="nav-link fw-semibold onlyColor" href="/controllers/dashboard/dashboard-ctrl.php">Dashboard</a>
                 <!-- <a class="nav-link" href="#">Pricing</a>
                 <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
             </div>
