@@ -6,7 +6,7 @@
                 <div class="col-12 p-0 rounded-4 shadow-lg bg-white">
                     <div class="row m-0 p-0">
                         <div class="d-flex justify-content-center py-3">
-                            <a class="navbar-brand nameLogoAccount" href="/controllers/home-ctrl.php">Rent my Ride</a>
+                            <a class="navbar-brand nameLogoAccount" href="/controllers/home/home-ctrl.php">Rent my Ride</a>
                         </div>
                         <div class="col-12 d-flex flex-column p-0 sidebar rounded colSidebar g-5">
                             <a href="/controllers/dashboard/dashboard-ctrl.php" class="py-3 nav-link navLink active sidebarLink"><span><i class="bi bi-house px-3"></i> Dashboard</span></a>

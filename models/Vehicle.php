@@ -160,13 +160,15 @@ class Vehicle
         return $sth->rowCount() > 0;
     }
 
-    public static function getAll(int $limit = 20, int $start = 0, ?bool $showDeletedAt = true, ?string $order = 'ASC', ?int $id = null)
+    public static function getAll(int $limit = 20, int $start = 0, ?string $search = null, ?bool $showDeletedAt = true, ?string $order = 'ASC', ?int $id = null)
     {
         $pdo = Database::connect();
 
         $sql = 'SELECT * FROM `vehicles` INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`';
 
         $showDeletedAt == false ? $sql .= ' WHERE `deleted_at` IS NOT NULL ' : $sql .= ' WHERE `deleted_at` IS NULL ';
+
+        isset($search) ? $sql .= " AND `model` LIKE '$search%' " : null;
 
         $id != null ? $sql .= " AND `vehicles`.`id_category`= $id " : '';
 
@@ -317,13 +319,15 @@ class Vehicle
         return $result;
     }
 
-    public static function nbVehicles(?int $id = null)
+    public static function nbVehicles(?int $id = null, ?string $search = null)
     {
         $pdo = Database::connect();
 
         $sql = 'SELECT COUNT(*) FROM `vehicles` 
         INNER JOIN `categories` ON `categories`.`id_category` = `vehicles`.`id_category` 
         WHERE `deleted_at` IS NULL';
+
+        isset($search) ? $sql .= " AND `model` LIKE '$search%' " : null;
 
         isset($id) ? $sql .= ' AND `categories`.`id_category`= ' . $id : null;
 
