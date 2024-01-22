@@ -9,10 +9,7 @@
                             <option selected disabled>Séléctionner une catégorie</option>
                             <?php foreach ($listCategories as $category) { ?>
                                 <option value="<?= $category->id_category ?>" <?= (isset($id_category) && $id_category == $category->id_category) ? 'selected' : '' ?>><?= $category->name ?></option>
-                                <?php if (isset($searched)) { ?>
-                                    <option value="<?= $category->id_category ?>" <?= (isset($id_category) && $id_category == $category->id_category) ? 'selected' : '' ?>><?= $category->name ?></option>
-                            <?php   }
-                            } ?>
+                            <?php } ?>
                         </select>
                         <button type="submit" class="btn mx-3 homeSelectBtn fw-bold text-capitalize">Valider</button>
                     </form>
@@ -23,7 +20,7 @@
                     </div>
                     <form action="" class="d-flex justify-content-end">
                         <div class="input-group md-form form-sm form-2 pl-0 w-50">
-                            <input class="form-control my-0 py-1" name="search" type="text" placeholder="Chercher un modèle" aria-label="Search">
+                            <input class="form-control my-0 py-1" name="search" type="text" placeholder="Chercher un modèle" >
                             <span class="input-group-text searchLogo" id="basic-text1">
                                 <i class="bi bi-search text-white" aria-hidden="true"></i>
                             </span>
@@ -52,7 +49,7 @@
                                     <div class="pb-2">
                                         <small class="card-title fw-semibold nameColor"><?= $vehicle->name ?></small>
                                     </div>
-                                    <a href="/controllers/home/vehicle-ctrl.php?id=<?= $vehicle->id_vehicle ?>" target="_blank" class="text-decoration-none stretched-link text-dark">
+                                    <a href="/controllers/home/vehicle-ctrl.php?id=<?=$vehicle->id_vehicle?>" target="_blank" class="text-decoration-none stretched-link text-dark">
                                         <h2 class="card-text fw-bold cardBrandModel"><?= $vehicle->brand . ' ' . $vehicle->model ?></h2>
                                     </a>
                                     <div class="hr">
