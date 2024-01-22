@@ -8,7 +8,7 @@
                             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/controllers/home/home-ctrl.php" class="text-decoration-none onlyColor">Accueil</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page"><?=$vehicle->model?></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><?= $vehicle->model ?></li>
                                 </ol>
                             </nav>
                         </div>
@@ -37,7 +37,7 @@
                                     <hr>
                                 </div>
                                 <div class="col-12">
-                                    <a href="" class="btn reservationBtn w-100 fw-bold text-capitalize py-2">Réserver le véhicule</a>
+                                    <a href="/controllers/home/reservation-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="btn reservationBtn w-100 fw-bold text-capitalize py-2">Réserver le véhicule</a>
                                 </div>
                             </div>
                         </div>

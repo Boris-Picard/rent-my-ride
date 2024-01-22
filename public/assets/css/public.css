@@ -101,3 +101,11 @@ small {
     box-shadow: none !important;
 }
 
+.btnValidForm {
+    background-color: rgb(212, 162, 103) !important;
+    color: #eee !important;
+}
+
+.btnValidForm:hover {
+    background-color: #222 !important;
+}

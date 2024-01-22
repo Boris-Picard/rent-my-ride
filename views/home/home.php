@@ -9,7 +9,10 @@
                             <option selected disabled>Séléctionner une catégorie</option>
                             <?php foreach ($listCategories as $category) { ?>
                                 <option value="<?= $category->id_category ?>" <?= (isset($id_category) && $id_category == $category->id_category) ? 'selected' : '' ?>><?= $category->name ?></option>
-                            <?php } ?>
+                                <?php if (isset($searched)) { ?>
+                                    <option value="<?= $category->id_category ?>" <?= (isset($id_category) && $id_category == $category->id_category) ? 'selected' : '' ?>><?= $category->name ?></option>
+                            <?php   }
+                            } ?>
                         </select>
                         <button type="submit" class="btn mx-3 homeSelectBtn fw-bold text-capitalize">Valider</button>
                     </form>
@@ -20,15 +23,23 @@
                     </div>
                     <form action="" class="d-flex justify-content-end">
                         <div class="input-group md-form form-sm form-2 pl-0 w-50">
-                            <input class="form-control my-0 py-1 " name="search" type="text" placeholder="Chercher un modèle" aria-label="Search">
-                            <span class="input-group-text  searchLogo" id="basic-text1">
+                            <input class="form-control my-0 py-1" name="search" type="text" placeholder="Chercher un modèle" aria-label="Search">
+                            <span class="input-group-text searchLogo" id="basic-text1">
                                 <i class="bi bi-search text-white" aria-hidden="true"></i>
                             </span>
+                        </div>
                     </form>
                 </div>
             </div>
             <div class="col-12">
                 <div class="row g-3">
+                    <?php if ($vehicles == 0) { ?>
+                        <div class="col-12 py-5 mt-5 d-flex justify-content-center">
+                            <h1 class="text-danger fw-bold fs-1">
+                                Aucun résultat trouvé
+                            </h1>
+                        </div>
+                    <?php } ?>
                     <?php foreach ($limitPages as $vehicle) { ?>
                         <div class="col-md-4 col-12">
                             <div class="card border-0 rounded-4 bg-white shadow-lg">
