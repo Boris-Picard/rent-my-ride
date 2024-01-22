@@ -12,14 +12,12 @@ try {
     $isDeleted = Vehicle::delete($id_vehicle);
 
     if($isDeleted > 0) {
-        $link = unlink('../../../public/uploads/vehicles/'.$vehicle->picture);
-    }
-
-    if($isDeleted) {
+        $link = @unlink('../../../public/uploads/vehicles/'.$vehicle->picture);
         $_SESSION['msg'] = 'La donnée a bien été supprimée !';
     } else {
         $_SESSION['msg'] = 'Erreur la donnée n\'a pas été supprimée !';
     }
+
 
     header('Location: /controllers/dashboard/vehicles/list-ctrl.php');
     die;

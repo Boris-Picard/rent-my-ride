@@ -160,15 +160,16 @@ class Vehicle
         return $sth->rowCount() > 0;
     }
 
-    public static function getAll(int $limit = 20, int $start = 0, ?string $search = null, ?bool $showDeletedAt = true, ?string $order = 'ASC', ?int $id = null)
+    public static function getAll(int $limit = 20, int $start = 0, ?string $search = null, bool $archived = true, ?string $order = 'ASC', ?int $id = null)
     {
         $pdo = Database::connect();
 
-        $sql = 'SELECT * FROM `vehicles` INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`';
+        $archived ? $showDeletedAt = ' IS NULL ' : $showDeletedAt = ' IS NOT NULL ';
 
-        $showDeletedAt == false ? $sql .= ' WHERE `deleted_at` IS NOT NULL ' : $sql .= ' WHERE `deleted_at` IS NULL ';
+        $sql = 'SELECT * FROM `vehicles` INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`
+                WHERE `deleted_at` '.$showDeletedAt.'';
 
-        isset($search) ? $sql .= " AND `model` LIKE '$search%' " : null;
+        isset($search) ? $sql .= " AND `model` LIKE '$search%' OR `brand` LIKE '$search%' " : null;
 
         $id != null ? $sql .= " AND `vehicles`.`id_category`= $id " : '';
 
@@ -327,7 +328,7 @@ class Vehicle
         INNER JOIN `categories` ON `categories`.`id_category` = `vehicles`.`id_category` 
         WHERE `deleted_at` IS NULL';
 
-        isset($search) ? $sql .= " AND `model` LIKE '$search%' " : null;
+        isset($search) ? $sql .= " AND `model` LIKE '$search%' OR `brand` LIKE '$search%' " : null;
 
         isset($id) ? $sql .= ' AND `categories`.`id_category`= ' . $id : null;
 

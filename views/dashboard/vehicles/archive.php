@@ -35,8 +35,13 @@
                         </div>
                     </div>
                     <div class="row g-2">
-                        <div class="col-12 pb-3 ">
+                        <div class="col-6 pb-3 ">
                             <button class="btn border-0 btn-light" id="backBtn"><i class="bi bi-arrow-left fs-4 align-middle"></i><span class="px-2">Revenir à la page précédente</span></button>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex justify-content-end pt-3">
+                                <a href="/controllers/dashboard/vehicles/list-ctrl.php" class="btn btn-primary text-uppercase fw-bold">Revenir a la liste des véhicules</a>
+                            </div>
                         </div>
                     </div>
                     <div class="row">

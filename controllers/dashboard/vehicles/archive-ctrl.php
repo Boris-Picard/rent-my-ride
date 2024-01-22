@@ -7,13 +7,12 @@ try {
 
     $id_vehicle = intval(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
 
-    $vehicle = Vehicle::get($id_vehicle);
-    $vehicles = Vehicle::getAll(showDeletedAt: false);
-
-    if($vehicle) {
+    if($id_vehicle) {
         Vehicle::archive($id_vehicle);
         header('location: /controllers/dashboard/vehicles/archive-ctrl.php');
     }
+
+    $vehicles = Vehicle::getAll(archived: false);
 
     // $msg = filter_var($_SESSION['msg'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
 
