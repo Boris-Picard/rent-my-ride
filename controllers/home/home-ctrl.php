@@ -15,15 +15,19 @@ try {
 
     $listCategories = Category::getAll();
 
-    if ($page <= 0 || (empty($page))) {
-        $page = 1;
-    }
-
     $resultOnpage = 6;
 
     $vehicles = Vehicle::nbVehicles($id_category, search: $searched);
 
     $nbPages = ceil($vehicles / $resultOnpage);
+    
+    if ($page <= 0) {
+        $page = 1;
+    }
+
+    if ($page > $nbPages) {
+        $page = $nbPages;
+    }
 
     $start = ($page - 1) * $resultOnpage;
 

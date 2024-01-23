@@ -161,4 +161,17 @@ class Client
 
         return $sth->rowCount() > 0;
     }
+
+    public static function get()
+    {
+        $pdo = Database::connect();
+
+        $sql = 'SELECT *  FROM `clients` ORDER BY `id_client` DESC;';
+
+        $sth = $pdo->query($sql);
+        
+        $return = $sth->fetchColumn();
+
+        return $return;
+    }
 }

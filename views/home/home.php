@@ -20,7 +20,7 @@
                     </div>
                     <form action="" class="d-flex justify-content-end">
                         <div class="input-group md-form form-sm form-2 pl-0 w-50">
-                            <input class="form-control my-0 py-1" name="search" type="text" value="<?= isset($searched) ? $searched : '' ?>" placeholder="Chercher un modèle" >
+                            <input class="form-control my-0 py-1" name="search" type="text" value="<?= isset($searched) ? $searched : '' ?>" placeholder="Chercher un modèle">
                             <span class="input-group-text searchLogo" id="basic-text1">
                                 <i class="bi bi-search text-white" aria-hidden="true"></i>
                             </span>
@@ -49,7 +49,7 @@
                                     <div class="pb-2">
                                         <small class="card-title fw-semibold nameColor"><?= $vehicle->name ?></small>
                                     </div>
-                                    <a href="/controllers/home/vehicle-ctrl.php?id=<?=$vehicle->id_vehicle?>" target="_blank" class="text-decoration-none stretched-link text-dark">
+                                    <a href="/controllers/home/vehicle-ctrl.php?id=<?= $vehicle->id_vehicle ?>" target="_blank" class="text-decoration-none stretched-link text-dark">
                                         <h2 class="card-text fw-bold cardBrandModel"><?= $vehicle->brand . ' ' . $vehicle->model ?></h2>
                                     </a>
                                     <div class="hr">
@@ -69,15 +69,11 @@
                     <div class="d-flex align-items-center justify-content-center py-4">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination shadow-lg">
-                                <?php if ($page > 1) { ?>
-                                    <li class="page-item"><a class="page-link paginationColor border-0" href="?page=<?= $page - 1 ?><?= $id_category != null ? '&id_category=' . $id_category : '' ?>">Previous</a></li>
-                                <?php } ?>
-                                <?php for ($i = 1; $i <= $nbPages; $i++) {  ?>
-                                    <li class="page-item"><a class="page-link paginationColor border-0 <?= $page == $i ? 'active' : '' ?>" href="?page=<?= $i ?><?= $id_category != null ? '&id_category=' . $id_category : '' ?>"><?= $i ?></a></li>
+                                <li class="page-item"><a class="page-link paginationColor border-0" href="?page=<?= $page - 1 ?><?= $id_category != null ? '&id_category=' . $id_category : '' ?>">Précédent</a></li>
+                                <?php for ($p = 1; $p <= $nbPages; $p++) {  ?>
+                                    <li class="page-item"><a class="page-link paginationColor border-0 <?= $page == $p ? 'active' : '' ?>" href="?page=<?= $p ?><?= $id_category != null ? '&id_category=' . $id_category : '' ?>"><?= $p ?></a></li>
                                 <?php }  ?>
-                                <?php if ($page < $nbPages) { ?>
-                                    <li class="page-item"><a class="page-link paginationColor border-0" href="?page=<?= $page + 1 ?><?= $id_category != null ? '&id_category=' . $id_category : '' ?>">Next</a></li>
-                                <?php } ?>
+                                <li class="page-item"><a class="page-link paginationColor border-0" href="?page=<?= $page + 1 ?><?= $id_category != null ? '&id_category=' . $id_category : '' ?>">Suivant</a></li>
                             </ul>
                         </nav>
                     </div>

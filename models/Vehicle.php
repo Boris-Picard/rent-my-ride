@@ -324,7 +324,7 @@ class Vehicle
     {
         $pdo = Database::connect();
 
-        $sql = 'SELECT COUNT(*) FROM `vehicles` 
+        $sql = 'SELECT COUNT(`id_vehicle`) FROM `vehicles` 
         INNER JOIN `categories` ON `categories`.`id_category` = `vehicles`.`id_category` 
         WHERE `deleted_at` IS NULL';
 

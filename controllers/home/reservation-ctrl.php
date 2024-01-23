@@ -4,6 +4,7 @@ require_once __DIR__ . '/../../models/Vehicle.php';
 require_once __DIR__ . '/../../models/Category.php';
 require_once __DIR__ . '/../../models/Client.php';
 require_once __DIR__ . '/../../models/Rent.php';
+require_once __DIR__ . '/../../helpers/Database.php';
 
 try {
 
@@ -105,30 +106,55 @@ try {
             $endDateObj = new DateTime($endDate);
             $endDateFormat = $endDateObj->format('Y-m-d H:i:s');
         }
-        
+
         if (empty($error)) {
-            $client = new Client();
+            try {
+                $pdo = Database::connect();
+        
+                $pdo->beginTransaction();
 
-            $client->setLastname($lastname);
-            $client->setFirstname($firstname);
-            $client->setEmail($email);
-            $client->setBirthday($birthdate);
-            $client->setPhone($phone);
-            $client->setCity($city);
-            $client->setZipcode($postal);
+                $client = new Client();
+                
+                $client->setLastname($lastname);
+                $client->setFirstname($firstname);
+                $client->setEmail($email);
+                $client->setBirthday($birthdate);
+                $client->setPhone($phone);
+                $client->setCity($city);
+                $client->setZipcode($postal);
 
-            $result = $client->insert();
-
-            if ($result) {
+                $sth = $pdo->exec($client->insert());
+                $id_client = Client::get();
                 $rent = new Rent();
 
-                $rent->setStartDate($startDate);
-                $rent->setEndDate($endDate);
+                $rent->setStartDate($startDateFormat);
+                $rent->setEndDate($endDateFormat);
                 $rent->setIdVehicle($id_vehicle);
-                // $rent->setIdClient()
+                $rent->setIdClient($id_client);
+                
+                $sth = $pdo->exec($rent->insert());
 
-                $rent->insert();
+                $pdo->commit();
+
+                echo 'donnée enregistré';
+            } catch (Exception $e) {
+                $pdo->rollback();
+                echo 'erreur : ' . $e->getMessage();
             }
+
+
+
+
+            // $id_client = Client::get();
+
+
+
+
+
+
+            // if($result) {
+            //     $alert['success'] = 'Votre réservation est bien enregistrée !';
+            // }
         }
     }
 } catch (PDOException $e) {

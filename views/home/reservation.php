@@ -1,7 +1,21 @@
 <main>
     <section class="bg-light d-flex align-items-center sectionVh">
         <div class="container mt-5">
-            <h2>User Information Form</h2>
+            <div class="row">
+                <div class="col-12">
+                    <?php if (isset($alert['success'])) { ?>
+                        <div class="alert alert-success">
+                            <?= $alert['success'] ?>
+                        </div>
+                    <?php } elseif (isset($alert['error'])) { ?>
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            <?= $alert['error'] ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+            <h1>Formulaire de réservation</h1>
             <div class="row">
                 <div class="col-8">
                     <form action="#" novalidate method="POST">
