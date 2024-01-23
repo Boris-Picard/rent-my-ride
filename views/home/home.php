@@ -20,7 +20,7 @@
                     </div>
                     <form action="" class="d-flex justify-content-end">
                         <div class="input-group md-form form-sm form-2 pl-0 w-50">
-                            <input class="form-control my-0 py-1" name="search" type="text" placeholder="Chercher un modèle" >
+                            <input class="form-control my-0 py-1" name="search" type="text" value="<?= isset($searched) ? $searched : '' ?>" placeholder="Chercher un modèle" >
                             <span class="input-group-text searchLogo" id="basic-text1">
                                 <i class="bi bi-search text-white" aria-hidden="true"></i>
                             </span>
