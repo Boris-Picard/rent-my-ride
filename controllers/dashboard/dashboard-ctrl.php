@@ -7,7 +7,7 @@ require_once __DIR__ . '/../../models/Vehicle.php';
 try {
     $categories = Category::getAll();
     $vehicles = Vehicle::getDateOrder();
-
+    
     $convert = strtotime($vehicles[0]['created_at']);
     $date = date('d/m/y H:i', $convert);
     

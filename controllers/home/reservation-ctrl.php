@@ -110,11 +110,11 @@ try {
         if (empty($error)) {
             try {
                 $pdo = Database::connect();
-        
+
                 $pdo->beginTransaction();
 
                 $client = new Client();
-                
+
                 $client->setLastname($lastname);
                 $client->setFirstname($firstname);
                 $client->setEmail($email);
@@ -123,34 +123,23 @@ try {
                 $client->setCity($city);
                 $client->setZipcode($postal);
 
-                $sth = $pdo->exec($client->insert());
+                $client->insert();
                 $id_client = Client::get();
+
                 $rent = new Rent();
 
-                $rent->setStartDate($startDateFormat);
+                // $rent->setStartDate($startDateFormat);
                 $rent->setEndDate($endDateFormat);
                 $rent->setIdVehicle($id_vehicle);
                 $rent->setIdClient($id_client);
-                
-                $sth = $pdo->exec($rent->insert());
 
-                $pdo->commit();
+                $rent->insert();
 
                 echo 'donnée enregistré';
-            } catch (Exception $e) {
+            } catch (PDOException $e) {
                 $pdo->rollback();
                 echo 'erreur : ' . $e->getMessage();
             }
-
-
-
-
-            // $id_client = Client::get();
-
-
-
-
-
 
             // if($result) {
             //     $alert['success'] = 'Votre réservation est bien enregistrée !';

@@ -315,7 +315,7 @@ class Vehicle
 
         $sth->execute();
 
-        $result = $sth->fetchAll();
+        $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 
         return $result;
     }
