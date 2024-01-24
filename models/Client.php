@@ -169,9 +169,24 @@ class Client
         $sql = 'SELECT *  FROM `clients` ORDER BY `id_client` DESC;';
 
         $sth = $pdo->query($sql);
-        
+
         $return = $sth->fetchColumn();
 
         return $return;
+    }
+
+    public static function delete(int $id_client)
+    {
+        $pdo = Database::connect();
+
+        $sql = 'DELETE FROM `clients` WHERE `id_client`=:id_client;';
+
+        $sth = $pdo->prepare($sql);
+
+        $sth->bindValue(':id_client', $id_client, PDO::PARAM_INT);
+
+        $result = $sth->execute();
+
+        return $result;
     }
 }

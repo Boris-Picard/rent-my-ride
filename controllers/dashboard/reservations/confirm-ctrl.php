@@ -1,66 +1,50 @@
 <?php
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
-require_once __DIR__ . '/../../../vendor/autoload.php';
+session_start();
 
 require_once __DIR__ . '/../../../models/Vehicle.php';
 require_once __DIR__ . '/../../../models/Rent.php';
 require_once __DIR__ . '/../../../models/Client.php';
+require_once __DIR__ . '/../../../helpers/Mail.php';
 
 try {
     $title = 'Confimer une réservation';
 
-    $client = intval(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
+    $id_client = intval(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
     $vehicle = intval(filter_input(INPUT_GET, 'vehicle', FILTER_SANITIZE_NUMBER_INT));
+    $sendMail = filter_input(INPUT_GET, 'mail', FILTER_SANITIZE_SPECIAL_CHARS);
+    $deleteRent = filter_input(INPUT_GET, 'delete', FILTER_SANITIZE_SPECIAL_CHARS);
 
-    $rent = Rent::getAll($client, $vehicle);
+    $rent = Rent::getAll($id_client, $vehicle);
 
+    $id_rent = $rent[0]->id_rent;
+    $nameClient= $rent[0]->firstname;
 
-    $mail = new PHPMailer(true);
-    try {
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-        $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'smtp.example.com';                     //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'user@example.com';                     //SMTP username
-        $mail->Password   = 'secret';                               //SMTP password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-        $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
-        //Recipients
-        $mail->setFrom('from@example.com', 'Mailer');
-        $mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient
-        $mail->addAddress('ellen@example.com');               //Name is optional
-        $mail->addReplyTo('info@example.com', 'Information');
-        $mail->addCC('cc@example.com');
-        $mail->addBCC('bcc@example.com');
-
-        //Attachments
-        $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-        $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-
-        //Content
-        $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = 'Here is the subject';
-        $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-        $mail->send();
-    } catch (Exception $e) {
-        'erreur :' . $e->getmessage();
+    if($deleteRent) {
+        $delete = Rent::delete($deleteRent);
+        $deleteClient = Client::delete($id_client);
+        $_SESSION['msg'] = 'La réservation est bien annulée !';
+        header('Location: /controllers/dashboard/reservations/list-ctrl.php');
     }
-    
-    $to = 'gabot33696@wentcity.com';
-    $subject = 'Confirmation de la réservation du véhicule';
-    $message = 'Bonjour !';
-    $headers = array(
-        'From' => 'picard.boris@gmail.com',
-        'Reply-To' => 'picard.boris@gmail.com',
-        'X-Mailer' => 'PHP/' . phpversion()
-    );
+
+    if (isset($sendMail)) {
+        try {
+            $adress = 'picard.boris@gmail.com';
+            $nameAdress = $nameClient;
+            $subject = 'Confirmation de réservation';
+            $body = 'Bonjour,' . ' ' . $rent[0]->firstname . ' ' . $rent[0]->lastname . ' ' . 'nous vous confirmons la réservation de votre véhicule <br>'
+                . $rent[0]->brand . ' ' . $rent[0]->model . '<br> A Partir du :  ' . $rent[0]->startdate .
+                '<br> Au : ' . $rent[0]->enddate . '';
+            $mail = Mail::sendMail($adress, $nameAdress, $subject, $body);
+
+            if ($mail) {
+                $archive = Rent::archive($id_rent);
+                $_SESSION['msg'] = 'Le mail est bien envoyé  !';
+                header('Location: /controllers/dashboard/reservations/list-ctrl.php');
+            }
+        } catch (Exception $e) {
+            'erreur :' . $e->getmessage();
+        }
+    }
 } catch (PDOException $e) {
     die('Erreur : ' . $e->getMessage());
 }

@@ -135,9 +135,11 @@ try {
 
                 $rent->insert();
 
-                $pdo->commit();
+                $result = $pdo->commit();
 
-                echo 'donnée enregistré';
+                if($result) {
+                    $alert['success'] = 'Reservation Enregistrée, vous recevrez bientot un mail de confirmation !';
+                }
             } catch (PDOException $e) {
                 $pdo->rollback();
                 echo 'erreur : ' . $e->getMessage();

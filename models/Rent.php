@@ -121,17 +121,20 @@ class Rent
         return $sth->rowCount() > 0;
     }
 
-    public static function getAll(int $id_client = 0, int $id_vehicle = 0)
+    public static function getAll(int $id_client = 0, int $id_vehicle = 0, bool $archived = true)
     {
         $pdo = Database::connect();
+
+        $archived ? $showDeletedAt = ' IS NULL ' : $showDeletedAt = ' IS NOT NULL ';
 
         $sql = 'SELECT *
         FROM `rents`
         INNER JOIN `vehicles` ON `rents`.`id_vehicle` = `vehicles`.`id_vehicle`
-        INNER JOIN `clients` ON `rents`.`id_client` = `clients`.`id_client` ';
+        INNER JOIN `clients` ON `rents`.`id_client` = `clients`.`id_client` 
+        WHERE `confirmed_at` ' . $showDeletedAt . ' ';
 
         if ($id_client > 0 && $id_vehicle > 0) {
-            $sql .= ' WHERE `rents`.`id_client`=:id_client AND `rents`.`id_vehicle`=:id_vehicle ';
+            $sql .= ' AND `rents`.`id_client`=:id_client AND `rents`.`id_vehicle`=:id_vehicle ';
         }
 
         if ($id_client > 0 && $id_vehicle > 0) {
@@ -146,6 +149,36 @@ class Rent
         $sth->execute();
 
         $result = $sth->fetchAll(PDO::FETCH_OBJ);
+
+        return $result;
+    }
+
+    public static function archive(int $id_rent): bool
+    {
+        $pdo = Database::connect();
+
+        $sql = 'UPDATE `rents` SET `confirmed_at`= NOW() WHERE `id_rent`=:id_rent;';
+
+        $sth = $pdo->prepare($sql);
+
+        $sth->bindValue(':id_rent', $id_rent, PDO::PARAM_INT);
+
+        $result = $sth->execute();
+
+        return $result;
+    }
+
+    public static function delete(int $id_rent)
+    {
+        $pdo = Database::connect();
+
+        $sql = 'DELETE FROM `rents` WHERE `id_rent`=:id_rent;';
+
+        $sth = $pdo->prepare($sql);
+
+        $sth->bindValue('id_rent', $id_rent, PDO::PARAM_INT);
+
+        $result = $sth->execute();
 
         return $result;
     }

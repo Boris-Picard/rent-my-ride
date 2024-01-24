@@ -56,10 +56,10 @@
                                     <p>Début de la réservation : <span class="fw-bold"><?=$rent[0]->startdate?></span></p>
                                     <p>Fin de la réservation : <span class="fw-bold"><?=$rent[0]->enddate?></span></p>
                                     <div class="py-3 d-flex justify-content-center">
-                                        <a href="/controllers/dashboard/reservations/confirm-ctrl.php?id=<?=$rent[0]->id_client?>" class="btn btn-success fw-bold text-uppercase">Envoyer un mail de confirmation</a>
+                                        <a href="/controllers/dashboard/reservations/confirm-ctrl.php?id=<?=$rent[0]->id_client?>&vehicle=<?=$rent[0]->id_vehicle?>&mail=true" class="btn btn-success fw-bold text-uppercase">Envoyer un mail de confirmation</a>
                                     </div>
                                     <div class="py-3 d-flex justify-content-center">
-                                        <a href="" class="btn btn-danger fw-bold text-uppercase">Annuler la réservation</a>
+                                        <a href="/controllers/dashboard/reservations/confirm-ctrl.php?id=<?=$rent[0]->id_client?>&vehicle=<?=$rent[0]->id_vehicle?>&delete=<?=$rent[0]->id_rent?>" class="btn btn-danger fw-bold text-uppercase">Annuler la réservation</a>
                                     </div>
                                 </div>
                             </div>
