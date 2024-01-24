@@ -68,18 +68,18 @@
                                     <div class="mb-3 col-md-6">
                                         <div><small class="form-text text-danger"><?= $error['startDate'] ?? '' ?></small></div>
                                         <label for="startDate" class="form-label">Date de début de la réservation <span class="text-danger">*</span></label>
-                                        <input type="datetime-local" class="form-control" id="startDate" name="startDate" value="<?= $startDateFormat ?? '' ?>" min="<?= (date('Y') - 100) . date('-m-d') ?>" max="<?= (date('Y') - 18) . date('-m-d') ?>">
+                                        <input type="datetime-local" class="form-control" id="startDate" name="startDate" value="<?= $startDateFormat ?? '' ?>" min="<?= date('Y-m-d H:i') ?>">
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <div><small class="form-text text-danger"><?= $error['endDate'] ?? '' ?></small></div>
                                         <label for="endDate" class="form-label">Date de fin de la réservation <span class="text-danger">*</span></label>
-                                        <input type="datetime-local" class="form-control" id="endDate" name="endDate" value="<?= $endDate ?? '' ?>" min="<?= (date('Y') - 100) . date('-m-d') ?>" max="<?= (date('Y') - 18) . date('-m-d') ?>">
+                                        <input type="datetime-local" class="form-control" id="endDate" name="endDate" value="<?= $endDateFormat ?? '' ?>" min="<?= date('Y-m-d H:i') ?>">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row m-0 p-0">
                                 <div class="col-12 py-3">
-                                    <div class="d-flex justify-content-center">
+                                    <div class="d-flex">
                                         <button type="submit" class="btn w-100 p-3 btnValidForm fw-bold text-uppercase">Valider</button>
                                     </div>
                                 </div>

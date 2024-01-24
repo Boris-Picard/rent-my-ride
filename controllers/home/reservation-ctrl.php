@@ -96,15 +96,28 @@ try {
             $error['startDate'] = 'Veuillez renseigner une date';
         } else {
             $startDateObj = new DateTime($startDate);
+            $currentDate = new DateTime();
+            $currentDate->setTime(0, 0, 0);
             $startDateFormat = $startDateObj->format('Y-m-d H:i:s');
+            if($startDateObj < $currentDate) {
+                $error['startDate'] = 'La date ne peut pas être antérieure au jour actuel.';
+            }
         }
 
-        $endDate = filter_input(INPUT_POST, 'endDate');
+        $endDate = filter_input(INPUT_POST, 'endDate', FILTER_SANITIZE_NUMBER_INT);
         if (empty($endDate)) {
             $error['endDate'] = 'Veuillez renseigner une date';
         } else {
             $endDateObj = new DateTime($endDate);
+            $currentDate = new DateTime();
+            $currentDate->setTime(0, 0, 0);
             $endDateFormat = $endDateObj->format('Y-m-d H:i:s');
+            if($endDateObj < $currentDate) {
+                $error['endDate'] = 'La date de fin ne peut pas être antérieure au jour actuel.';
+            }
+            if($endDateObj < $startDateObj) {
+                $error['endDate'] = 'La date de fin ne peut pas être antérieure à la date de début.';
+            }
         }
 
         if (empty($error)) {
@@ -138,7 +151,7 @@ try {
                 $result = $pdo->commit();
 
                 if($result) {
-                    $alert['success'] = 'Reservation Enregistrée, vous recevrez bientot un mail de confirmation !';
+                    $alert['success'] = 'Réservation enregistrée, vous recevrez bientôt un e-mail de confirmation !';
                 }
             } catch (PDOException $e) {
                 $pdo->rollback();
