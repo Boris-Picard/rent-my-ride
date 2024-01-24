@@ -17,7 +17,7 @@
             </div>
             <h1>Formulaire de réservation</h1>
             <div class="row">
-                <div class="col-8">
+                <div class="col-md-8 col-12">
                     <form action="#" novalidate method="POST">
                         <div class="row shadow-lg rounded-4 p-5">
                             <div class="col-md-12">
@@ -87,7 +87,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-4">
+                <div class="col-md-4 col-12">
                     <div class="card border-0 rounded-4 shadow-lg">
                         <div class="ratio ratio-16x9">
                             <img src="/public/uploads/vehicles/<?= $vehicle->picture ?>" class="img-fluid card-img-top object-fit-cover rounded-top-4 shadow-lg" alt="<?= $vehicle->brand ?>">

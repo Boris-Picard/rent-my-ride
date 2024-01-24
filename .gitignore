@@ -3,3 +3,6 @@ Looping1.loo
 corrigé/*
 typo/
 uploads/
+vendor/
+composer.json
+composer.lock

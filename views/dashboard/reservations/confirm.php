@@ -48,13 +48,19 @@
                                         <img src="/public/uploads/vehicles/<?= $rent[0]->picture ?>" alt="" class="object-fit-cover rounded-4">
                                     </div>
                                 </div>
-                                <div class="col-6">
-                                    <p>Prénom : </p>
-                                    <p>Nom : </p>
-                                    <p>Age : </p>
-                                    <p>Email : </p>
-                                    <p>Début de la réservation : </p>
-                                    <p>Fin de la réservation : </p>
+                                <div class="col-6 p-3">
+                                    <p>Prénom : <span class="fw-bold"><?=$rent[0]->firstname?></span></p>
+                                    <p>Nom : <span class="fw-bold"><?=$rent[0]->lastname?></span></p>
+                                    <p>Age : <span class="fw-bold"><?=$rent[0]->birthday?></span></p>
+                                    <p>Email : <span class="fw-bold"><?=$rent[0]->email?></span></p>
+                                    <p>Début de la réservation : <span class="fw-bold"><?=$rent[0]->startdate?></span></p>
+                                    <p>Fin de la réservation : <span class="fw-bold"><?=$rent[0]->enddate?></span></p>
+                                    <div class="py-3 d-flex justify-content-center">
+                                        <a href="/controllers/dashboard/reservations/confirm-ctrl.php?id=<?=$rent[0]->id_client?>" class="btn btn-success fw-bold text-uppercase">Envoyer un mail de confirmation</a>
+                                    </div>
+                                    <div class="py-3 d-flex justify-content-center">
+                                        <a href="" class="btn btn-danger fw-bold text-uppercase">Annuler la réservation</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

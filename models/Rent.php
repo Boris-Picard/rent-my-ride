@@ -134,7 +134,6 @@ class Rent
             $sql .= ' WHERE `rents`.`id_client`=:id_client AND `rents`.`id_vehicle`=:id_vehicle ';
         }
 
-        
         if ($id_client > 0 && $id_vehicle > 0) {
             $sth = $pdo->prepare($sql);
 

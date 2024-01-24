@@ -128,7 +128,7 @@ try {
 
                 $rent = new Rent();
 
-                // $rent->setStartDate($startDateFormat);
+                $rent->setStartDate($startDateFormat);
                 $rent->setEndDate($endDateFormat);
                 $rent->setIdVehicle($id_vehicle);
                 $rent->setIdClient($id_client);
