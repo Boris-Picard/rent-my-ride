@@ -121,16 +121,28 @@ class Rent
         return $sth->rowCount() > 0;
     }
 
-    public static function getAll()
+    public static function getAll(int $id_client = 0, int $id_vehicle = 0)
     {
         $pdo = Database::connect();
-        
+
         $sql = 'SELECT *
         FROM `rents`
         INNER JOIN `vehicles` ON `rents`.`id_vehicle` = `vehicles`.`id_vehicle`
-        INNER JOIN `clients` ON `rents`.`id_client` = `clients`.`id_client`;';
+        INNER JOIN `clients` ON `rents`.`id_client` = `clients`.`id_client` ';
 
-        $sth = $pdo->query($sql);
+        if ($id_client > 0 && $id_vehicle > 0) {
+            $sql .= ' WHERE `rents`.`id_client`=:id_client AND `rents`.`id_vehicle`=:id_vehicle ';
+        }
+
+        
+        if ($id_client > 0 && $id_vehicle > 0) {
+            $sth = $pdo->prepare($sql);
+
+            $sth->bindValue(':id_client', $id_client, PDO::PARAM_INT);
+            $sth->bindValue(':id_vehicle', $id_vehicle, PDO::PARAM_INT);
+        } else {
+            $sth = $pdo->query($sql);
+        }
 
         $sth->execute();
 

@@ -135,6 +135,8 @@ try {
 
                 $rent->insert();
 
+                $pdo->commit();
+
                 echo 'donnée enregistré';
             } catch (PDOException $e) {
                 $pdo->rollback();
