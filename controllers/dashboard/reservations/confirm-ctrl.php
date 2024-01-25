@@ -8,6 +8,8 @@ require_once __DIR__ . '/../../../helpers/Mail.php';
 
 try {
     $title = 'Confimer une réservation';
+    
+    $reservationsActive = true;
 
     $id_client = intval(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
     $vehicle = intval(filter_input(INPUT_GET, 'vehicle', FILTER_SANITIZE_NUMBER_INT));
@@ -50,5 +52,6 @@ try {
 
 
 include __DIR__ . '/../../../views/templates/header-dashboard.php';
+include __DIR__ . '/../../../views/templates/sidebar-dashboard.php';
 include __DIR__ . '/../../../views/dashboard/reservations/confirm.php';
 include __DIR__ . '/../../../views/templates/footer-dashboard.php';

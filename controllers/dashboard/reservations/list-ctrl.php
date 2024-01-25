@@ -7,6 +7,8 @@ require_once __DIR__ . '/../../../models/Client.php';
 
 try {
     $title = 'Liste des réservations';
+    
+    $reservationsActive = true;
 
     $rents = Rent::getAll();
 
@@ -26,5 +28,6 @@ try {
 
 
 include __DIR__ . '/../../../views/templates/header-dashboard.php';
+include __DIR__ . '/../../../views/templates/sidebar-dashboard.php';
 include __DIR__ . '/../../../views/dashboard/reservations/list.php';
 include __DIR__ . '/../../../views/templates/footer-dashboard.php';

@@ -7,7 +7,7 @@ require_once __DIR__ . '/../../../models/Vehicle.php';
 
 
 try {
-    
+    $vehiclesActive = true;
     $title = 'Modification d\'un véhicule';
 
     $id_vehicle = intval(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
@@ -178,5 +178,6 @@ try {
 }
 
 include __DIR__ . '/../../../views/templates/header-dashboard.php';
+include __DIR__ . '/../../../views/templates/sidebar-dashboard.php';
 include __DIR__ . '/../../../views/dashboard/vehicles/update.php';
 include __DIR__ . '/../../../views/templates/footer-dashboard.php';

@@ -6,6 +6,7 @@ require_once __DIR__ . '/../../models/Vehicle.php';
 require_once __DIR__ . '/../../models/Rent.php';
 
 try {
+    $dashboard = true;
     $categories = Category::getAll();
     $vehicles = Vehicle::getDateOrder();
     $rents = Rent::getAll(order: false);
@@ -20,5 +21,6 @@ try {
 
 
 include __DIR__ . '/../../views/templates/header-dashboard.php';
+include __DIR__ . '/../../views/templates/sidebar-dashboard.php';
 include __DIR__ . '/../../views/dashboard/dashboard.php';
 include __DIR__ . '/../../views/templates/footer-dashboard.php';

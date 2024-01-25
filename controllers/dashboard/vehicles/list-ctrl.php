@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../../models/Vehicle.php';
 
 try {
     $title = 'Liste des véhicules';
-
+    $vehiclesActive = true;
     $id_vehicle = intval(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
 
     $order = filter_input(INPUT_GET, 'order', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -38,5 +38,6 @@ try {
 
 
 include __DIR__ . '/../../../views/templates/header-dashboard.php';
+include __DIR__ . '/../../../views/templates/sidebar-dashboard.php';
 include __DIR__ . '/../../../views/dashboard/vehicles/list.php';
 include __DIR__ . '/../../../views/templates/footer-dashboard.php';

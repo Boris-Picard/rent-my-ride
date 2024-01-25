@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../../models/Vehicle.php';
 
 try {
     $title = 'Ajout d\'un véhicule';
-
+    $vehiclesActive = true;
     // utilisation de la méthode static getAll qui permet de récuper toutes les données dans categories
     $listCategories = Category::getAll();
 
@@ -156,5 +156,6 @@ try {
 }
 
 include __DIR__ . '/../../../views/templates/header-dashboard.php';
+include __DIR__ . '/../../../views/templates/sidebar-dashboard.php';
 include __DIR__ . '/../../../views/dashboard/vehicles/add.php';
 include __DIR__ . '/../../../views/templates/footer-dashboard.php';

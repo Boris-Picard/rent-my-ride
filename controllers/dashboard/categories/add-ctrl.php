@@ -4,6 +4,7 @@ require_once __DIR__ . '/../../../config/config.php';
 require_once __DIR__ . '/../../../models/Category.php';
 
 try {
+    $categoriesActive = true;
     $title = 'Ajout d\'une catégorie';
     // Nettoyage et validation des inputs
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -52,5 +53,6 @@ try {
 
 
 include __DIR__ . '/../../../views/templates/header-dashboard.php';
+include __DIR__ . '/../../../views/templates/sidebar-dashboard.php';
 include __DIR__ . '/../../../views/dashboard/categories/add.php';
 include __DIR__ . '/../../../views/templates/footer-dashboard.php';

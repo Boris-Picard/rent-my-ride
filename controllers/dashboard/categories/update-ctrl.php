@@ -6,6 +6,8 @@ require_once __DIR__ . '/../../../models/Category.php';
 try {
     $id_category = intval(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
 
+    $categoriesActive = true;
+    
     $category = Category::get($id_category);
 
     if (!$category) {
@@ -59,5 +61,6 @@ try {
 
 
 include __DIR__ . '/../../../views/templates/header-dashboard.php';
+include __DIR__ . '/../../../views/templates/sidebar-dashboard.php';
 include __DIR__ . '/../../../views/dashboard/categories/update.php';
 include __DIR__ . '/../../../views/templates/footer-dashboard.php';
