@@ -101,7 +101,7 @@ class Rent
         return $this->id_client;
     }
 
-    public function insert(): int
+    public function insert(): bool
     {
         $pdo = Database::connect();
 
@@ -118,7 +118,7 @@ class Rent
 
         $sth->execute();
 
-        return $sth->rowCount() > 0;
+        return $sth->rowCount() > 0 ? true : false;
     }
 
     public static function getAll(int $id_client = 0, int $id_vehicle = 0, bool $archived = true)

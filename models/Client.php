@@ -140,7 +140,7 @@ class Client
         return $this->created_at;
     }
 
-    public function insert(): int
+    public function insert(): bool
     {
         $pdo = Database::connect();
 
@@ -159,7 +159,7 @@ class Client
 
         $sth->execute();
 
-        return $sth->rowCount() > 0;
+        return $sth->rowCount() > 0 ? true : false;
     }
 
     public static function get()

@@ -17,35 +17,33 @@ try {
     $rent = Rent::getAll($id_client, $vehicle);
 
     $id_rent = $rent[0]->id_rent;
-    $nameClient= $rent[0]->firstname;
+    $nameClient = $rent[0]->firstname;
 
-    if($deleteRent) {
+    if ($deleteRent) {
         $delete = Rent::delete($deleteRent);
         $deleteClient = Client::delete($id_client);
         $_SESSION['msg'] = 'La réservation est bien annulée !';
         header('Location: /controllers/dashboard/reservations/list-ctrl.php');
+        die;
     }
 
     if (isset($sendMail)) {
-        try {
-            $adress = 'picard.boris@gmail.com';
-            $nameAdress = $nameClient;
-            $subject = 'Confirmation de réservation';
-            $body = 'Bonjour,' . ' ' . $rent[0]->firstname . ' ' . $rent[0]->lastname . ' ' . 'nous vous confirmons la réservation de votre véhicule <br>'
-                . $rent[0]->brand . ' ' . $rent[0]->model . '<br> A Partir du :  ' . $rent[0]->startdate .
-                '<br> Au : ' . $rent[0]->enddate . '';
-            $mail = Mail::sendMail($adress, $nameAdress, $subject, $body);
+        $adress = 'picard.boris@gmail.com';
+        $nameAdress = $nameClient;
+        $subject = 'Confirmation de réservation';
+        $body = 'Bonjour,' . ' ' . $rent[0]->firstname . ' ' . $rent[0]->lastname . ' ' . 'nous vous confirmons la réservation de votre véhicule <br>'
+            . $rent[0]->brand . ' ' . $rent[0]->model . '<br> A Partir du :  ' . $rent[0]->startdate .
+            '<br> Au : ' . $rent[0]->enddate . '';
+        $mail = Mail::sendMail($adress, $nameAdress, $subject, $body);
 
-            if ($mail) {
-                $archive = Rent::archive($id_rent);
-                $_SESSION['msg'] = 'Le mail est bien envoyé  !';
-                header('Location: /controllers/dashboard/reservations/list-ctrl.php');
-            }
-        } catch (Exception $e) {
-            'erreur :' . $e->getmessage();
+        if ($mail) {
+            $archive = Rent::archive($id_rent);
+            $_SESSION['msg'] = 'Le mail est bien envoyé  !';
+            header('Location: /controllers/dashboard/reservations/list-ctrl.php');
+            die;
         }
     }
-} catch (PDOException $e) {
+} catch (Exception $e) {
     die('Erreur : ' . $e->getMessage());
 }
 

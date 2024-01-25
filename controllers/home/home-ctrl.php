@@ -13,6 +13,10 @@ try {
 
     $searched = filter_input(INPUT_GET, 'search', FILTER_SANITIZE_SPECIAL_CHARS);
 
+    if($searched == '') {
+        $searched = null;
+    }
+
     $listCategories = Category::getAll();
 
     $resultOnpage = 6;
@@ -21,12 +25,8 @@ try {
 
     $nbPages = ceil($vehicles / $resultOnpage);
     
-    if ($page <= 0) {
+    if ($page <= 0 || $page > $nbPages) {
         $page = 1;
-    }
-
-    if ($page > $nbPages) {
-        $page = $nbPages;
     }
 
     $start = ($page - 1) * $resultOnpage;

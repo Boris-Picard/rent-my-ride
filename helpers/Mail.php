@@ -32,7 +32,7 @@ class Mail
 
             return $mail->send();
         } catch (Exception $e) {
-            'erreur :' . $e->getmessage();
+            throw $e;
         }
     }
 }

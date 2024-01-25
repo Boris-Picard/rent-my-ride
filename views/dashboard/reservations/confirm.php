@@ -49,18 +49,20 @@
                                     </div>
                                 </div>
                                 <div class="col-6 p-3">
-                                    <p>Prénom : <span class="fw-bold"><?=$rent[0]->firstname?></span></p>
-                                    <p>Nom : <span class="fw-bold"><?=$rent[0]->lastname?></span></p>
-                                    <p>Age : <span class="fw-bold"><?=$rent[0]->birthday?></span></p>
-                                    <p>Email : <span class="fw-bold"><?=$rent[0]->email?></span></p>
-                                    <p>Début de la réservation : <span class="fw-bold"><?=$rent[0]->startdate?></span></p>
-                                    <p>Fin de la réservation : <span class="fw-bold"><?=$rent[0]->enddate?></span></p>
-                                    <div class="py-3 d-flex justify-content-center">
-                                        <a href="/controllers/dashboard/reservations/confirm-ctrl.php?id=<?=$rent[0]->id_client?>&vehicle=<?=$rent[0]->id_vehicle?>&mail=true" class="btn btn-success fw-bold text-uppercase">Envoyer un mail de confirmation</a>
-                                    </div>
-                                    <div class="py-3 d-flex justify-content-center">
-                                        <a href="/controllers/dashboard/reservations/confirm-ctrl.php?id=<?=$rent[0]->id_client?>&vehicle=<?=$rent[0]->id_vehicle?>&delete=<?=$rent[0]->id_rent?>" class="btn btn-danger fw-bold text-uppercase">Annuler la réservation</a>
-                                    </div>
+                                    <p>Prénom : <span class="fw-bold"><?= $rent[0]->firstname ?></span></p>
+                                    <p>Nom : <span class="fw-bold"><?= $rent[0]->lastname ?></span></p>
+                                    <p>Age : <span class="fw-bold"><?= $rent[0]->birthday ?></span></p>
+                                    <p>Email : <span class="fw-bold"><?= $rent[0]->email ?></span></p>
+                                    <p>Début de la réservation : <span class="fw-bold"><?= $rent[0]->startdate ?></span></p>
+                                    <p>Fin de la réservation : <span class="fw-bold"><?= $rent[0]->enddate ?></span></p>
+                                    <form action="" method="POST">
+                                        <div class="py-3 d-flex justify-content-center">
+                                            <a href="/controllers/dashboard/reservations/confirm-ctrl.php?id=<?= $rent[0]->id_client ?>&vehicle=<?= $rent[0]->id_vehicle ?>&mail=true" class="btn btn-success fw-bold text-uppercase">Envoyer un mail de confirmation</a>
+                                        </div>
+                                        <div class="py-3 d-flex justify-content-center">
+                                            <a href="/controllers/dashboard/reservations/confirm-ctrl.php?id=<?= $rent[0]->id_client ?>&vehicle=<?= $rent[0]->id_vehicle ?>&delete=<?= $rent[0]->id_rent ?>" class="btn btn-danger fw-bold text-uppercase">Annuler la réservation</a>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

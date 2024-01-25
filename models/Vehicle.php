@@ -169,7 +169,7 @@ class Vehicle
         $sql = 'SELECT * FROM `vehicles` INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`
                 WHERE `deleted_at` '.$showDeletedAt.'';
 
-        isset($search) ? $sql .= " AND `model` LIKE '$search%' OR `brand` LIKE '$search%' " : null;
+        isset($search) ? $sql .= " AND (`model` LIKE '$search%' OR `brand` LIKE '$search%' OR `categories`.`name` LIKE '$search%')" : null;
 
         $id != null ? $sql .= " AND `vehicles`.`id_category`= $id " : '';
 

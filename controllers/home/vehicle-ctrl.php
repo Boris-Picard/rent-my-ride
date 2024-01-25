@@ -6,6 +6,7 @@ $id_vehicle = intval(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
 
 $vehicle = Vehicle::get($id_vehicle);
 
+
 $title = $vehicle->model;
 
 

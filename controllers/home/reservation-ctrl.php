@@ -7,7 +7,6 @@ require_once __DIR__ . '/../../models/Rent.php';
 require_once __DIR__ . '/../../helpers/Database.php';
 
 try {
-
     $id_vehicle = intval(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
 
     $vehicle = Vehicle::get($id_vehicle);
@@ -91,6 +90,33 @@ try {
             }
         }
 
+
+        $postalCode = $postal; // Remplacez par le code postal souhaité
+
+        // Construire l'URL avec le code postal
+        $url = "https://api-adresse.data.gouv.fr/search/?postcode=" . urlencode($postalCode);
+
+        // Initialiser cURL
+        $curl = curl_init($url);
+
+        // Configurer les options cURL
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        // Exécuter la requête
+        $response = curl_exec($curl);
+
+        // Fermer la session cURL
+        curl_close($curl);
+
+        // Traiter la réponse (convertir le JSON en tableau associatif)
+        $data = json_decode($response, true);
+
+        // Afficher les résultats
+        print_r($data);
+
+
+
+
         $startDate = filter_input(INPUT_POST, 'startDate', FILTER_SANITIZE_NUMBER_INT);
         if (empty($startDate)) {
             $error['startDate'] = 'Veuillez renseigner une date';
@@ -99,7 +125,7 @@ try {
             $currentDate = new DateTime();
             $currentDate->setTime(0, 0, 0);
             $startDateFormat = $startDateObj->format('Y-m-d H:i:s');
-            if($startDateObj < $currentDate) {
+            if ($startDateObj < $currentDate) {
                 $error['startDate'] = 'La date ne peut pas être antérieure au jour actuel.';
             }
         }
@@ -112,10 +138,10 @@ try {
             $currentDate = new DateTime();
             $currentDate->setTime(0, 0, 0);
             $endDateFormat = $endDateObj->format('Y-m-d H:i:s');
-            if($endDateObj < $currentDate) {
+            if ($endDateObj < $currentDate) {
                 $error['endDate'] = 'La date de fin ne peut pas être antérieure au jour actuel.';
             }
-            if($endDateObj < $startDateObj) {
+            if ($endDateObj < $startDateObj) {
                 $error['endDate'] = 'La date de fin ne peut pas être antérieure à la date de début.';
             }
         }
@@ -127,6 +153,7 @@ try {
                 $pdo->beginTransaction();
 
                 $client = new Client();
+                $rent = new Rent();
 
                 $client->setLastname($lastname);
                 $client->setFirstname($firstname);
@@ -136,37 +163,31 @@ try {
                 $client->setCity($city);
                 $client->setZipcode($postal);
 
-                $client->insert();
-                $id_client = Client::get();
+                $resultClient = $client->insert();
 
-                $rent = new Rent();
+                $id_client = $pdo->lastInsertId();
 
                 $rent->setStartDate($startDateFormat);
                 $rent->setEndDate($endDateFormat);
                 $rent->setIdVehicle($id_vehicle);
                 $rent->setIdClient($id_client);
 
-                $rent->insert();
+                $resultRent = $rent->insert();
 
-                $result = $pdo->commit();
-
-                if($result) {
+                if ($resultClient && $resultRent) {
+                    $result = $pdo->commit();
                     $alert['success'] = 'Réservation enregistrée, vous recevrez bientôt un e-mail de confirmation !';
                 }
             } catch (PDOException $e) {
                 $pdo->rollback();
-                echo 'erreur : ' . $e->getMessage();
+                $e->getMessage();
+                $alert['error'] = 'Un problème est survenu lors de l\'envoi du formulaire';
             }
-
-            // if($result) {
-            //     $alert['success'] = 'Votre réservation est bien enregistrée !';
-            // }
         }
     }
 } catch (PDOException $e) {
     die('Erreur : ' . $e->getMessage());
 }
-
 
 
 
