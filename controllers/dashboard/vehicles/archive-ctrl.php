@@ -3,6 +3,7 @@ require_once __DIR__ . '/../../../config/config.php';
 require_once __DIR__ . '/../../../models/Vehicle.php';
 
 try {
+    
     $title = 'Liste des véhicules archivées';
 
     $id_vehicle = intval(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));

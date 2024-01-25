@@ -90,33 +90,6 @@ try {
             }
         }
 
-
-        $postalCode = $postal; // Remplacez par le code postal souhaité
-
-        // Construire l'URL avec le code postal
-        $url = "https://api-adresse.data.gouv.fr/search/?postcode=" . urlencode($postalCode);
-
-        // Initialiser cURL
-        $curl = curl_init($url);
-
-        // Configurer les options cURL
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
-        // Exécuter la requête
-        $response = curl_exec($curl);
-
-        // Fermer la session cURL
-        curl_close($curl);
-
-        // Traiter la réponse (convertir le JSON en tableau associatif)
-        $data = json_decode($response, true);
-
-        // Afficher les résultats
-        print_r($data);
-
-
-
-
         $startDate = filter_input(INPUT_POST, 'startDate', FILTER_SANITIZE_NUMBER_INT);
         if (empty($startDate)) {
             $error['startDate'] = 'Veuillez renseigner une date';

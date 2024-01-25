@@ -121,7 +121,7 @@ class Rent
         return $sth->rowCount() > 0 ? true : false;
     }
 
-    public static function getAll(int $id_client = 0, int $id_vehicle = 0, bool $archived = true)
+    public static function getAll(int $id_client = 0, int $id_vehicle = 0, bool $archived = true, ?bool $order = null)
     {
         $pdo = Database::connect();
 
@@ -136,6 +136,8 @@ class Rent
         if ($id_client > 0 && $id_vehicle > 0) {
             $sql .= ' AND `rents`.`id_client`=:id_client AND `rents`.`id_vehicle`=:id_vehicle ';
         }
+
+        $order ? $sql .= ' ORDER BY `id_rent` ' : $sql .= ' ORDER BY `id_rent` DESC ';
 
         if ($id_client > 0 && $id_vehicle > 0) {
             $sth = $pdo->prepare($sql);

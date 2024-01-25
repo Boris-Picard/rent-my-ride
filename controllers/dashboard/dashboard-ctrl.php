@@ -3,10 +3,13 @@
 require_once __DIR__ . '/../../config/config.php';
 require_once __DIR__ . '/../../models/Category.php';
 require_once __DIR__ . '/../../models/Vehicle.php';
+require_once __DIR__ . '/../../models/Rent.php';
 
 try {
     $categories = Category::getAll();
     $vehicles = Vehicle::getDateOrder();
+    $rents = Rent::getAll(order: false);
+    
     
     $convert = strtotime($vehicles[0]['created_at']);
     $date = date('d/m/y H:i', $convert);

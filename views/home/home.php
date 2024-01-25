@@ -12,13 +12,11 @@
                             <?php } ?>
                         </select>
                         <button type="submit" class="btn mx-3 homeSelectBtn fw-bold text-capitalize">Valider</button>
-                        <!-- </form> -->
                 </div>
                 <div class="col-md-6 col-12 pb-3">
                     <div class="d-flex justify-content-end">
                         <p class="fw-semibold">Vous cherchez un modèle en particulier ?</p>
                     </div>
-                    <!-- <form action="" class="d-flex justify-content-end"> -->
                     <div class="d-flex justify-content-end">
                         <div class="input-group md-form form-sm form-2 pl-0 w-50">
                             <input class="form-control my-0 py-1" name="search" type="search" value="<?= isset($searched) ? $searched : '' ?>" placeholder="Chercher un modèle">
@@ -28,6 +26,15 @@
                         </div>
                     </div>
                     </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex">
+                        <h3 class="fw-bold">
+                            <span class="onlyColor"><?= $vehicles ?></span> véhicules trouvés
+                        </h3>
+                    </div>
                 </div>
             </div>
             <div class="col-12">
