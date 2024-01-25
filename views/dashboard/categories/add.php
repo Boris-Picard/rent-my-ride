@@ -12,7 +12,7 @@
                             <a href="/controllers/dashboard/dashboard-ctrl.php" class="py-3 nav-link navLink sidebarLink"><span><i class="bi bi-house px-3"></i> Dashboard</span></a>
                             <a href="/controllers/dashboard/categories/list-ctrl.php" class="py-3 nav-link active navLink sidebarLink"><span><i class="bi bi-tag px-3"></i>Category</span></a>
                             <a href="/controllers/dashboard/vehicles/list-ctrl.php" class="py-3 nav-link navLink sidebarLink"><span><i class="bi bi-car-front-fill px-3"></i>Véhicle</span></a>
-                            <a href="/controllers/dashboard/reservations/list-ctrl.php" class="py-3 nav-link navLink sidebarLink"><span><i class="bi bi-book-half px-3"></i> Reservations<span class="badge text-bg-danger"><?=count($rents)?></span></span></a>
+                            <a href="/controllers/dashboard/reservations/list-ctrl.php" class="py-3 nav-link navLink sidebarLink"><span><i class="bi bi-book-half px-3"></i> Reservations<span class="badge text-bg-danger"></span></span></a>
                             <!-- <a href="" class="py-3 nav-link navLink sidebarLink"><span><i class="bi bi-people px-3"></i> Users</span></a> -->
                             <!-- <a href="" class="mb-3 py-3 navLink logout position-absolute sidebarLink w-100 nav-link"><span><i class="bi bi-box-arrow-right px-3"></i>Logout</span></a> -->
                         </div>
